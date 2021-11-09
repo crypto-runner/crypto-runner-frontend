@@ -1,6 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import Features from "./components/Features";
+import Roadmap from "./components/Roadmap";
 import Row1 from "./components/Row1";
 import Trailer from "./components/Trailer";
 
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
       <Row1 />
       <Features />
       <Trailer />
+      <Roadmap />
     </div>
   );
 };

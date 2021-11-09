@@ -7,6 +7,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     paddingTop: 30,
   },
+  container: {
+    position: "relative",
+    paddingBottom: 250,
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: 50,
+    },
+  },
   btnsDiv: {
     display: "grid",
     gap: 20,
@@ -37,10 +44,7 @@ const Trailer: React.FC<Props> = () => {
 
   return (
     <div className={classes.root}>
-      <Container
-        maxWidth="md"
-        style={{ position: "relative", paddingBottom: 250 }}
-      >
+      <Container maxWidth="md" className={classes.container}>
         <Typography
           color="textSecondary"
           align="center"
