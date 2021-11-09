@@ -7,8 +7,8 @@ declare module "@mui/material/Button" {
   }
 }
 
-const lightGrey = "rgb(55,57,67)";
-const veryLightGrey = "rgb(82,85,99)";
+// const lightGrey = "rgb(55,57,67)";
+// const veryLightGrey = "rgb(82,85,99)";
 
 const theme = createTheme({
   breakpoints: {
@@ -30,12 +30,12 @@ const theme = createTheme({
       main: "#FFB807",
     },
     text: {
-      primary: "rgb(255,255,255)",
-      secondary: "rgb(194,195,203)",
+      secondary: "rgb(255,255,255)",
+      primary: "rgb(0,0,0)",
     },
     background: {
-      default: "rgb(43,44,51)",
-      paper: "rgb(37,39,46)",
+      // default: "rgb(43,44,51)",
+      // paper: "rgb(37,39,46)",
     },
     action: {
       hover: "rgb(70,100,241)",
@@ -53,7 +53,6 @@ const theme = createTheme({
     MuiSelect: {
       styleOverrides: {
         outlined: {
-          backgroundColor: veryLightGrey,
           borderRadius: 10,
         },
       },
@@ -61,17 +60,15 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          background: lightGrey,
-          padding: 20,
+          padding: "30px 20px",
           boxShadow: "none",
-          borderRadius: 15,
+          borderRadius: 36,
         },
       },
     },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          background: lightGrey,
           borderRadius: 10,
           "& fieldset": {
             border: "0px !important",
@@ -109,58 +106,6 @@ const theme = createTheme({
           },
         },
       ],
-    },
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          backgroundColor: lightGrey,
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          // backgroundColor: "rgb(37,39,46)"
-          boxShadow: "none",
-          border: "1px solid rgb(64,65,71)",
-        },
-      },
-    },
-    MuiToolbar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: "rgb(37,39,46)",
-          minHeight: 80,
-          height: 80,
-        },
-      },
-    },
-    MuiListItemIcon: {
-      styleOverrides: {
-        root: {
-          color: "rgb(194,195,203)",
-        },
-      },
-    },
-    MuiListItem: {
-      styleOverrides: {
-        root: {
-          color: "rgb(194,195,203)",
-          height: 45,
-          "&.Mui-selected": {
-            backgroundColor: "rgb(70,100,241) !important",
-            marginLeft: 5,
-            marginRight: 5,
-            borderRadius: 10,
-            width: "calc(100% - 10px)",
-            boxShadow: "0px 0px 25px rgba(70,100,241,0.6)",
-            color: "white",
-          },
-          "&:hover": {
-            backgroundColor: "transparent",
-          },
-        },
-      },
     },
   },
 });

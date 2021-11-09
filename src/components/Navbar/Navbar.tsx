@@ -1,8 +1,19 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import Logo from "src/assets/images/logo.png";
-import { Button, Container, Theme } from "@mui/material";
+import {
+  Button,
+  Container,
+  Drawer,
+  Hidden,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Theme,
+} from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -35,6 +46,7 @@ interface Props {}
 
 const Navbar: React.FC<Props> = () => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
 
   return (
     <Container maxWidth="lg">
@@ -42,40 +54,62 @@ const Navbar: React.FC<Props> = () => {
         <Link to="/">
           <img src={Logo} alt="crypto-runner" className={classes.img} />
         </Link>
-        <div className={classes.linksContainer}>
-          <NavLink
-            to="/team"
-            className={classes.link}
-            activeClassName={classes.activeLink}
+        <Hidden mdDown>
+          <div className={classes.linksContainer}>
+            <NavLink
+              to="/team"
+              className={classes.link}
+              activeClassName={classes.activeLink}
+            >
+              Team
+            </NavLink>
+            <NavLink
+              to="/explore"
+              className={classes.link}
+              activeClassName={classes.activeLink}
+            >
+              Explore
+            </NavLink>
+            <NavLink
+              to="/presale"
+              className={classes.link}
+              activeClassName={classes.activeLink}
+            >
+              Presale
+            </NavLink>
+            <NavLink
+              to="/farm"
+              className={classes.link}
+              activeClassName={classes.activeLink}
+            >
+              NFT Farm
+            </NavLink>
+          </div>
+          <Button
+            variant="contained"
+            color="secondary"
+            style={{ maxWidth: 300 }}
           >
-            Team
-          </NavLink>
-          <NavLink
-            to="/explore"
-            className={classes.link}
-            activeClassName={classes.activeLink}
-          >
-            Explore
-          </NavLink>
-          <NavLink
-            to="/presale"
-            className={classes.link}
-            activeClassName={classes.activeLink}
-          >
-            Presale
-          </NavLink>
-          <NavLink
-            to="/farm"
-            className={classes.link}
-            activeClassName={classes.activeLink}
-          >
-            NFT Farm
-          </NavLink>
-        </div>
-        <Button variant="contained" color="secondary">
-          Connect
-        </Button>
+            Connect
+          </Button>
+        </Hidden>
+        <Hidden mdUp>
+          <div />
+
+          <IconButton onClick={() => setOpen(true)}>
+            <MenuIcon />
+          </IconButton>
+        </Hidden>
       </div>
+      <Drawer anchor={"right"} open={open} onClose={() => setOpen(false)}>
+        <div style={{ width: 250 }}>
+          <List>
+            <ListItem button>
+              <ListItemText primary="asfjhkj" />
+            </ListItem>
+          </List>
+        </div>
+      </Drawer>
     </Container>
   );
 };
