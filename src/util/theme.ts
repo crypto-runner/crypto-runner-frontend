@@ -10,6 +10,8 @@ declare module "@mui/material/Button" {
 // const lightGrey = "rgb(55,57,67)";
 // const veryLightGrey = "rgb(82,85,99)";
 
+const obitron = '"Orbitron", sans-serif';
+
 const theme = createTheme({
   breakpoints: {
     values: {
@@ -42,9 +44,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'Orbitron', sans-serif",
+    // fontFamily: "'Roboto', sans-serif",
   },
   components: {
+    MuiTypography: {},
     MuiLink: {
       defaultProps: {
         underline: "none",
@@ -86,6 +89,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
+          fontFamily: obitron,
         },
         containedPrimary: {},
         containedSecondary: {

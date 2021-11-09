@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import Bg from "src/assets/images/1stpagebg.jpg";
 import { Theme, Typography } from "@mui/material";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -22,8 +23,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     objectFit: "cover",
   },
   text: {
-    // zIndex:2,
     position: "relative",
+    // fontFamily: "'Orbitron', sans-serif",
+    fontWeight: 600,
     [theme.breakpoints.down("lg")]: {
       marginTop: 20,
     },
@@ -42,9 +44,9 @@ const Row1: React.FC<Props> = () => {
         variant="h2"
         color="textSecondary"
         align="center"
-        className={classes.text}
+        className={clsx(classes.text, "styleFont")}
       >
-        <b> RACE. WIN. EARN.</b>
+        RACE. WIN. EARN.
       </Typography>
     </div>
   );

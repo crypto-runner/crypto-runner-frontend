@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -58,28 +59,28 @@ const Navbar: React.FC<Props> = () => {
           <div className={classes.linksContainer}>
             <NavLink
               to="/team"
-              className={classes.link}
+              className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
               Team
             </NavLink>
             <NavLink
               to="/explore"
-              className={classes.link}
+              className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
               Explore
             </NavLink>
             <NavLink
               to="/presale"
-              className={classes.link}
+              className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
               Presale
             </NavLink>
             <NavLink
               to="/farm"
-              className={classes.link}
+              className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
               NFT Farm

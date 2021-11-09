@@ -9,6 +9,7 @@ import RacePng from "src/assets/images/race.png";
 import RewardPng from "src/assets/images/rewards.png";
 import { v4 as uuid } from "uuid";
 import Bg from "src/assets/images/orangebg.jpg";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -81,7 +82,7 @@ const Features: React.FC<Props> = () => {
                 <Typography
                   variant="h5"
                   align="center"
-                  className={classes.heading}
+                  className={clsx(classes.heading, "styleFont")}
                 >
                   <b>{feature.title}</b>
                 </Typography>
