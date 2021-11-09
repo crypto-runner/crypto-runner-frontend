@@ -11,6 +11,7 @@ declare module "@mui/material/Button" {
 // const veryLightGrey = "rgb(82,85,99)";
 
 const obitron = '"Orbitron", sans-serif';
+const secondaryColor = "#FFB807";
 
 const theme = createTheme({
   breakpoints: {
@@ -29,7 +30,7 @@ const theme = createTheme({
       main: "rgb(255,100,2)",
     },
     secondary: {
-      main: "#FFB807",
+      main: secondaryColor,
     },
     text: {
       secondary: "rgb(255,255,255)",
@@ -91,6 +92,14 @@ const theme = createTheme({
           textTransform: "none",
           fontFamily: obitron,
         },
+        contained: {
+          border: "2px solid black",
+          borderRadius: 2,
+          boxShadow: "none",
+          fontWeight: 800,
+          padding: "10px 70px",
+          backgroundColor: "white",
+        },
         containedPrimary: {},
         containedSecondary: {
           border: "2px solid black",
@@ -98,6 +107,7 @@ const theme = createTheme({
           boxShadow: "none",
           fontWeight: 800,
           padding: "10px 70px",
+          backgroundColor: secondaryColor,
         },
       },
       variants: [
