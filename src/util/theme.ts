@@ -6,12 +6,18 @@ declare module "@mui/material/Button" {
     round: true;
   }
 }
+declare module "@mui/material/Paper" {
+  interface PaperPropsVariantOverrides {
+    black: true;
+  }
+}
 
 // const lightGrey = "rgb(55,57,67)";
 // const veryLightGrey = "rgb(82,85,99)";
 
 const obitron = '"Orbitron", sans-serif';
 const secondaryColor = "#FFB807";
+const primaryColor = "rgb(255,100,2)";
 
 const theme = createTheme({
   breakpoints: {
@@ -27,7 +33,7 @@ const theme = createTheme({
   palette: {
     // mode: "dark",
     primary: {
-      main: "rgb(255,100,2)",
+      main: primaryColor,
     },
     secondary: {
       main: secondaryColor,
@@ -70,6 +76,18 @@ const theme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      variants: [
+        {
+          props: { variant: "black" },
+          style: {
+            backgroundColor: "rgb(19,19,19)",
+            borderRadius: 5,
+            padding: 20,
+          },
+        },
+      ],
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
@@ -100,7 +118,9 @@ const theme = createTheme({
           padding: "10px 70px",
           backgroundColor: "white",
         },
-        containedPrimary: {},
+        containedPrimary: {
+          // backgroundColor: primaryColor,
+        },
         containedSecondary: {
           border: "2px solid black",
           borderRadius: 2,
