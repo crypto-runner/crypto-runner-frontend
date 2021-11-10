@@ -54,7 +54,13 @@ const theme = createTheme({
     // fontFamily: "'Roboto', sans-serif",
   },
   components: {
-    MuiTypography: {},
+    MuiTypography: {
+      styleOverrides: {
+        h6: {
+          fontWeight: 400,
+        },
+      },
+    },
     MuiLink: {
       defaultProps: {
         underline: "none",
@@ -174,7 +180,14 @@ const theme = createTheme({
           color: "black",
           fontWeight: 600,
         },
-      
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          background: "white",
+          height: 2,
+        },
       },
     },
   },

@@ -1,27 +1,21 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import {
-  Container,
-  Grid,
-  Hidden,
-  Pagination,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Button, Container, Grid, Theme, Typography } from "@mui/material";
 import clsx from "clsx";
-import Values from "./components/Values";
-import Filters from "./components/Filters";
-import NftCard from "./components/NftCard";
+import TokenCard from "./components/TokenCard";
 import Social from "src/components/Social/Social";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: 70,
   },
-  paginationContainer: {
-    display: "flex",
-    justifyContent: "flex-end",
-    marginTop: 20,
+  selectionBtn: {
+    border: "1px solid black",
+    borderRadius: 0,
+    color: "white",
+  },
+  btnSelected: {
+    background: theme.palette.primary.main,
   },
 }));
 
@@ -39,35 +33,26 @@ const Farm: React.FC<Props> = () => {
         <Typography color="textSecondary" style={{ marginTop: 20 }}>
           Discover the amazing CryptoRunner NFTS
         </Typography>
-        <Values />
-        <Grid container spacing={2} style={{ marginTop: 30 }}>
-          <Grid item xs={3}>
-            <Filters />
+        <div style={{ marginTop: 20 }}>
+          <Button className={clsx(classes.selectionBtn, classes.btnSelected)}>
+            MEL
+          </Button>
+          <Button className={classes.selectionBtn}>BNB</Button>
+          <Button className={classes.selectionBtn}>CAKE</Button>
+          <Button className={classes.selectionBtn}>BUSD</Button>
+        </div>
+        <Grid container spacing={4} style={{ marginTop: 20 }}>
+          <Grid item xs={12} md={6}>
+            <TokenCard />
           </Grid>
-          <Grid item xs={9}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-            </Grid>
-            <div className={classes.paginationContainer}>
-              <Pagination count={10} color="primary" shape="rounded" />
-            </div>
+          <Grid item xs={12} md={6}>
+            <TokenCard />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TokenCard />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TokenCard />
           </Grid>
         </Grid>
         <Social />
