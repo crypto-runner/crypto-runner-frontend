@@ -5,6 +5,7 @@ import Routes from "src/routes/Routes";
 import { ThemeProvider } from "@mui/material";
 import theme from "src/util/theme";
 import Navbar from "src/components/Navbar/Navbar";
+import Footer from "src/components/Footer/Footer";
 
 const App: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const App: React.FC = () => {
           <div>
             <Routes />
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Container>
     </ThemeProvider>
