@@ -68,9 +68,13 @@ const theme = createTheme({
     },
     MuiSelect: {
       styleOverrides: {
-        outlined: {
-          borderRadius: 10,
+      
+        select:{
+          background: "white",
+          
         },
+       
+       
       },
     },
     MuiCard: {

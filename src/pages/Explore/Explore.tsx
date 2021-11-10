@@ -41,10 +41,11 @@ const Explore: React.FC<Props> = () => {
         </Typography>
         <Values />
         <Grid container spacing={2} style={{ marginTop: 30 }}>
-          <Grid item xs={3}>
+          <Grid item xs={12} md={3}>
             <Filters />
           </Grid>
-          <Grid item xs={9}>
+
+          <Grid item xs={12} md={9}>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={6} md={4}>
                 <NftCard />
