@@ -104,6 +104,14 @@ const theme = createTheme({
         },
       },
     },
+
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: "black",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -129,6 +137,20 @@ const theme = createTheme({
           padding: "10px 70px",
           backgroundColor: secondaryColor,
         },
+        outlinedPrimary: {
+          backgroundColor: primaryColor,
+          border: "2px solid black",
+          color: "white",
+          borderRadius: 2,
+          boxShadow: "none",
+          "&:hover": {
+            backgroundColor: primaryColor,
+            border: "2px solid black",
+            color: "white",
+            borderRadius: 2,
+            boxShadow: "none",
+          },
+        },
       },
       variants: [
         {
@@ -140,6 +162,20 @@ const theme = createTheme({
           },
         },
       ],
+    },
+    MuiPagination: {
+      styleOverrides: {
+        outlined: {},
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          color: "black",
+          fontWeight: 600,
+        },
+      
+      },
     },
   },
 });

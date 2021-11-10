@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Container, Grid, Theme, Typography } from "@mui/material";
 import PackCard from "./components/PackCard";
+import Social from "src/components/Social/Social";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -34,6 +35,7 @@ const Nfts: React.FC<Props> = () => {
             <PackCard />
           </Grid>
         </Grid>
+        <Social />
       </Container>
     </div>
   );
