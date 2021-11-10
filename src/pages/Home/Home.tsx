@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import React from "react";
+import Social from "src/components/Social/Social";
 import Features from "./components/Features";
 import Roadmap from "./components/Roadmap";
 import Row1 from "./components/Row1";
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
       <Trailer />
       <Roadmap />
       <Team />
+      <Social />
     </div>
   );
 };
