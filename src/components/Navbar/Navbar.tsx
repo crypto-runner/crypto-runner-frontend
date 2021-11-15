@@ -15,6 +15,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import clsx from "clsx";
+import { useWalletModal, useWalletProvider } from '@react-dapp/wallet'
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -43,11 +44,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props { }
 
 const Navbar: React.FC<Props> = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setMenuOpen] = React.useState(false);
+  const { setOpen, deactivate } = useWalletModal()
+  const { account } = useWalletProvider();
 
   return (
     <Container maxWidth="lg">
@@ -90,23 +93,32 @@ const Navbar: React.FC<Props> = () => {
             variant="contained"
             color="secondary"
             style={{ maxWidth: 300 }}
+            onClick={() => account ? deactivate() : setOpen(true)}
           >
-            Connect
+            {account ? `${account.substring(0, 4)}...${account.substring(account.length - 4, account.length)}` : 'Connect'}
           </Button>
         </Hidden>
         <Hidden mdUp>
           <div />
 
-          <IconButton onClick={() => setOpen(true)}>
+          <IconButton onClick={() => setMenuOpen(true)}>
             <MenuIcon />
           </IconButton>
         </Hidden>
       </div>
-      <Drawer anchor={"right"} open={open} onClose={() => setOpen(false)}>
+      <Drawer anchor={"right"} open={open} onClose={() => setMenuOpen(false)}>
         <div style={{ width: 250 }}>
           <List>
             <ListItem button>
-              <ListItemText primary="asfjhkj" />
+              <ListItemText primary="" />
+              <Button
+                variant="contained"
+                color="secondary"
+                style={{ maxWidth: 300 }}
+                onClick={() => account ? deactivate() : setOpen(true)}
+              >
+                {account ? `${account.substring(0, 4)}...${account.substring(account.length - 4, account.length)}` : 'Connect'}
+              </Button>
             </ListItem>
           </List>
         </div>
