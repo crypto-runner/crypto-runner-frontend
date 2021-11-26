@@ -15,7 +15,9 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import clsx from "clsx";
-import { useWalletModal, useWalletProvider } from '@react-dapp/wallet'
+import history from "src/util/history";
+import { connect } from "react-redux";
+import { useGetUser } from "src/hooks/useUser";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -44,13 +46,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {
+  user: any;
+}
 
-const Navbar: React.FC<Props> = () => {
+const Navbar: React.FC<Props> = ({ user }) => {
   const classes = useStyles();
   const [open, setMenuOpen] = React.useState(false);
-  const { setOpen, deactivate } = useWalletModal()
-  const { account } = useWalletProvider();
+  const { logout } = useGetUser();
 
   return (
     <Container maxWidth="lg">
@@ -89,14 +92,25 @@ const Navbar: React.FC<Props> = () => {
               NFT Farm
             </NavLink>
           </div>
-          <Button
-            variant="contained"
-            color="secondary"
-            style={{ maxWidth: 300 }}
-            onClick={() => account ? deactivate() : setOpen(true)}
-          >
-            {account ? `${account.substring(0, 4)}...${account.substring(account.length - 4, account.length)}` : 'Connect'}
-          </Button>
+          {user?.address ? (
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ maxWidth: 300 }}
+              onClick={() => logout()}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ maxWidth: 300 }}
+              onClick={() => history.push("/login")}
+            >
+              Login
+            </Button>
+          )}
         </Hidden>
         <Hidden mdUp>
           <div />
@@ -111,14 +125,25 @@ const Navbar: React.FC<Props> = () => {
           <List>
             <ListItem button>
               <ListItemText primary="" />
-              <Button
-                variant="contained"
-                color="secondary"
-                style={{ maxWidth: 300 }}
-                onClick={() => account ? deactivate() : setOpen(true)}
-              >
-                {account ? `${account.substring(0, 4)}...${account.substring(account.length - 4, account.length)}` : 'Connect'}
-              </Button>
+              {user?.address ? (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  style={{ maxWidth: 300 }}
+                  onClick={() => logout()}
+                >
+                  Logout
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  style={{ maxWidth: 300 }}
+                  onClick={() => history.push("/login")}
+                >
+                  Login
+                </Button>
+              )}
             </ListItem>
           </List>
         </div>
@@ -127,4 +152,8 @@ const Navbar: React.FC<Props> = () => {
   );
 };
 
-export default Navbar;
+const mapState = (store: any) => ({
+  user: store.user.user,
+});
+
+export default connect(mapState)(Navbar);
