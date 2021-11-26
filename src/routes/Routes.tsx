@@ -7,6 +7,7 @@ import ForgotPassword from "src/pages/ForgotPassword/ForgotPassword";
 import Home from "src/pages/Home/Home";
 import Login from "src/pages/Login/Login";
 import Nfts from "src/pages/Nfts/Nfts";
+import ProfileSettings from "src/pages/ProfileSettings/ProfileSettings";
 import ResetPassword from "src/pages/ResetPassword/ResetPassword";
 import Signup from "src/pages/Signup/Signup";
 import VerifyingEmail from "src/pages/VerifyingEmail/VerifyingEmail";
@@ -24,6 +25,7 @@ const Routes: React.FC = () => {
       <Route path="/email-verification" exact component={EmailVerification} />
       <Route path="/reset-password" exact component={ResetPassword} />
       <Route path="/forgot-password" exact component={ForgotPassword} />
+      <Route path="/profile" exact component={ProfileSettings} />
     </Switch>
   );
 };

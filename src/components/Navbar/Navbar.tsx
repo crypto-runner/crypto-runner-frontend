@@ -64,7 +64,10 @@ const Navbar: React.FC<Props> = ({ user }) => {
     dispatch(
       notify({
         title: "Account",
-        buttons: [{ name: "Logout", onClick: logout }],
+        buttons: [
+          { name: "Profile", onClick: () => history.push("/profile") },
+          { name: "Logout", onClick: logout },
+        ],
       })
     );
   };
