@@ -98,6 +98,15 @@ const Login: React.FC<Props> = ({ user }) => {
               />
             </Grid>
             <Grid item xs={12}>
+              <Typography
+                color="secondary"
+                component={Link}
+                href="/forgot-password"
+              >
+                Forgot Password
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
               <Button
                 type="submit"
                 fullWidth
