@@ -68,13 +68,9 @@ const theme = createTheme({
     },
     MuiSelect: {
       styleOverrides: {
-      
-        select:{
+        select: {
           background: "white",
-          
         },
-       
-       
       },
     },
     MuiCard: {
@@ -119,6 +115,16 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "black",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& label":{
+            
+            color: "grey",
+          }
         },
       },
     },
