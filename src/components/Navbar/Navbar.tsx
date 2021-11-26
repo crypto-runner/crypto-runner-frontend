@@ -11,13 +11,16 @@ import {
   ListItem,
   ListItemText,
   Theme,
+  Typography,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import clsx from "clsx";
 import history from "src/util/history";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useGetUser } from "src/hooks/useUser";
+import { useWalletModal, useWalletProvider } from "@react-dapp/wallet";
+import { notify } from "reapop";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -54,6 +57,17 @@ const Navbar: React.FC<Props> = ({ user }) => {
   const classes = useStyles();
   const [open, setMenuOpen] = React.useState(false);
   const { logout } = useGetUser();
+  const { account } = useWalletProvider();
+  const dispatch = useDispatch();
+
+  const accountNumClick = () => {
+    dispatch(
+      notify({
+        title: "Account",
+        buttons: [{ name: "Logout", onClick: logout }],
+      })
+    );
+  };
 
   return (
     <Container maxWidth="lg">
@@ -93,14 +107,9 @@ const Navbar: React.FC<Props> = ({ user }) => {
             </NavLink>
           </div>
           {user?.address ? (
-            <Button
-              variant="contained"
-              color="secondary"
-              style={{ maxWidth: 300 }}
-              onClick={() => logout()}
-            >
-              Logout
-            </Button>
+            <Typography color="textSecondary" onClick={accountNumClick}>
+              {user.address}
+            </Typography>
           ) : (
             <Button
               variant="contained"
@@ -114,7 +123,6 @@ const Navbar: React.FC<Props> = ({ user }) => {
         </Hidden>
         <Hidden mdUp>
           <div />
-
           <IconButton onClick={() => setMenuOpen(true)}>
             <MenuIcon />
           </IconButton>
