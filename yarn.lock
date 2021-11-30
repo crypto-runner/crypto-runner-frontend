@@ -2030,6 +2030,11 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
+"@nftvillage/marketplace-sdk@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.1.tgz#f53e274cef8a469153049ca52c0509a96addc1ab"
+  integrity sha512-Gc/DHii/ofDWKBsFcH/3/RZAC2+1A9R60mt0lpBCyD+1Y5bInqdXvxxUrPcVygBLXdqZ59lv3AKKqxJVd7NTWw==
+
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz"
