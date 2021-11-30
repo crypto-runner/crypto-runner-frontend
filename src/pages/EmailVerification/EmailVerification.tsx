@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme : Theme) => ({
 
 const EmailVerification = () => {
   const classes = useStyles();
-  const bc = new BroadcastChannel("nft-comics");
+  const bc = new BroadcastChannel("crypto-runner");
   const location = useLocation();
   const { sendEmail } = useEmailVerification();
   const { verifyOtp } = useOtpVerify();
