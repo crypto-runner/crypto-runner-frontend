@@ -101,7 +101,7 @@ const Signup: React.FC<Props> = ({ user }) => {
             color="textPrimary"
             className={classes.heading}
           >
-            Login
+            Signup
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12}>
