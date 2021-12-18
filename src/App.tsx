@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 import { useGetUser } from "./hooks/useUser";
 import { useEagerConnect, useWalletProvider } from "@react-dapp/wallet";
 import { UtilsProvider } from "@react-dapp/utils";
+import { LoadingProvider } from "./Context/LoadingContext";
+import "sweetalert2/src/sweetalert2.scss";
 
 interface Props {
   loading: boolean;
@@ -20,7 +22,7 @@ const App: React.FC<Props> = ({ loading, user }) => {
   const { getUser } = useGetUser();
   useEagerConnect(Boolean(user.address));
   const { library } = useWalletProvider();
-
+  
   React.useEffect(() => {
     getUser();
   }, []);
@@ -28,21 +30,23 @@ const App: React.FC<Props> = ({ loading, user }) => {
   return (
     <UtilsProvider config={{ provider: library }}>
       <ThemeProvider theme={theme}>
-        <Backdrop
-          open={loading}
-          style={{ zIndex: 9999, backgroundColor: "white" }}
-        >
-          <CircularProgress color="primary" />
-        </Backdrop>
-        <Container maxWidth="xl" disableGutters>
-          <div className="mainContainer">
-            <Navbar />
-            <div>
-              <Routes />
+        <LoadingProvider>
+          <Backdrop
+            open={loading}
+            style={{ zIndex: 9999, backgroundColor: "white" }}
+          >
+            <CircularProgress color="primary" />
+          </Backdrop>
+          <Container maxWidth="xl" disableGutters>
+            <div className="mainContainer">
+              <Navbar />
+              <div>
+                <Routes />
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </Container>
+          </Container>
+        </LoadingProvider>
       </ThemeProvider>
     </UtilsProvider>
   );

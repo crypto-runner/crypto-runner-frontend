@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import { useEmailVerification } from "src/hooks/useUser";
 import { useOtpVerify } from "src/hooks/useUser";
 
-const useStyles = makeStyles((theme : Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: "100%",
     backgroundColor: theme.palette.secondary.main,
@@ -27,7 +27,7 @@ const EmailVerification = () => {
   console.log(location);
   //get params from url
   const params = new URLSearchParams(location.search);
-  const handleMessage = (event: {data:{email:string,otp:string}}) => {
+  const handleMessage = (event: { data: { email: string; otp: string } }) => {
     bc.postMessage(event.data);
     console.log(event.data);
     verifyOtp(event.data);

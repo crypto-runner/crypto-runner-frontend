@@ -128,6 +128,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiAccordionDetails:{
+      styleOverrides:{
+        root:{
+          padding:0,
+        }
+      }
+    },
     MuiButton: {
       styleOverrides: {
         root: {

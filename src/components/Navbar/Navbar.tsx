@@ -21,6 +21,7 @@ import { connect, useDispatch } from "react-redux";
 import { useGetUser } from "src/hooks/useUser";
 import { useWalletModal, useWalletProvider } from "@react-dapp/wallet";
 import { notify } from "reapop";
+import { useEthers } from "@react-dapp/utils";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -58,6 +59,7 @@ const Navbar: React.FC<Props> = ({ user }) => {
   const [open, setMenuOpen] = React.useState(false);
   const { logout } = useGetUser();
   const { account } = useWalletProvider();
+  const { displayAccount } = useEthers();
   const dispatch = useDispatch();
 
   const accountNumClick = () => {
@@ -81,11 +83,11 @@ const Navbar: React.FC<Props> = ({ user }) => {
         <Hidden mdDown>
           <div className={classes.linksContainer}>
             <NavLink
-              to="/team"
+              to="/my-runners"
               className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
-              Team
+              Inventory
             </NavLink>
             <NavLink
               to="/explore"
@@ -111,7 +113,7 @@ const Navbar: React.FC<Props> = ({ user }) => {
           </div>
           {user?.address ? (
             <Typography color="textSecondary" onClick={accountNumClick}>
-              {user.address}
+              {displayAccount}
             </Typography>
           ) : (
             <Button

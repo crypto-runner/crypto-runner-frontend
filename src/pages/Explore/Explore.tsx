@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
 import {
   Container,
@@ -13,6 +13,11 @@ import Values from "./components/Values";
 import Filters from "./components/Filters";
 import NftCard from "./components/NftCard";
 import Social from "src/components/Social/Social";
+import { useAllPacks } from "@nftvillage/presale-sdk";
+import LoadingContext from "src/Context/LoadingContext";
+import { useDispatch } from "react-redux";
+import { setUserLoading } from "src/redux/user/userReducer";
+import { v4 as uuid } from "uuid";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -29,6 +34,16 @@ interface Props {}
 
 const Explore: React.FC<Props> = () => {
   const classes = useStyles();
+  const { packs, loading } = useAllPacks();
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (loading) {
+      dispatch(setUserLoading(true));
+    } else {
+      dispatch(setUserLoading(false));
+    }
+  }, [loading]);
 
   return (
     <div className={classes.root}>
@@ -47,24 +62,16 @@ const Explore: React.FC<Props> = () => {
 
           <Grid item xs={12} md={9}>
             <Grid container spacing={3}>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4}>
-                <NftCard />
-              </Grid>
+              {/* {packs && (
+                <Grid key={uuid()} item xs={12} sm={6} md={4}>
+                  <NftCard pack={packs && packs[0]} />
+                </Grid>
+              )} */}
+              {packs?.map((item) => (
+                <Grid key={uuid()} item xs={12} sm={6} md={4}>
+                  <NftCard pack={item} />
+                </Grid>
+              ))}
             </Grid>
             <div className={classes.paginationContainer}>
               <Pagination count={10} color="primary" shape="rounded" />
