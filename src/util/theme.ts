@@ -207,6 +207,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTableHead:{
+      styleOverrides:{
+        root:{
+          background:"white"
+        }
+      }
+    }
   },
 });
 

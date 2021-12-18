@@ -9,6 +9,7 @@ import Inventory from "src/pages/Inventory/Inventory";
 import Login from "src/pages/Login/Login";
 import Marketplace from "src/pages/Marketplace/Marketplace";
 import Nfts from "src/pages/Nfts/Nfts";
+import OrderPage from "src/pages/OrderPage/OrderPage";
 import ProfileSettings from "src/pages/ProfileSettings/ProfileSettings";
 import ResetPassword from "src/pages/ResetPassword/ResetPassword";
 import Signup from "src/pages/Signup/Signup";
@@ -30,6 +31,7 @@ const Routes: React.FC = () => {
       <Route path="/profile" exact component={ProfileSettings} />
       <Route path="/my-runners" exact component={Inventory} />
       <Route path="/" exact component={Marketplace} />
+      <Route path="/order-item/:asset/:assetId" exact component={OrderPage} />
     </Switch>
   );
 };

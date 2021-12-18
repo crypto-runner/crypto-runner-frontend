@@ -1,22 +1,9 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Theme, Typography } from "@mui/material";
-import Img from "src/assets/images/pug.png";
 import clsx from "clsx";
-import { Packs, useBuyPack } from "@nftvillage/presale-sdk";
-import MySwal from "src/util/showAlert";
-import Img1 from "src/assets/gifs/presale/Jack_23122.gif";
-import Img2 from "src/assets/gifs/presale/Jack_23132.gif";
-import Img3 from "src/assets/gifs/presale/Jack_23211.gif";
-import Img4 from "src/assets/gifs/presale/Jack_23212.gif";
-import Img5 from "src/assets/gifs/presale/Jack_23222.gif";
-import Img6 from "src/assets/gifs/presale/Jack_23231.gif";
-import { useERC20Approval } from "@react-dapp/utils";
-
-let imgArr = [Img1, Img2, Img3, Img4, Img5, Img6];
-
-// select random from array
-// let randomImg = imgArr[Math.floor(Math.random() * imgArr.length)];
+import { Order } from "@nftvillage/marketplace-sdk";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -47,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     // left: "calc(50% - 100px)",
     display: "flex",
     justifyContent: "center",
-    width:"100%"
+    width: "100%",
   },
   quantityText: {
     textAlign: "center",
@@ -60,73 +47,25 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  pack: Packs ;
+  order: Order;
 }
 
-const NftCard: React.FC<Props> = ({ pack }) => {
+const NftCard: React.FC<Props> = ({ order }) => {
   const classes = useStyles();
+  const history = useHistory();
 
-  // console.log(pack);
-  const { buy, isApproved, approve } = useBuyPack(
-    pack.packId,
-    pack.paymentToken,
-    pack.price
-  );
-
-  const handleApprove = async () => {
-    MySwal.fire({
-      title: <strong>Approving Token</strong>,
-      html: <i>Please wait while we do work for you</i>,
-      icon: "info",
-      allowOutsideClick: false,
-      didOpen: () => {
-        MySwal.showLoading();
-      },
-    });
-    await approve();
-    MySwal.close();
-    MySwal.fire({
-      title: <strong>Token Approved Successfull</strong>,
-      icon: "success",
-    });
+  const redirect = () => {
+    history.push(`/order-item/${order.order.asset}/${order.order.assetId}`);
   };
 
-  const handleBuy = async () => {
-    MySwal.fire({
-      title: <strong>Performing Transaction</strong>,
-      html: <i>Please wait till we process the transaction</i>,
-      icon: "info",
-      allowOutsideClick: false,
-      didOpen: () => {
-        MySwal.showLoading();
-      },
-    });
-    let res = await buy(1);
-    console.log(res);
-    if (res.status) {
-      MySwal.fire({
-        title: <strong>Transaction Successfull</strong>,
-        icon: "success",
-      });
-    } else {
-      MySwal.fire({
-        title: <strong>Transaction Error</strong>,
-
-        icon: "error",
-      });
-    }
-  };
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={redirect}>
       <div className={classes.imgContainer}>
-        <img src={imgArr[Math.floor(Math.random() * imgArr.length)]} alt="" />
+        <img src={order.metadata.image} alt="" />
         <div className={classes.quantityContainer}>
           <div className={classes.quantityWrapper}>
             <Typography className={clsx(classes.quantityText, "styleFont")}>
-            {pack.tokens[0].balance} LEFT <span></span>
-            </Typography>
-            <Typography className={clsx(classes.quantityText, "styleFont")}>
-              <span>{pack.displayPrice} POINTS</span>
+              {order.metadata.name}
             </Typography>
           </div>
         </div>
@@ -136,9 +75,10 @@ const NftCard: React.FC<Props> = ({ pack }) => {
         fullWidth
         variant="outlined"
         style={{ marginTop: 30 }}
-        onClick={isApproved ? handleBuy : handleApprove}
+        // onClick={isApproved ? handleBuy : handleApprove}
       >
-        {isApproved ? "Buy" : "Approve"}
+        {/* {isApproved ? "Buy" : "Approve"} */}
+        {order.metadata.price}
       </Button>
     </div>
   );

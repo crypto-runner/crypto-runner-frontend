@@ -1,0 +1,1 @@
+export const POOL_CARD_ADDRESS  = process.env.REACT_APP_POOL_CARDS_ADDRESS as string

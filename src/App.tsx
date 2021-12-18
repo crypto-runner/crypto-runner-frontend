@@ -33,7 +33,7 @@ const App: React.FC<Props> = ({ loading, user }) => {
         <LoadingProvider>
           <Backdrop
             open={loading}
-            style={{ zIndex: 9999, backgroundColor: "white" }}
+            style={{ zIndex: 9999,  }}
           >
             <CircularProgress color="primary" />
           </Backdrop>

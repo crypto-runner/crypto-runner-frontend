@@ -14,6 +14,8 @@ import { useInventory } from "src/hooks/useInventory";
 import { setUserLoading } from "src/redux/user/userReducer";
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
+import { useHistory } from "react-router-dom";
+import { POOL_CARD_ADDRESS } from "src/config/config";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -66,6 +68,7 @@ const Inventory: React.FC<Props> = () => {
   const [value, setValue] = React.useState(0);
   const { balance, loading } = useInventory();
   const dispatch = useDispatch();
+  const history = useHistory()
 
   console.log(balance);
 
@@ -105,7 +108,7 @@ const Inventory: React.FC<Props> = () => {
         <Grid container spacing={3} style={{ marginTop: 20 }}>
           {balance?.map((item) => (
             <Grid key={uuid()} item xs={12} sm={6} md={4} lg={3}>
-              <div style={{ position: "relative" }}>
+              <div style={{ position: "relative" }} onClick={()=>history.push(`/order-item/${POOL_CARD_ADDRESS}/${item.tokenId}`)}>
                 <div className={classes.imgContainer}>
                   <img src={item.image} alt="" />
                   <div className={classes.quantityContainer}>

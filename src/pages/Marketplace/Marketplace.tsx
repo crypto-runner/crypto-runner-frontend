@@ -17,6 +17,13 @@ import LoadingContext from "src/Context/LoadingContext";
 import { useDispatch } from "react-redux";
 import { setUserLoading } from "src/redux/user/userReducer";
 import { v4 as uuid } from "uuid";
+import {
+  useOrders,
+  useFilterMarketPlace,
+  FilterMarketPlace,
+  Order,
+} from "@nftvillage/marketplace-sdk";
+import { useWalletProvider } from "@react-dapp/wallet";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -33,16 +40,25 @@ interface Props {}
 
 const Marketplace: React.FC<Props> = () => {
   const classes = useStyles();
-  const { packs, loading } = useAllPacks();
   const dispatch = useDispatch();
+  // const [page, setPage] = React.useState(1);
+  const { filter, filterMarketPlace } = useFilterMarketPlace();
+  const [filterState, setFilterState] = React.useState<FilterMarketPlace>({
+    minPrice: "0",
+  });
+  const { account } = useWalletProvider();
+  const [orders, setOrders] = React.useState<Order[]>([]);
+
+  const fetchOrders = async () => {
+    dispatch(setUserLoading(true));
+    let res = await filterMarketPlace(filterState);
+    setOrders(res);
+    dispatch(setUserLoading(false));
+  };
 
   React.useEffect(() => {
-    if (loading) {
-      dispatch(setUserLoading(true));
-    } else {
-      dispatch(setUserLoading(false));
-    }
-  }, [loading]);
+    fetchOrders();
+  }, [account]);
 
   return (
     <div className={classes.root}>
@@ -55,19 +71,29 @@ const Marketplace: React.FC<Props> = () => {
         </Typography>
         <Grid container spacing={2} style={{ marginTop: 30 }}>
           <Grid item xs={12} md={3}>
-            <Filters />
+            <Filters
+              filterState={filterState}
+              setFilterState={setFilterState}
+              applyFilters={() => fetchOrders()}
+            />
           </Grid>
 
           <Grid item xs={12} md={9}>
             <Grid container spacing={3}>
-              {packs?.map((item) => (
+              {orders?.map((order) => (
                 <Grid key={uuid()} item xs={12} sm={6} md={4}>
-                  <NftCard pack={item} />
+                  <NftCard order={order} />
                 </Grid>
               ))}
             </Grid>
             <div className={classes.paginationContainer}>
-              <Pagination count={10} color="primary" shape="rounded" />
+              {/* <Pagination
+                count={orders?.totalPages}
+                color="primary"
+                shape="rounded"
+                page={page}
+                onChange={(e, v) => setPage(v)}
+              /> */}
             </div>
           </Grid>
         </Grid>
