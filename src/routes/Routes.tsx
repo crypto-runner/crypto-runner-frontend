@@ -19,8 +19,9 @@ const Routes: React.FC = () => {
   return (
     <Switch>
       <Route path="/homepage" exact component={Home} />
-      <Route path="/presale" exact component={Nfts} />
-      <Route path="/explore" exact component={Explore} />
+      {/* <Route path="/presale" exact component={Nfts} /> */}
+      <Route path="/presale" exact component={Explore} />
+      <Route path="/explore" exact component={Marketplace} />
       <Route path="/farm" exact component={Farm} />
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={Signup} />

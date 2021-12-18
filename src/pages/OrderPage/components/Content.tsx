@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setUserLoading } from "src/redux/user/userReducer";
 import { notify } from "reapop";
 import { useWalletProvider } from "@react-dapp/wallet";
-
+import { deleteOrder } from "src/api";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   buyBtn: {
@@ -71,6 +71,8 @@ const Content: React.FC<Props> = ({
           title: "Success",
         })
       );
+      await deleteOrder(order?.order.asset as string, String(order?.order.assetId) as string)
+      window.location.reload();
     } else {
       dispatch(
         notify({
@@ -93,7 +95,7 @@ const Content: React.FC<Props> = ({
         <b>{order?.metadata.name}</b>
       </Typography>
       <Typography color="primary" variant="h5" className="styleFont">
-        <b>{order?.metadata.price}</b>
+        <b>{order?.metadata.price} BNB</b>
       </Typography>
       <Typography color="textSecondary" variant="h5" style={{ marginTop: 20 }}>
         Information
@@ -168,6 +170,7 @@ const Content: React.FC<Props> = ({
             size="small"
             className={classes.priceField}
           />
+          BNB
         </div>
       )}
       {/* {order?.order.maker === account && (

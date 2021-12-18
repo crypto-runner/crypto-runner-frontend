@@ -1,4 +1,4 @@
-import { apiCall } from "src/config/apiConfig";
+import { apiCall, relayerApi } from "src/config/apiConfig";
 import {
   LoginParams,
   SendEmailVerificationParams,
@@ -73,3 +73,14 @@ export const resetPassword = async ({
   let res = await apiCall.put(`users/reset-password`, { email, otp, password });
   return res.data;
 };
+
+export const deleteOrder = async (asset: string, assetId: string) => {
+  const rawResponse = await relayerApi.delete(
+    `orders/${asset}/${assetId}`,
+  )
+  const response = rawResponse.data
+  return {
+    message: response.message,
+    status: response.status,
+  }
+}

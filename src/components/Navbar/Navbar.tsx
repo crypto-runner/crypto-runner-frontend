@@ -87,7 +87,7 @@ const Navbar: React.FC<Props> = ({ user }) => {
               className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
-              Inventory
+              My runners
             </NavLink>
             <NavLink
               to="/explore"

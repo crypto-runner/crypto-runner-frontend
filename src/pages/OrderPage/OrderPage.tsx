@@ -7,7 +7,7 @@ import Content from "./components/Content";
 import OrderHistory from "./components/OrderHistory";
 import { POOL_CARD_ADDRESS } from "src/config/config";
 import { useWalletProvider } from "@react-dapp/wallet";
-import { utils } from "ethers";
+import Img1 from "src/assets/gifs/presale/Jack_23122.gif";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props { }
 
 const OrderPage: React.FC<Props> = () => {
   const classes = useStyles();
@@ -40,7 +40,7 @@ const OrderPage: React.FC<Props> = () => {
         basePrice: price.toString(),
       },
       metadata: {
-        name: "Something New3",
+        name: "Runner 1",
         attributes: [],
         price: price,
         address: POOL_CARD_ADDRESS,
@@ -50,7 +50,6 @@ const OrderPage: React.FC<Props> = () => {
       },
     };
 
-    console.log("asd", isApproved);
     if (!isApproved) {
       let res = await approve();
       if (!res) return;
@@ -65,7 +64,7 @@ const OrderPage: React.FC<Props> = () => {
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <img src={order?.metadata.image} alt="" width="100%" />
+            <img src={order?.metadata.image ?? Img1} alt="" width="100%" />
           </Grid>
           <Grid item xs={12} md={8}>
             <Content
