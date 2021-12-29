@@ -8,6 +8,7 @@ import OrderHistory from "./components/OrderHistory";
 import { POOL_CARD_ADDRESS } from "src/config/config";
 import { useWalletProvider } from "@react-dapp/wallet";
 import Img1 from "src/assets/gifs/presale/Jack_23122.gif";
+import useCreateOrder from "src/hooks/useCreateOrder";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -15,48 +16,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {}
 
 const OrderPage: React.FC<Props> = () => {
   const classes = useStyles();
-  const { account } = useWalletProvider();
   const { asset, assetId } = useParams<{ asset: string; assetId: string }>();
-  const { create, approve, isApproved } = useSellOrder(asset);
+  const { createFixPriceOrder, isApproved } = useCreateOrder(asset);
   const { order } = useOrder({
     asset,
     assetId: Number(assetId),
   });
   const [price, setPrice] = React.useState(0);
 
-  const createOrder = async () => {
-    let ord: Order = {
-      order: {
-        asset,
-        assetId: Number(assetId),
-        maker: account || "",
-        side: 0,
-        assetType: 1,
-        saleKind: 0,
-        basePrice: price.toString(),
-      },
-      metadata: {
-        name: "Runner 1",
-        attributes: [],
-        price: price,
-        address: POOL_CARD_ADDRESS,
-        tokenId: Number(assetId),
-        collectionName: "crypto-runner",
-        makerAddress: account || "",
-      },
-    };
-
-    if (!isApproved) {
-      let res = await approve();
-      if (!res) return;
-    }
-    let res = await create(ord);
-    console.log(res);
-    window.location.reload();
+  const createOrder = async ({ name }: { name: string }) => {
+    createFixPriceOrder({
+      assetId,
+      name,
+      price,
+    });
   };
 
   return (

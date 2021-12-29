@@ -7,6 +7,7 @@ import { setUserLoading } from "src/redux/user/userReducer";
 import { notify } from "reapop";
 import { useWalletProvider } from "@react-dapp/wallet";
 import { deleteOrder } from "src/api";
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
   buyBtn: {
@@ -85,7 +86,7 @@ const Content: React.FC<Props> = ({
   };
 
   const putOnSale = () => {
-    createOrder();
+    createOrder({name:order?.metadata.name});
   };
 
   console.log(order);

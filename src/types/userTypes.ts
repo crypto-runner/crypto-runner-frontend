@@ -29,3 +29,10 @@ export interface UpdatePasswordInterface {
   otp: string;
   password: string;
 }
+
+export interface CreateFixPriceOrderParams {
+  asset?: string;
+  assetId: string | number;
+  price: string | number;
+  name: string;
+}
