@@ -29,6 +29,12 @@ const WalletButtonBase: React.FC<Props> = ({
     openWalletModal(true);
   };
 
+  React.useEffect(() => {
+    if (account) {
+      localStorage.setItem("Allow-Wallet-Reconnect", "true");
+    }
+  }, [account]);
+
   return (
     <Button
       {...props}

@@ -50,8 +50,8 @@ const Content: React.FC<Props> = ({
     account || ""
   );
 
-  const handleApprove = () => {
-    buyHook?.approve();
+  const handleApprove = async () => {
+    await buyHook?.approve();
     dispatch(
       notify({
         status: "success",

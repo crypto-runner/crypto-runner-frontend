@@ -7,7 +7,6 @@ import theme from "src/util/theme";
 import Navbar from "src/components/Navbar/Navbar";
 import Footer from "src/components/Footer/Footer";
 import { connect } from "react-redux";
-import { useGetUser } from "./hooks/useUser";
 import { useEagerConnect, useWalletProvider } from "@react-dapp/wallet";
 import { UtilsProvider } from "@react-dapp/utils";
 import { LoadingProvider } from "./Context/LoadingContext";
@@ -19,22 +18,14 @@ interface Props {
 }
 
 const App: React.FC<Props> = ({ loading, user }) => {
-  const { getUser } = useGetUser();
-  useEagerConnect(Boolean(user.address));
+  useEagerConnect(Boolean(localStorage.getItem("Allow-Wallet-Reconnect")));
   const { library } = useWalletProvider();
-  
-  React.useEffect(() => {
-    getUser();
-  }, []);
 
   return (
     <UtilsProvider config={{ provider: library }}>
       <ThemeProvider theme={theme}>
         <LoadingProvider>
-          <Backdrop
-            open={loading}
-            style={{ zIndex: 9999,  }}
-          >
+          <Backdrop open={loading} style={{ zIndex: 9999 }}>
             <CircularProgress color="primary" />
           </Backdrop>
           <Container maxWidth="xl" disableGutters>

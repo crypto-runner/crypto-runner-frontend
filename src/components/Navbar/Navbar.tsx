@@ -22,6 +22,7 @@ import { useGetUser } from "src/hooks/useUser";
 import { useWalletModal, useWalletProvider } from "@react-dapp/wallet";
 import { notify } from "reapop";
 import { useEthers } from "@react-dapp/utils";
+import WalletButtonBase from "../WalletButtonBase/WalletButtonBase";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -67,8 +68,8 @@ const Navbar: React.FC<Props> = ({ user }) => {
       notify({
         title: "Account",
         buttons: [
-          { name: "Profile", onClick: () => history.push("/profile") },
-          { name: "Logout", onClick: logout },
+          // { name: "Profile", onClick: () => history.push("/profile") },
+          { name: "Disconnect", onClick: logout },
         ],
       })
     );
@@ -111,19 +112,19 @@ const Navbar: React.FC<Props> = ({ user }) => {
               NFT Farm
             </NavLink>
           </div>
-          {user?.address ? (
+          {displayAccount ? (
             <Typography color="textSecondary" onClick={accountNumClick}>
               {displayAccount}
             </Typography>
           ) : (
-            <Button
+            <WalletButtonBase
               variant="contained"
               color="secondary"
               style={{ maxWidth: 300 }}
-              onClick={() => history.push("/login")}
+              // onClick={() => history.push("/login")}
             >
-              Login
-            </Button>
+              {/* Connect */}
+            </WalletButtonBase>
           )}
         </Hidden>
         <Hidden mdUp>
@@ -138,24 +139,19 @@ const Navbar: React.FC<Props> = ({ user }) => {
           <List>
             <ListItem button>
               <ListItemText primary="" />
-              {user?.address ? (
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  style={{ maxWidth: 300 }}
-                  onClick={() => logout()}
-                >
-                  Logout
-                </Button>
+              {displayAccount ? (
+                 <Typography color="textSecondary" onClick={accountNumClick}>
+                 {displayAccount}
+               </Typography>
               ) : (
-                <Button
+                <WalletButtonBase
                   variant="contained"
                   color="secondary"
                   style={{ maxWidth: 300 }}
-                  onClick={() => history.push("/login")}
+                  // onClick={() => history.push("/login")}
                 >
-                  Login
-                </Button>
+                  {/* Connect */}
+                </WalletButtonBase>
               )}
             </ListItem>
           </List>

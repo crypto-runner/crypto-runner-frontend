@@ -27,7 +27,8 @@ import {
 export const useGetUser = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { error } = useWalletModal();
+  const { error, } = useWalletModal();
+  const {deactivate} = useWalletProvider()
 
   React.useEffect(() => {
     if (error)
@@ -64,6 +65,8 @@ export const useGetUser = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("Allow-Wallet-Reconnect")
+    deactivate();
     dispatch(setUser({}));
     history.push("/");
   };
