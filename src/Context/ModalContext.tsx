@@ -15,9 +15,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {},
 }));
 
+interface ModalOptions  {
+    hideCloseBtn?:boolean;
+    hideTitle?:boolean;
+}
+
 const ModalContext = React.createContext({
   title: "",
-  openModal: (title: string, data?: any, hideCloseBtn?: boolean) => {},
+  openModal: (title: string, data?: any, options?: ModalOptions) => {},
   closeModal: () => {},
 });
 export default ModalContext;
@@ -29,7 +34,7 @@ interface Props {
 export const ModalProvider: React.FC<Props> = ({ children, allModals }) => {
   const classes = useStyles();
   const [title, setTitle] = React.useState("");
-  const [hideCloseBtn, setHideCloseBtn] = React.useState(false);
+  const [options, setOptions] = React.useState<ModalOptions | undefined>({});
   const [data, setData] = React.useState({});
   const Component = React.useRef<any>(undefined);
 
@@ -42,21 +47,21 @@ export const ModalProvider: React.FC<Props> = ({ children, allModals }) => {
     <ModalContext.Provider
       value={{
         title,
-        openModal: (title: string, data?: any, hideCloseBtn?: boolean) => {
+        openModal: (title: string, data?: any,  options?: ModalOptions) => {
           Component.current = allModals?.find(
             (x) => x.name === title
           )?.component;
           setTitle(title);
           setData(data);
-          setHideCloseBtn(hideCloseBtn || false);
+          setOptions(options);
         },
         closeModal: onClose,
       }}
     >
       <Dialog open={!!title} className={classes.root} maxWidth={"md"}>
         <DialogTitle sx={{ pr: 5 }}>
-          {title}
-          {!hideCloseBtn ? (
+          {!options?.hideTitle && title}
+          {!options?.hideCloseBtn ? (
             <IconButton
               aria-label="close"
               onClick={onClose}

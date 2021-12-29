@@ -67,7 +67,11 @@ const Marketplace: React.FC<Props> = () => {
     <div className={classes.root}>
       <Button
         onClick={() => {
-          openModal("HelloWorld", { asd: "ga" }, true);
+          openModal(
+            "HelloWorld",
+            { asd: "ga" },
+            { hideTitle: true, hideCloseBtn: true }
+          );
         }}
       >
         akshdk
