@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
 import {
+  Button,
   Container,
   Grid,
   Hidden,
@@ -24,6 +25,7 @@ import {
   Order,
 } from "@nftvillage/marketplace-sdk";
 import { useWalletProvider } from "@react-dapp/wallet";
+import ModalContext from "src/Context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -41,6 +43,7 @@ interface Props {}
 const Marketplace: React.FC<Props> = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { openModal } = useContext(ModalContext);
   // const [page, setPage] = React.useState(1);
   const { filter, filterMarketPlace } = useFilterMarketPlace();
   const [filterState, setFilterState] = React.useState<FilterMarketPlace>({
@@ -62,6 +65,13 @@ const Marketplace: React.FC<Props> = () => {
 
   return (
     <div className={classes.root}>
+      <Button
+        onClick={() => {
+          openModal("HelloWorld", { asd: "ga" }, true);
+        }}
+      >
+        akshdk
+      </Button>
       <Container maxWidth="lg">
         <Typography color="textSecondary" variant="h4" className="styleFont">
           <b>MARKEPLACE</b>
