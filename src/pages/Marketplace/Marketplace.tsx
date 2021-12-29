@@ -65,17 +65,6 @@ const Marketplace: React.FC<Props> = () => {
 
   return (
     <div className={classes.root}>
-      <Button
-        onClick={() => {
-          openModal(
-            "HelloWorld",
-            { asd: "ga" },
-            { hideTitle: true, hideCloseBtn: true }
-          );
-        }}
-      >
-        akshdk
-      </Button>
       <Container maxWidth="lg">
         <Typography color="textSecondary" variant="h4" className="styleFont">
           <b>MARKEPLACE</b>
