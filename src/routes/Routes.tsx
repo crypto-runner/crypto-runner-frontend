@@ -14,6 +14,7 @@ import ProfileSettings from "src/pages/ProfileSettings/ProfileSettings";
 import ResetPassword from "src/pages/ResetPassword/ResetPassword";
 import Signup from "src/pages/Signup/Signup";
 import VerifyingEmail from "src/pages/VerifyingEmail/VerifyingEmail";
+import UnlockReward from "src/pages/UnlockReward/UnlockReward";
 
 const Routes: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const Routes: React.FC = () => {
       <Route path="/forgot-password" exact component={ForgotPassword} />
       <Route path="/profile" exact component={ProfileSettings} />
       <Route path="/my-runners" exact component={Inventory} />
+      <Route path="/unlock" exact component={UnlockReward} />
       <Route path="/" exact component={Marketplace} />
       <Route path="/order-item/:asset/:assetId" exact component={OrderPage} />
     </Switch>

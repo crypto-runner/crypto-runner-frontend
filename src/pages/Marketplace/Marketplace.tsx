@@ -45,7 +45,7 @@ const Marketplace: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const { openModal } = useContext(ModalContext);
   // const [page, setPage] = React.useState(1);
-  const { filter, filterMarketPlace } = useFilterMarketPlace();
+  const { filterMarketPlace } = useFilterMarketPlace();
   const [filterState, setFilterState] = React.useState<FilterMarketPlace>({
     minPrice: "0",
   });
@@ -55,7 +55,7 @@ const Marketplace: React.FC<Props> = () => {
   const fetchOrders = async () => {
     dispatch(setUserLoading(true));
     let res = await filterMarketPlace(filterState);
-    setOrders(res);
+    setOrders(res?.data || []);
     dispatch(setUserLoading(false));
   };
 
