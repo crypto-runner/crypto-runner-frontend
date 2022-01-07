@@ -13,6 +13,7 @@ import { LoadingProvider } from "./Context/LoadingContext";
 import "sweetalert2/src/sweetalert2.scss";
 import { ModalProvider } from "./Context/ModalContext";
 import HelloWorld from "./modals/HelloWorld";
+import RewardUnlock from "./modals/RewardUnlock";
 
 interface Props {
   loading: boolean;
@@ -23,6 +24,10 @@ const allModals = [
   {
     name: "HelloWorld",
     component: HelloWorld,
+  },
+  {
+    name: "RewardUnlock",
+    component: RewardUnlock,
   },
 ];
 

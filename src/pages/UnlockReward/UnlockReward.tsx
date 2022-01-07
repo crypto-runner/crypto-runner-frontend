@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Container, Theme, Typography } from "@mui/material";
 import ChestPng from "src/assets/images/chest.png";
 import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
+import ModalContext from "src/Context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -36,6 +37,17 @@ interface Props {}
 
 const UnlockReward: React.FC<Props> = () => {
   const classes = useStyles();
+  const { openModal } = useContext(ModalContext);
+
+  const handleClick = () => {
+    openModal(
+      "RewardUnlock",
+      {},
+      {
+        hideTitle: true,
+      }
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -72,6 +84,7 @@ const UnlockReward: React.FC<Props> = () => {
           color="primary"
           variant="outlined"
           className={classes.claimBtn}
+          onClick={handleClick}
         >
           Claim Reward
         </WalletButtonBase>
