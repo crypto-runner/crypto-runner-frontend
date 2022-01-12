@@ -32,7 +32,7 @@ const Routes: React.FC = () => {
       <Route path="/forgot-password" exact component={ForgotPassword} />
       <Route path="/profile" exact component={ProfileSettings} />
       <Route path="/my-runners" exact component={Inventory} />
-      <Route path="/unlock" exact component={UnlockReward} />
+      <Route path="/treasure-chest" exact component={UnlockReward} />
       <Route path="/" exact component={Marketplace} />
       <Route path="/order-item/:asset/:assetId" exact component={OrderPage} />
     </Switch>

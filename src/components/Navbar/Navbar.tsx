@@ -105,11 +105,11 @@ const Navbar: React.FC<Props> = ({ user }) => {
               Presale
             </NavLink>
             <NavLink
-              to="/farm"
+              to="/treasure-chest"
               className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
-              NFT Farm
+              Treasure Chest
             </NavLink>
           </div>
           {displayAccount ? (
