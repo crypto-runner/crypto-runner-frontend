@@ -4,7 +4,9 @@ import { Button, Container, Theme, Typography } from "@mui/material";
 import ChestPng from "src/assets/images/chest.png";
 import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
 import ModalContext from "src/Context/ModalContext";
-import {useBuyPack} from "../../hooks/useRandomPresale"
+import { useBuyPack } from "../../hooks/useRandomPresale"
+import RandomPresale_Abi from "../../assets/abi/random_Presale.json"
+import { ethers } from "ethers";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props { }
 
 const UnlockReward: React.FC<Props> = () => {
   const classes = useStyles();
@@ -50,24 +52,24 @@ const UnlockReward: React.FC<Props> = () => {
     );
   };
 
-  //log events 
-
-  const eventLog=()=>{
-    
-  }
-
   //Pre-Sale testing
-  const {buyPack} = useBuyPack()
-  const _buyPack=async () => {
-      const txResponse = await buyPack()
-    if (txResponse) {
+  const { buyPack } = useBuyPack()
+  const _buyPack = async () => {
+    const txResponse = await buyPack()
+  
+    if (txResponse?.status) {
       console.log(txResponse)
+
+      const iface = new ethers.utils.Interface(RandomPresale_Abi);
+      const tokenId = iface.parseLog(txResponse.receipt.logs[1]).args['tokenId'].toString()
+      console.log('parsed logs', tokenId)
+
       handleClick()
     } else {
       console.log("Error Occur")
     }
   }
-  
+
 
   return (
     <div className={classes.root}>
@@ -104,7 +106,7 @@ const UnlockReward: React.FC<Props> = () => {
           color="primary"
           variant="outlined"
           className={classes.claimBtn}
-          onClick={()=>_buyPack()}
+          onClick={() => _buyPack()}
         >
           Claim Reward
         </WalletButtonBase>

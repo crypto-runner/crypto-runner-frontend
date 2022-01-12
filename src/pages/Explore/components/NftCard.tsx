@@ -5,12 +5,12 @@ import Img from "src/assets/images/pug.png";
 import clsx from "clsx";
 import { Packs, useBuyPack } from "@nftvillage/presale-sdk";
 import MySwal from "src/util/showAlert";
-import Img1 from "src/assets/gifs/presale/Jack_23122.gif";
-import Img2 from "src/assets/gifs/presale/Jack_23132.gif";
-import Img3 from "src/assets/gifs/presale/Jack_23211.gif";
-import Img4 from "src/assets/gifs/presale/Jack_23212.gif";
-import Img5 from "src/assets/gifs/presale/Jack_23222.gif";
-import Img6 from "src/assets/gifs/presale/Jack_23231.gif";
+import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
+import Img2 from "src/assets/gifs/presale/CzFinance_2.gif";
+import Img3 from "src/assets/gifs/presale/Elonmusk_3.gif";
+import Img4 from "src/assets/gifs/presale/Elonmusk_4.gif";
+import Img5 from "src/assets/gifs/presale/Jack_5.gif";
+import Img6 from "src/assets/gifs/presale/Jack_6.gif";
 import { useERC20Approval } from "@react-dapp/utils";
 
 let imgArr = [Img1, Img2, Img3, Img4, Img5, Img6];

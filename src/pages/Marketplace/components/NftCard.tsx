@@ -4,7 +4,7 @@ import { Button, Theme, Typography } from "@mui/material";
 import clsx from "clsx";
 import { Order } from "@nftvillage/marketplace-sdk";
 import { useHistory } from "react-router-dom";
-import Img1 from "src/assets/gifs/presale/Jack_23122.gif";
+import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},

@@ -1,10 +1,11 @@
 import { useERC1155Balance } from "@react-dapp/utils";
-import { getLand, LANDS } from "src/config/cards";
+import { getRunner, RUNNERS } from "src/config/cards";
+import {POOL_CARD_ADDRESS} from "../config/config"
 
 export const useInventory = () => {
   const { balance, loading } = useERC1155Balance(
-    process.env.REACT_APP_POOL_CARDS_ADDRESS || "",
-    LANDS.map((e) => e.tokenId)
+    POOL_CARD_ADDRESS || "",
+    RUNNERS.map((e) => e.tokenId)
   );
 
   return {
@@ -14,7 +15,7 @@ export const useInventory = () => {
       ?.map((e) => {
         return {
           amount: e.amount,
-          ...getLand(e.tokenId),
+          ...getRunner(e.tokenId),
         };
       }),
   };
