@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Container, Theme, Typography } from "@mui/material";
 import Confetti from "react-confetti";
-import Gif from "src/assets/gifs/presale/Jack_23122.gif";
+import Gif from "src/assets/gifs/presale/Jack_5.gif";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

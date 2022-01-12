@@ -7,7 +7,7 @@ import Content from "./components/Content";
 import OrderHistory from "./components/OrderHistory";
 import { POOL_CARD_ADDRESS } from "src/config/config";
 import { useWalletProvider } from "@react-dapp/wallet";
-import Img1 from "src/assets/gifs/presale/Jack_23122.gif";
+import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
 import useCreateOrder from "src/hooks/useCreateOrder";
 
 const useStyles = makeStyles((theme: Theme) => ({
