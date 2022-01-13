@@ -30,6 +30,7 @@
     "axios": "^0.24.0",
     "bignumber.js": "^9.0.1",
     "clsx": "^1.1.1",
+    "dotenv": "^11.0.0",
     "ethereum-multicall": "^2.9.0",
     "ethers": "^5.5.1",
     "material-ui-chip-input": "^1.1.0",

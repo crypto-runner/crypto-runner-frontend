@@ -70,8 +70,6 @@ const Inventory: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const history = useHistory()
 
-  console.log(balance);
-
   React.useEffect(() => {
     if (loading) {
       dispatch(setUserLoading(true));

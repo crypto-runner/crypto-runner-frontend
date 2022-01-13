@@ -3,6 +3,8 @@ import { makeStyles } from "@mui/styles";
 import { Container, Theme, Typography } from "@mui/material";
 import Confetti from "react-confetti";
 import Gif from "src/assets/gifs/presale/Jack_5.gif";
+import { getRunner } from "src/config/cards";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -34,7 +36,7 @@ interface Props {
   data: any;
   closeModal: () => {};
 }
-const RewardUnlock: React.FC<Props> = () => {
+const RewardUnlock: React.FC<Props> = ({ data }) => {
   const classes = useStyles();
   const ref = React.useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = React.useState({ width: 10, height: 10 });
@@ -53,6 +55,8 @@ const RewardUnlock: React.FC<Props> = () => {
     };
   }, [ref]);
 
+  const runner = getRunner(data);
+
   return (
     <Container maxWidth="lg" className={classes.root} ref={ref}>
       <Confetti
@@ -60,7 +64,7 @@ const RewardUnlock: React.FC<Props> = () => {
         height={dimensions.height}
         initialVelocityY={30}
       />
-      <img src={Gif} alt="" className={classes.gif} />
+      <img src={runner?.image} alt="" className={classes.gif} />
 
       <Typography
         variant="h5"
@@ -76,8 +80,17 @@ const RewardUnlock: React.FC<Props> = () => {
         className="styleFont"
         align="center"
       >
-        <b>RED JACK</b>
+        <b>{runner?.name}</b>
       </Typography>
+
+      {/* <Typography
+        variant="h4"
+        color="primary"
+        className="styleFont"
+        align="center"
+      >
+        <NavLink to='/my-runners'>View My Runner</NavLink>
+      </Typography> */}
     </Container>
   );
 };

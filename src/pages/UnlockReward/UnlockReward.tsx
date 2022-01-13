@@ -41,30 +41,22 @@ interface Props { }
 const UnlockReward: React.FC<Props> = () => {
   const classes = useStyles();
   const { openModal } = useContext(ModalContext);
+  const { buyPack, txPending } = useBuyPack()
 
-  const handleClick = () => {
-    openModal(
-      "RewardUnlock",
-      {},
-      {
-        hideTitle: true,
-      }
-    );
-  };
-
-  //Pre-Sale testing
-  const { buyPack } = useBuyPack()
   const _buyPack = async () => {
     const txResponse = await buyPack()
-  
-    if (txResponse?.status) {
-      console.log(txResponse)
 
+    if (txResponse?.status) {
       const iface = new ethers.utils.Interface(RandomPresale_Abi);
       const tokenId = iface.parseLog(txResponse.receipt.logs[1]).args['tokenId'].toString()
-      console.log('parsed logs', tokenId)
 
-      handleClick()
+      openModal(
+        "RewardUnlock",
+        tokenId,
+        {
+          hideTitle: true,
+        }
+      );
     } else {
       console.log("Error Occur")
     }
@@ -99,7 +91,7 @@ const UnlockReward: React.FC<Props> = () => {
             <b> Types:</b>
           </Typography>
           <Typography color="textSecondary">
-            <b>Rare 1-2</b>
+            <b>Rare 1-5</b>
           </Typography>
         </div>
         <WalletButtonBase
@@ -108,7 +100,7 @@ const UnlockReward: React.FC<Props> = () => {
           className={classes.claimBtn}
           onClick={() => _buyPack()}
         >
-          Claim Reward
+          {txPending ? 'Pending...' : 'Claim Reward'}
         </WalletButtonBase>
       </Container>
     </div>

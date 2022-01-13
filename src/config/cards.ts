@@ -32,6 +32,6 @@ export const RUNNERS = [
     { tokenId: 13, maxAvailable: 100, image: Img14, name: "SAMBACKMAN", description: null },
 ]
 
-export const getRunner = (id:any) => {
-    return RUNNERS.find((e) => e.tokenId === id)
+export const getRunner = (id: any) => {
+    return RUNNERS.find((e) => e.tokenId === parseInt(id))
 }
