@@ -72,7 +72,7 @@ const UnlockReward: React.FC<Props> = () => {
           align="center"
           className="styleFont"
         >
-          <b>Gold Pack</b>
+          <b>Treasure Chest</b>
         </Typography>
         <img src={ChestPng} alt="chest" className={classes.chestImg} />
         {/* <Typography color="textSecondary" style={{ marginTop: 20 }}>
@@ -100,7 +100,7 @@ const UnlockReward: React.FC<Props> = () => {
           className={classes.claimBtn}
           onClick={() => _buyPack()}
         >
-          {txPending ? 'Pending...' : 'Claim Reward'}
+          {txPending ? 'Pending...' : 'Buy Chest'}
         </WalletButtonBase>
       </Container>
     </div>
