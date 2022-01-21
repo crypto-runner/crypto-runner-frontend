@@ -42,7 +42,11 @@ const OrderPage: React.FC<Props> = () => {
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <img src={order?.metadata.image ?? Img1} alt="" width="100%" />
+            <img
+              src={order?.metadata.image ?? getRunner(assetId)?.image ?? Img1}
+              alt=""
+              width="100%"
+            />
           </Grid>
           <Grid item xs={12} md={8}>
             <Content

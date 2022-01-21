@@ -92,7 +92,6 @@ const Content: React.FC<Props> = ({
     createOrder();
   };
 
-  console.log(order);
   return (
     <div className={classes.root}>
       <Typography color="textSecondary" variant="h3" className="styleFont">
@@ -142,15 +141,26 @@ const Content: React.FC<Props> = ({
           <Typography color="textSecondary">0</Typography>
         </Grid>
       </Grid>
-      {order && (
+      {order && buyHook?.isApproved && order.order.maker !== account && (
         <Button
           color="primary"
           variant="outlined"
           className={classes.buyBtn}
           style={{ marginTop: 20 }}
-          onClick={buyHook?.isApproved ? handleBuy : handleApprove}
+          onClick={handleBuy}
         >
-          {buyHook?.isApproved ? "Buy" : "Approve"}
+          Buy
+        </Button>
+      )}
+      {order && !buyHook?.isApproved && (
+        <Button
+          color="primary"
+          variant="outlined"
+          className={classes.buyBtn}
+          style={{ marginTop: 20 }}
+          onClick={handleApprove}
+        >
+          Approve
         </Button>
       )}
       {/* {order?.order.maker !== account && (

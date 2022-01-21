@@ -16,8 +16,6 @@ import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
 import { POOL_CARD_ADDRESS } from "src/config/config";
-import { useAllAvailableTokensForAddress, useAllListedOrdersForAddress } from "@nftvillage/marketplace-sdk";
-import { useWalletProvider } from "@react-dapp/wallet";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -70,7 +68,7 @@ const Inventory: React.FC<Props> = () => {
   const [value, setValue] = React.useState(0);
   const { balance, loading } = useInventory();
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
 
   React.useEffect(() => {
     if (loading) {
@@ -86,13 +84,6 @@ const Inventory: React.FC<Props> = () => {
   ) => {
     setValue(value);
   };
-  const { account } = useWalletProvider();
-  console.log(account);
-
-  const {tokens} = useAllAvailableTokensForAddress(account || "")
-  const { orders } = useAllListedOrdersForAddress(account || "");
-
-  console.log("tokens",tokens,orders);
 
   return (
     <div className={classes.root}>
@@ -115,7 +106,14 @@ const Inventory: React.FC<Props> = () => {
         <Grid container spacing={3} style={{ marginTop: 20 }}>
           {balance?.map((item) => (
             <Grid key={uuid()} item xs={12} sm={6} md={4} lg={3}>
-              <div style={{ position: "relative" }} onClick={()=>history.push(`/order-item/${POOL_CARD_ADDRESS}/${item.tokenId}`)}>
+              <div
+                style={{ position: "relative" }}
+                onClick={() =>
+                  history.push(
+                    `/order-item/${POOL_CARD_ADDRESS}/${item.tokenId}`
+                  )
+                }
+              >
                 <div className={classes.imgContainer}>
                   <img src={item.image} alt="" />
                   <div className={classes.quantityContainer}>

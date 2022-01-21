@@ -102,7 +102,7 @@ export const ModalProvider: React.FC<Props> = ({ children, allModals }) => {
         </DialogTitle>
 
         <DialogContent>
-          {!options?.type && (
+          {!options?.type && Component.current && (
             <Component.current data={data} closeModal={onClose} />
           )}
           {options?.type === "success" && (
