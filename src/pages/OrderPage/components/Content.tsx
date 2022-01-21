@@ -33,12 +33,7 @@ interface Props {
   setPrice?: any;
 }
 
-const Content: React.FC<Props> = ({
-  order,
-  createOrder,
-  price,
-  setPrice,
-}) => {
+const Content: React.FC<Props> = ({ order, createOrder, price, setPrice }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { account } = useWalletProvider();
@@ -70,7 +65,10 @@ const Content: React.FC<Props> = ({
           title: "Success",
         })
       );
-      await deleteOrder(order?.order.asset as string, String(order?.order.assetId) as string)
+      await deleteOrder(
+        order?.order.asset as string,
+        String(order?.order.assetId) as string
+      );
       window.location.reload();
     } else {
       dispatch(
@@ -84,7 +82,7 @@ const Content: React.FC<Props> = ({
   };
 
   const putOnSale = () => {
-    createOrder({name:order?.metadata.name});
+    createOrder();
   };
 
   console.log(order);
