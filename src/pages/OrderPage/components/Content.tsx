@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 interface Props {
   order?: Order;
   createOrder?: any;
-  isApproved?: boolean;
   price?: any;
   setPrice?: any;
 }
@@ -37,7 +36,6 @@ interface Props {
 const Content: React.FC<Props> = ({
   order,
   createOrder,
-  isApproved,
   price,
   setPrice,
 }) => {
@@ -160,7 +158,7 @@ const Content: React.FC<Props> = ({
             className={classes.buyBtn}
             onClick={putOnSale}
           >
-            Put On Sale {!isApproved ? "(Approve)" : ""}
+            Put On Sale {!buyHook?.isApproved ? "(Approve)" : ""}
           </Button>
           <TextField
             type="number"

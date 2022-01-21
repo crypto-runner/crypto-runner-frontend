@@ -7,7 +7,7 @@ import { CreateFixPriceOrderParams } from "src/types/userTypes";
 
 const useCreateOrder = (asset: string) => {
   const { account } = useWalletProvider();
-  const { create, approve, isApproved } = useSellOrder(asset);
+  const { create } = useSellOrder();
   const dispatch = useDispatch();
 
   const createFixPriceOrder = async ({
@@ -36,18 +36,13 @@ const useCreateOrder = (asset: string) => {
         makerAddress: account || "",
       },
     };
-
-    if (!isApproved) {
-      let res = await approve();
-      if (!res) return;
-    }
     let res = await create(ord);
     console.log(res);
     dispatch(setUserLoading(false));
     window.location.reload();
   };
 
-  return { createFixPriceOrder, isApproved };
+  return { createFixPriceOrder };
 };
 
 export default useCreateOrder;

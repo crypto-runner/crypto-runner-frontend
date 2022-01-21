@@ -1,6 +1,7 @@
+import React from "react";
 import { useERC1155Balance } from "@react-dapp/utils";
 import { getRunner, RUNNERS } from "src/config/cards";
-import {POOL_CARD_ADDRESS} from "../config/config"
+import { POOL_CARD_ADDRESS } from "../config/config";
 
 export const useInventory = () => {
   const { balance, loading } = useERC1155Balance(

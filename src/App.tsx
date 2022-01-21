@@ -14,6 +14,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import { ModalProvider } from "./Context/ModalContext";
 import HelloWorld from "./modals/HelloWorld";
 import RewardUnlock from "./modals/RewardUnlock";
+import { NftVillageSdkProvider } from "@nftvillage/marketplace-sdk";
 
 interface Props {
   loading: boolean;
@@ -37,24 +38,32 @@ const App: React.FC<Props> = ({ loading, user }) => {
 
   return (
     <UtilsProvider config={{ provider: library }}>
-      <ThemeProvider theme={theme}>
-        <ModalProvider allModals={allModals}>
-          <LoadingProvider>
-            <Backdrop open={loading} style={{ zIndex: 9999 }}>
-              <CircularProgress color="primary" />
-            </Backdrop>
-            <Container maxWidth="xl" disableGutters>
-              <div className="mainContainer">
-                <Navbar />
-                <div>
-                  <Routes />
+      <NftVillageSdkProvider
+        config={{
+          notify: (type, msg, onClose) => {
+            console.log(type, msg, onClose);
+          },
+        }}
+      >
+        <ThemeProvider theme={theme}>
+          <ModalProvider allModals={allModals}>
+            <LoadingProvider>
+              <Backdrop open={loading} style={{ zIndex: 9999 }}>
+                <CircularProgress color="primary" />
+              </Backdrop>
+              <Container maxWidth="xl" disableGutters>
+                <div className="mainContainer">
+                  <Navbar />
+                  <div>
+                    <Routes />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
-              </div>
-            </Container>
-          </LoadingProvider>
-        </ModalProvider>
-      </ThemeProvider>
+              </Container>
+            </LoadingProvider>
+          </ModalProvider>
+        </ThemeProvider>
+      </NftVillageSdkProvider>
     </UtilsProvider>
   );
 };

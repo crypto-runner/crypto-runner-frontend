@@ -2035,10 +2035,10 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-"@nftvillage/marketplace-sdk@^0.0.32":
-  version "0.0.32"
-  resolved "https://registry.npmjs.org/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.32.tgz"
-  integrity sha512-X7T548T/mYYl+zNZzr2iMN1bcPVC4sIRPnDRYdgVbY/e0xp0CiwjCsOHhD4aJoglI3oyKveRm3zSr4Rw2XrLBg==
+"@nftvillage/marketplace-sdk@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.34.tgz#fb66792f9f57ce360728aa3e4543c13238c1a54e"
+  integrity sha512-pn/7KMuFmcRb4TQxztVYx5Hrl7zDiSu+zN9+Qcm4KqrRok9mkNt0klzBRMg0/pWp/I/S7hTIcn3fdSKpPuVSLA==
   dependencies:
     "@react-dapp/wallet" "^1.0.3"
 
@@ -2098,14 +2098,14 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
-"@react-dapp/utils@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.npmjs.org/@react-dapp/utils/-/utils-0.0.30.tgz"
-  integrity sha512-f3lrhEa62fDv+gANfcF19vtC4a2uYAzqYREukkqvnUyIQYRINJx1NAFUgCxBbFyW8FkRWqu8yZFytWFxqUbDbQ==
+"@react-dapp/utils@^0.0.33":
+  version "0.0.33"
+  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.33.tgz#f5f437828d0f6fda1a62ecbd9db8bba2b531bf60"
+  integrity sha512-9AvouKV0VKKfsoFy1GqVNRpk06IH2V0tqrh0Cxe/cV4yadcRC/74Nwdbb/Vga+wyqTXMhyaJiuHGKie6VxdcRg==
 
 "@react-dapp/wallet@^1.0.3":
   version "1.0.3"
-  resolved "https://registry.npmjs.org/@react-dapp/wallet/-/wallet-1.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/@react-dapp/wallet/-/wallet-1.0.3.tgz#80e66645fdad2c9ab1af0770375ac759331a1bc4"
   integrity sha512-FYq9Fw8Hq6M/j7SnzkEvJu8Kxd7A4J3ziAZLmbdoFolfuLsWrDxmVYtoFK8nWeLpzrV/udYmgTHguoPa8t+9Lg==
   dependencies:
     "@types/react-modal" "^3.13.1"
