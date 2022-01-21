@@ -22,7 +22,7 @@ interface Props {}
 const OrderPage: React.FC<Props> = () => {
   const classes = useStyles();
   const { asset, assetId } = useParams<{ asset: string; assetId: string }>();
-  const { createFixPriceOrder } = useCreateOrder(asset);
+  const { createFixPriceOrder, isApproved } = useCreateOrder(asset);
   const { order } = useOrder({
     asset,
     assetId: Number(assetId),
@@ -48,6 +48,7 @@ const OrderPage: React.FC<Props> = () => {
             <Content
               order={order}
               createOrder={createOrder}
+              isApproved={isApproved}
               price={price}
               setPrice={setPrice}
             />

@@ -2035,10 +2035,10 @@
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
-"@nftvillage/marketplace-sdk@^0.0.34":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.34.tgz#fb66792f9f57ce360728aa3e4543c13238c1a54e"
-  integrity sha512-pn/7KMuFmcRb4TQxztVYx5Hrl7zDiSu+zN9+Qcm4KqrRok9mkNt0klzBRMg0/pWp/I/S7hTIcn3fdSKpPuVSLA==
+"@nftvillage/marketplace-sdk@^0.0.36":
+  version "0.0.36"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.36.tgz#ca036235b2e68a8044d870915a8d8bba88f977b9"
+  integrity sha512-NnzZ/kNIfmc4PXz4SB8IGllH9r5sYuTJ6dMEtyPcCgZfYVO8P/yX1WrKPMHMIn/GEMusHV2inJJgn6LlHNXLtQ==
   dependencies:
     "@react-dapp/wallet" "^1.0.3"
 

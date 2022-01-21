@@ -31,9 +31,16 @@ interface Props {
   createOrder?: any;
   price?: any;
   setPrice?: any;
+  isApproved?: boolean;
 }
 
-const Content: React.FC<Props> = ({ order, createOrder, price, setPrice }) => {
+const Content: React.FC<Props> = ({
+  order,
+  createOrder,
+  price,
+  setPrice,
+  isApproved,
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { account } = useWalletProvider();
@@ -156,7 +163,7 @@ const Content: React.FC<Props> = ({ order, createOrder, price, setPrice }) => {
             className={classes.buyBtn}
             onClick={putOnSale}
           >
-            Put On Sale {!buyHook?.isApproved ? "(Approve)" : ""}
+            Put On Sale {!isApproved ? "(Approve)" : ""}
           </Button>
           <TextField
             type="number"

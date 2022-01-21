@@ -16,6 +16,8 @@ import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
 import { POOL_CARD_ADDRESS } from "src/config/config";
+import { useAllAvailableTokensForAddress, useAllListedOrdersForAddress } from "@nftvillage/marketplace-sdk";
+import { useWalletProvider } from "@react-dapp/wallet";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -84,6 +86,13 @@ const Inventory: React.FC<Props> = () => {
   ) => {
     setValue(value);
   };
+  const { account } = useWalletProvider();
+  console.log(account);
+
+  const {tokens} = useAllAvailableTokensForAddress(account || "")
+  const { orders } = useAllListedOrdersForAddress(account || "");
+
+  console.log("tokens",tokens,orders);
 
   return (
     <div className={classes.root}>
