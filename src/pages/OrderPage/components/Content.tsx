@@ -1,7 +1,11 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
-import { Order, useBuyFixPriceOrder } from "@nftvillage/marketplace-sdk";
+import {
+  Order,
+  useBuyFixPriceOrder,
+  useCancelOrder,
+} from "@nftvillage/marketplace-sdk";
 import { useDispatch } from "react-redux";
 import { setUserLoading } from "src/redux/user/userReducer";
 import { notify } from "reapop";
@@ -44,6 +48,7 @@ const Content: React.FC<Props> = ({
   const classes = useStyles();
   const dispatch = useDispatch();
   const { account } = useWalletProvider();
+  const { cancel } = useCancelOrder();
 
   let buyHook = useBuyFixPriceOrder(
     order?.order.asset || "",
@@ -90,6 +95,13 @@ const Content: React.FC<Props> = ({
 
   const putOnSale = () => {
     createOrder();
+  };
+
+  const cancelSell = async () => {
+    dispatch(setUserLoading(true));
+    if (order) await cancel(order);
+    dispatch(setUserLoading(false));
+    window.location.reload();
   };
 
   return (
@@ -150,6 +162,17 @@ const Content: React.FC<Props> = ({
           onClick={handleBuy}
         >
           Buy
+        </Button>
+      )}
+      {order && buyHook?.isApproved && order.order.maker === account && (
+        <Button
+          color="primary"
+          variant="outlined"
+          className={classes.buyBtn}
+          style={{ marginTop: 20 }}
+          onClick={cancelSell}
+        >
+          Cancel Sale
         </Button>
       )}
       {order && !buyHook?.isApproved && (
