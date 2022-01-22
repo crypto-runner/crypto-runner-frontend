@@ -46,6 +46,10 @@ const Inventory: React.FC<Props> = () => {
           <Tabs value={value} onChange={handleChange} centered>
             <Tab label="All" />
             <Tab label="Inorder" />
+
+            {/* <Tab label="Available" />
+            <Tab label="Direct Sale" />
+            <Tab label="Want to Buy" /> */}
           </Tabs>
         </div>
         {value === 0 && <All />}

@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
   },
   quantityText: {
-    textAlign: "center",
+    // textAlign: "center",
     fontWeight: 600,
     fontSize: 20,
     "& span": {
