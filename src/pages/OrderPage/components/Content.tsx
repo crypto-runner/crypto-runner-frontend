@@ -35,6 +35,7 @@ interface Props {
   createOrder?: any;
   price?: any;
   setPrice?: any;
+  metadata?: any;
   isApproved?: boolean;
 }
 
@@ -44,6 +45,7 @@ const Content: React.FC<Props> = ({
   price,
   setPrice,
   isApproved,
+  metadata,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -107,51 +109,30 @@ const Content: React.FC<Props> = ({
   return (
     <div className={classes.root}>
       <Typography color="textSecondary" variant="h3" className="styleFont">
-        <b>{order?.metadata.name}</b>
+        <b>{metadata?.name}</b>
       </Typography>
       <Typography color="primary" variant="h5" className="styleFont">
         <b>{order?.metadata.price} BNB</b>
       </Typography>
       <Typography color="textSecondary" variant="h5" style={{ marginTop: 20 }}>
-        Information
+        {metadata?.description}
       </Typography>
       <Grid container spacing={2} style={{ marginTop: 10 }}>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">CA</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">0xCB4Db2D1...</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Character</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">King Arthur</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Element</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Earth</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Rarity</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Common</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Class</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Tank</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">Race Time</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Typography color="textSecondary">0</Typography>
-        </Grid>
+        {metadata?.attributes?.map((attr: any) => (
+          <>
+            <Grid item xs={6}>
+              <Typography
+                color="textSecondary"
+                style={{ textTransform: "capitalize" }}
+              >
+                {attr.trait_type}
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography color="textSecondary">{attr.value}</Typography>
+            </Grid>
+          </>
+        ))}
       </Grid>
       {order && buyHook?.isApproved && order.order.maker !== account && (
         <Button
@@ -186,8 +167,6 @@ const Content: React.FC<Props> = ({
           Approve
         </Button>
       )}
-      {/* {order?.order.maker !== account && (
-      )} */}
       {!order && (
         <div className={classes.row} style={{ marginTop: 20 }}>
           <Button
