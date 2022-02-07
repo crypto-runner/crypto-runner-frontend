@@ -75,6 +75,10 @@ const Navbar: React.FC<Props> = ({ user }) => {
     );
   };
 
+  const drawerClose = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <Container maxWidth="lg">
       <div className={classes.root}>
@@ -83,25 +87,13 @@ const Navbar: React.FC<Props> = ({ user }) => {
         </Link>
         <Hidden mdDown>
           <div className={classes.linksContainer}>
-            <NavLink
-              to="/my-runners"
-              className={clsx(classes.link, "styleFont")}
-              activeClassName={classes.activeLink}
-            >
+            <NavLink to="/my-runners" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               My runners
             </NavLink>
-            <NavLink
-              to="/explore"
-              className={clsx(classes.link, "styleFont")}
-              activeClassName={classes.activeLink}
-            >
+            <NavLink to="/explore" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               Explore
             </NavLink>
-            <NavLink
-              to="/presale"
-              className={clsx(classes.link, "styleFont")}
-              activeClassName={classes.activeLink}
-            >
+            <NavLink to="/presale" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               Presale
             </NavLink>
             <NavLink
@@ -138,21 +130,38 @@ const Navbar: React.FC<Props> = ({ user }) => {
         <div style={{ width: 250 }}>
           <List>
             <ListItem button>
-              <ListItemText primary="" />
+              <ListItemText primary={displayAccount} onClick={accountNumClick} />
               {displayAccount ? (
-                 <Typography color="textSecondary" onClick={accountNumClick}>
-                 {displayAccount}
-               </Typography>
+                <Typography onClick={accountNumClick}>{/* {displayAccount} */}</Typography>
               ) : (
-                <WalletButtonBase
-                  variant="contained"
-                  color="secondary"
-                  style={{ maxWidth: 300 }}
-                  // onClick={() => history.push("/login")}
-                >
-                  {/* Connect */}
-                </WalletButtonBase>
+                <div onClick={drawerClose}>
+                  <WalletButtonBase variant="contained" color="secondary" style={{ maxWidth: 300 }}>
+                    {/* Connect */}
+                  </WalletButtonBase>
+                </div>
               )}
+            </ListItem>
+            <ListItem>
+              <NavLink
+                to="/my-runners"
+                style={{ color: "black" }}
+                className={clsx(classes.link, "styleFont")}
+                activeClassName={classes.activeLink}
+                onClick={drawerClose}
+              >
+                My runners
+              </NavLink>
+            </ListItem>
+            <ListItem>
+              <NavLink
+                to="/treasure-chest"
+                style={{ color: "black" }}
+                className={clsx(classes.link, "styleFont")}
+                activeClassName={classes.activeLink}
+                onClick={drawerClose}
+              >
+                Treasure Chest
+              </NavLink>
             </ListItem>
           </List>
         </div>
