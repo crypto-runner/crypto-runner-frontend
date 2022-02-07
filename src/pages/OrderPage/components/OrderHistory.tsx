@@ -8,6 +8,7 @@ import {
   TableHead,
   TableRow,
   Theme,
+  Typography,
 } from "@mui/material";
 import Bg from "src/assets/images/orangebg.jpg";
 
@@ -57,6 +58,11 @@ const OrderHistory: React.FC<Props> = () => {
           </TableHead>
           <TableBody>
             <TableRow>
+              <Typography align="center" style={{marginTop:20,}}>
+                No Sale History
+              </Typography>
+            </TableRow>
+            {/* <TableRow>
               <TableCell className={classes.td} align="center">
                 Listing
               </TableCell>
@@ -72,7 +78,7 @@ const OrderHistory: React.FC<Props> = () => {
               <TableCell className={classes.td} align="center">
                 20-20-20
               </TableCell>
-            </TableRow>
+            </TableRow> */}
           </TableBody>
         </Table>
       </Container>
