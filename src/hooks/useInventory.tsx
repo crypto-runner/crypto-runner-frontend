@@ -13,7 +13,7 @@ export const useInventory = () => {
   const [results, setResults] = React.useState<any>([]);
   const { fetchAllMetadata } = useFetchMetadataForTokenIds();
   const [inventoryLoading, setLoading] = React.useState(false);
-  
+
   const { balance, loading } = useERC1155Balance(POOL_CARD_ADDRESS || "", tokenIds);
 
   useLoading(inventoryLoading);
@@ -28,19 +28,19 @@ export const useInventory = () => {
       setLoading(true);
       console.log(balance);
       let arr = balance
-        ?.filter((e: any) => e.amount > 0)
+        ?.filter((e: any) => e && e.amount && e.amount > 0)
         ?.map((e: any) => {
           return {
             amount: e.amount,
             tokenId: e.tokenId,
           };
-        }) || []
+        }) || [];
 
       console.log("arr", arr);
 
       let res: any = await fetchAllMetadata(arr.map((e) => e.tokenId));
-
-      res = res.map((item: any, i: number) => ({ ...item, amount: arr[i].amount }));
+        console.log("res",res);
+      res = res.map((item: any, i: number) => ({ ...item, amount: arr[i]?.amount }));
 
       setResults(res);
       setLoading(false);

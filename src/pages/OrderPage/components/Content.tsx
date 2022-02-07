@@ -134,7 +134,7 @@ const Content: React.FC<Props> = ({
           </>
         ))}
       </Grid>
-      {order && buyHook?.isApproved && order.order.maker !== account && (
+      {/* {order && buyHook?.isApproved && order.order.maker !== account && (
         <Button
           color="primary"
           variant="outlined"
@@ -144,8 +144,8 @@ const Content: React.FC<Props> = ({
         >
           Buy
         </Button>
-      )}
-      {order && buyHook?.isApproved && order.order.maker === account && (
+      )} */}
+      {/* {order && buyHook?.isApproved && order.order.maker === account && (
         <Button
           color="primary"
           variant="outlined"
@@ -155,8 +155,8 @@ const Content: React.FC<Props> = ({
         >
           Cancel Sale
         </Button>
-      )}
-      {order && !buyHook?.isApproved && (
+      )} */}
+      {/* {order && !buyHook?.isApproved && (
         <Button
           color="primary"
           variant="outlined"
@@ -166,8 +166,8 @@ const Content: React.FC<Props> = ({
         >
           Approve
         </Button>
-      )}
-      {!order && (
+      )} */}
+      {/* {!order && (
         <div className={classes.row} style={{ marginTop: 20 }}>
           <Button
             color="primary"
@@ -188,7 +188,7 @@ const Content: React.FC<Props> = ({
           />
           BNB
         </div>
-      )}
+      )} */}
       {/* {order?.order.maker === account && (
       )} */}
     </div>

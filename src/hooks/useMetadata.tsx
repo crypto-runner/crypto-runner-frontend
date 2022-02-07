@@ -81,9 +81,9 @@ export const useFetchMetadataForTokenIds = () => {
   const fetchAllMetadata = async (tokenIds: number[]) => {
     let allData = [];
     let promises: Promise<unknown>[] = [];
-    tokenIds.forEach((tokenId) => {
+    tokenIds.forEach((tokenId,i) => {
       let promise = fetch(tokenId);
-      promises[tokenId] = promise;
+      promises[i] = promise;
     });
     allData = await Promise.all(promises);
     return allData;

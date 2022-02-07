@@ -57,7 +57,7 @@ const All: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-console.log("balance",balance);
+// console.log("balance",balance);
 
   return (
     <Grid container spacing={3} style={{ marginTop: 20 }}>
