@@ -5,6 +5,8 @@ import Confetti from "react-confetti";
 import Gif from "src/assets/gifs/presale/Jack_5.gif";
 import { getRunner } from "src/config/cards";
 import { NavLink } from "react-router-dom";
+import { useMetadata } from "src/hooks/useMetadata";
+import { POOL_CARD_ADDRESS } from "src/config/config";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -40,6 +42,8 @@ const RewardUnlock: React.FC<Props> = ({ data }) => {
   const classes = useStyles();
   const ref = React.useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = React.useState({ width: 10, height: 10 });
+  const {metadata,loading} = useMetadata(POOL_CARD_ADDRESS,data)
+
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -55,8 +59,6 @@ const RewardUnlock: React.FC<Props> = ({ data }) => {
     };
   }, [ref]);
 
-  const runner = getRunner(data);
-
   return (
     <Container maxWidth="lg" className={classes.root} ref={ref}>
       <Confetti
@@ -64,7 +66,7 @@ const RewardUnlock: React.FC<Props> = ({ data }) => {
         height={dimensions.height}
         initialVelocityY={30}
       />
-      <img src={runner?.image} alt="" className={classes.gif} />
+      <img src={metadata?.animation_url || metadata?.image} alt="" className={classes.gif} />
 
       <Typography
         variant="h5"
@@ -80,7 +82,7 @@ const RewardUnlock: React.FC<Props> = ({ data }) => {
         className="styleFont"
         align="center"
       >
-        <b>{runner?.name}</b>
+        <b>{metadata?.name}</b>
       </Typography>
 
       {/* <Typography
