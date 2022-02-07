@@ -57,16 +57,11 @@ const All: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  React.useEffect(() => {
-    if (loading) {
-      dispatch(setUserLoading(true));
-    } else {
-      dispatch(setUserLoading(false));
-    }
-  }, [loading]);
+console.log("balance",balance);
+
   return (
     <Grid container spacing={3} style={{ marginTop: 20 }}>
-      {balance?.map((item) => (
+      {balance?.map((item:any) => (
         <Grid key={uuid()} item xs={12} sm={6} md={4} lg={3}>
           <div
             style={{ position: "relative" }}
@@ -75,7 +70,7 @@ const All: React.FC<Props> = () => {
             }
           >
             <div className={classes.imgContainer}>
-              <img src={item.image} alt="" />
+              <img src={item.image || item.animation_url} alt="" />
               <div className={classes.quantityContainer}>
                 <div className={classes.quantityWrapper}>
                   <Typography className={classes.quantityText}>

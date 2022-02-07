@@ -11,6 +11,7 @@ import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
 import useCreateOrder from "src/hooks/useCreateOrder";
 import { getRunner, RUNNERS } from "src/config/cards";
 import { useMetadata } from "src/hooks/useMetadata";
+import useLoading from "src/hooks/useLoading";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -30,6 +31,7 @@ const OrderPage: React.FC<Props> = () => {
   });
   const [price, setPrice] = React.useState(0);
   const { metadata, loading } = useMetadata(asset, assetId);
+  useLoading(loading);
 
   const createOrder = async () => {
     createFixPriceOrder({
@@ -39,18 +41,12 @@ const OrderPage: React.FC<Props> = () => {
     });
   };
 
-  console.log("metadata", metadata);
-
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <img
-              src={metadata?.image ?? getRunner(assetId)?.image ?? Img1}
-              alt=""
-              width="100%"
-            />
+            <img src={metadata?.animation_url || metadata?.image} alt="" width="100%" />
           </Grid>
           <Grid item xs={12} md={8}>
             <Content

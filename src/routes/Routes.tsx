@@ -22,7 +22,7 @@ const Routes: React.FC = () => {
       <Route path="/homepage" exact component={Home} />
       {/* <Route path="/packs" exact component={Nfts} /> */}
       <Route path="/presale" exact component={Explore} />
-      <Route path="/explore" exact component={Marketplace} />
+      {/* <Route path="/explore" exact component={Marketplace} /> */}
       <Route path="/farm" exact component={Farm} />
       <Route path="/login" exact component={Login} />
       <Route path="/signup" exact component={Signup} />
@@ -33,7 +33,7 @@ const Routes: React.FC = () => {
       <Route path="/profile" exact component={ProfileSettings} />
       <Route path="/my-runners" exact component={Inventory} />
       <Route path="/treasure-chest" exact component={UnlockReward} />
-      <Route path="/" exact component={Marketplace} />
+      <Route path="/" exact component={Home} />
       <Route path="/order-item/:asset/:assetId" exact component={OrderPage} />
     </Switch>
   );
