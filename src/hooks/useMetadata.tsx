@@ -14,14 +14,15 @@ import { fetchIpfs } from "src/util";
 export const useMetadata = (contractAddress: string | undefined, tokenId: string | undefined) => {
     const [loading, setLoading] = useState(false)
     const [metadata, setMetadata] = useState<any>();
-    let contract = useERC721(contractAddress);
+    console.log("contract", contractAddress, tokenId);
+    let contract = useERC1155(contractAddress);
 
     useEffect(() => {
         const fetchMetadata = async () => {
             if (!contract || !contractAddress || !tokenId) return
             setLoading(true)
             try {
-                let uri: string = await contract.tokenURI(tokenId);
+                let uri: string = await contract.uri(tokenId);
                 console.log('raw uri', uri)
                 uri = uri.replaceAll("{address}", contractAddress);
                 uri = uri.replaceAll("{id}", tokenId);

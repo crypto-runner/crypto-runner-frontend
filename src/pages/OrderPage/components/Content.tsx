@@ -79,10 +79,10 @@ const Content: React.FC<Props> = ({
           title: "Success",
         })
       );
-      await deleteOrder(
-        order?.order.asset as string,
-        String(order?.order.assetId) as string
-      );
+      // await deleteOrder(
+      //   order?.order.asset as string,
+      //   String(order?.order.assetId) as string
+      // );
       window.location.reload();
     } else {
       dispatch(
