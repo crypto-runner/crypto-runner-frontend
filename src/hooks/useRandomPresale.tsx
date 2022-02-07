@@ -15,7 +15,7 @@ export const useBuyPack = () => {
         try {
             setTxPending(true)
             const txResponse = await awaitTransaction(presale.buyPack({
-                value: ethers.utils.parseUnits('1000000', 5)  // 1 Bnb
+                value: ethers.utils.parseEther("0.002")  // 1 Bnb
             }))
             setTxPending(false)
             return txResponse
