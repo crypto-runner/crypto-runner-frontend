@@ -90,20 +90,20 @@ const Navbar: React.FC<Props> = ({ user }) => {
             >
               My runners
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/explore"
               className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
               Explore
-            </NavLink>
-            <NavLink
+            </NavLink> */}
+            {/* <NavLink
               to="/presale"
               className={clsx(classes.link, "styleFont")}
               activeClassName={classes.activeLink}
             >
               Presale
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to="/treasure-chest"
               className={clsx(classes.link, "styleFont")}
@@ -121,7 +121,7 @@ const Navbar: React.FC<Props> = ({ user }) => {
               variant="contained"
               color="secondary"
               style={{ maxWidth: 300 }}
-              // onClick={() => history.push("/login")}
+            // onClick={() => history.push("/login")}
             >
               {/* Connect */}
             </WalletButtonBase>
@@ -140,15 +140,15 @@ const Navbar: React.FC<Props> = ({ user }) => {
             <ListItem button>
               <ListItemText primary="" />
               {displayAccount ? (
-                 <Typography color="textSecondary" onClick={accountNumClick}>
-                 {displayAccount}
-               </Typography>
+                <Typography color="textSecondary" onClick={accountNumClick}>
+                  {displayAccount}
+                </Typography>
               ) : (
                 <WalletButtonBase
                   variant="contained"
                   color="secondary"
                   style={{ maxWidth: 300 }}
-                  // onClick={() => history.push("/login")}
+                // onClick={() => history.push("/login")}
                 >
                   {/* Connect */}
                 </WalletButtonBase>
