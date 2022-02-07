@@ -5,7 +5,6 @@ import { useWalletProvider } from "@react-dapp/wallet";
 import { useAllListedOrdersForAddress } from "@nftvillage/marketplace-sdk";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
-import { getRunner } from "src/config/cards";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -70,13 +69,13 @@ const Inorder: React.FC<Props> = () => {
             }
           >
             <div className={classes.imgContainer}>
-              <img
+              {/* <img
                 src={
                   item.metadata?.image ??
                   getRunner(item.metadata.tokenId)?.image
                 }
                 alt=""
-              />
+              /> */}
               <div className={classes.quantityContainer}>
                 <div className={classes.quantityWrapper}>
                   <Typography className={classes.quantityText}>

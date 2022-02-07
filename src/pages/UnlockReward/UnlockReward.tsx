@@ -83,15 +83,15 @@ const UnlockReward: React.FC<Props> = () => {
             <b> Value:</b>
           </Typography>
           <Typography color="textSecondary">
-            <b>1 Bnb</b>
+            <b> 0.2 Bnb</b>
           </Typography>
         </div>
         <div className={classes.row}>
           <Typography color="textSecondary">
-            <b> Types:</b>
+            <b> Rarities:</b>
           </Typography>
           <Typography color="textSecondary">
-            <b>Rare 1-5</b>
+            <b> Rare 1 - 5</b>
           </Typography>
         </div>
         <WalletButtonBase
