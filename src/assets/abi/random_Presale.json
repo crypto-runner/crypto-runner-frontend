@@ -15,6 +15,11 @@
                 "internalType": "address",
                 "name": "_nft",
                 "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_nftHolder",
+                "type": "address"
             }
         ],
         "stateMutability": "nonpayable",
@@ -125,6 +130,44 @@
         "name": "buyPack",
         "outputs": [],
         "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "enabled",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getAllRarties",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint8",
+                        "name": "weight",
+                        "type": "uint8"
+                    },
+                    {
+                        "internalType": "uint256[]",
+                        "name": "tokenIds",
+                        "type": "uint256[]"
+                    }
+                ],
+                "internalType": "struct NFTRandomPresale.Rarity[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -287,6 +330,32 @@
     {
         "inputs": [],
         "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "sellCount",
+        "outputs": [
+            {
+                "internalType": "uint56",
+                "name": "",
+                "type": "uint56"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bool",
+                "name": "_enabled",
+                "type": "bool"
+            }
+        ],
+        "name": "setEnabled",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
