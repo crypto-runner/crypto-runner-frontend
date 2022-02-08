@@ -14,6 +14,7 @@ const useCreateOrder = (asset: string) => {
     assetId,
     price,
     name,
+    assetAmount,
   }: CreateFixPriceOrderParams) => {
     dispatch(setUserLoading(true));
     let ord: Order = {
@@ -25,6 +26,7 @@ const useCreateOrder = (asset: string) => {
         assetType: 1,
         saleKind: 0,
         basePrice: price.toString(),
+        assetAmount,
       },
       metadata: {
         name,

@@ -35,4 +35,5 @@ export interface CreateFixPriceOrderParams {
   assetId: string | number;
   price: string | number;
   name: string;
+  assetAmount: number;
 }

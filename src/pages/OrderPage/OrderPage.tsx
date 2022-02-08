@@ -25,6 +25,7 @@ const OrderPage: React.FC<Props> = () => {
   const classes = useStyles();
   const { asset, assetId } = useParams<{ asset: string; assetId: string }>();
   const { createFixPriceOrder, isApproved } = useCreateOrder(asset);
+  const [assetAmount,setAssetAmount] = React.useState(1);
   const { order } = useOrder({
     asset,
     assetId: Number(assetId),
@@ -38,6 +39,7 @@ const OrderPage: React.FC<Props> = () => {
       name: getRunner(assetId)?.name || "Name",
       assetId,
       price,
+      assetAmount,
     });
   };
 
