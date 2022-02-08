@@ -2098,10 +2098,10 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
-"@react-dapp/utils@^0.0.54":
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.54.tgz#a8ad9361cd996495ef3f2aa28f99bf3d62361145"
-  integrity sha512-IoEvrjMOTZFAdkdE37t3FM7ITLdBkJwUWVotox7siAlpeqvCUxHI0c0Hw7dk3oNRgt/+gRG8W8SpopNzlgG+NA==
+"@react-dapp/utils@^0.0.55":
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.55.tgz#be63f1344b84b5b52179ed6caef31eb3cdeaf451"
+  integrity sha512-0cLlJlpAtrvGBhg0nW1amVsTPxrqydsIY4m0Ls3HnzncjUnpVjVk9ea6i3gB4pipZCIYziNZukOR96MpMk0wqw==
   dependencies:
     "@binance-chain/bsc-connector" "^1.0.0"
 

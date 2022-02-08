@@ -22,12 +22,12 @@ setUpNotifications({
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router history={history}>      
+    <Router history={history}>
       <WalletProvider
-      // @ts-ignore 
+        // @ts-ignore 
         config={{
-          supportedChainIds: [5],
-          chainId: 5,
+          supportedChainIds: [56],
+          chainId: 56,
         }}
       >
         <Provider store={store}>
