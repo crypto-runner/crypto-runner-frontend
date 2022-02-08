@@ -12,6 +12,7 @@ import useCreateOrder from "src/hooks/useCreateOrder";
 // import { getRunner, RUNNERS } from "src/config/cards";
 import { useMetadata } from "src/hooks/useMetadata";
 import useLoading from "src/hooks/useLoading";
+import LoadingImg from "src/components/LoadingImg/LoadingImg";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -48,7 +49,8 @@ const OrderPage: React.FC<Props> = () => {
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           <Grid item xs={12} md={4}>
-            <img src={metadata?.animation_url || metadata?.image} alt="" width="100%" />
+            <LoadingImg src={metadata?.animation_url || metadata?.image || ""} />
+            {/* <img src={metadata?.animation_url || metadata?.image} alt="" width="100%" /> */}
           </Grid>
           <Grid item xs={12} md={8}>
             <Content
