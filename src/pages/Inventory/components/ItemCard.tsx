@@ -1,9 +1,10 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Button, Theme, Typography } from "@mui/material";
+import { Button, IconButton, Theme, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { POOL_CARD_ADDRESS } from "src/config/config";
 import LoadingImg from "src/components/LoadingImg/LoadingImg"
+import ReplyIcon from '@mui/icons-material/Reply';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -44,6 +45,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.primary.main,
     },
   },
+  replyIcon:{
+    position: "absolute !important" as any,
+    bottom:0,
+    right:0,
+  }
 }));
 
 interface Props {
@@ -59,10 +65,12 @@ const ItemCard: React.FC<Props> = ({ image, animation_url, name, amount, tokenId
   const history = useHistory();
 
   return (
-    <div style={{ position: "relative" }} onClick={() => history.push(`/order-item/${POOL_CARD_ADDRESS}/${tokenId}`)}>
+    <div style={{ position: "relative" }} >
       <div className={classes.imgContainer}>
           <LoadingImg  src={image || animation_url || ""} alt="" />
-        {/* <img src={image || animation_url} alt="" /> */}
+        <IconButton className={classes.replyIcon}>
+    <ReplyIcon  style={{transform:"scaleX(-1)"}}  />
+          </IconButton>
         <div className={classes.quantityContainer}>
           <div className={classes.quantityWrapper}>
             <Typography className={classes.quantityText}>
@@ -71,7 +79,7 @@ const ItemCard: React.FC<Props> = ({ image, animation_url, name, amount, tokenId
           </div>
         </div>
       </div>
-      <Button color="primary" fullWidth variant="outlined" style={{ marginTop: 30 }}>
+      <Button color="primary" fullWidth variant="outlined" style={{ marginTop: 30 }} onClick={() => history.push(`/order-item/${POOL_CARD_ADDRESS}/${tokenId}`)}>
         {name}
       </Button>
     </div>

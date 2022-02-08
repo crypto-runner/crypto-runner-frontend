@@ -13,7 +13,7 @@ const useLoading = (loading: boolean | undefined = undefined) => {
     dispatch(setUserLoading(true));
   };
   const stopLoading = () => {
-    dispatch(setUserLoading(true));
+    dispatch(setUserLoading(false));
   };
   return { startLoading, stopLoading };
 };

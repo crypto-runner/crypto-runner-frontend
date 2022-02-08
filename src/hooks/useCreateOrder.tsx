@@ -1,39 +1,42 @@
-import { Order, useSellOrder } from "@nftvillage/marketplace-sdk";
+import { AssetType, Order, OrderSide, SaleKind, useSellOrder } from "@nftvillage/marketplace-sdk";
 import { useWalletProvider } from "@react-dapp/wallet";
 import { useDispatch } from "react-redux";
 import { POOL_CARD_ADDRESS } from "src/config/config";
 import { setUserLoading } from "src/redux/user/userReducer";
 import { CreateFixPriceOrderParams } from "src/types/userTypes";
+import useLoading from "./useLoading";
 
 const useCreateOrder = (asset: string) => {
   const { account } = useWalletProvider();
-  const { create , isApproved,approve} = useSellOrder(asset);
+  const { create, isApproved, approve } = useSellOrder(asset);
   const dispatch = useDispatch();
+  const { startLoading, stopLoading } = useLoading();
 
-  const createFixPriceOrder = async ({
-    assetId,
-    price,
-    name,
+  const createERC1155Order = async ({
+    metadata,
     assetAmount,
-  }: CreateFixPriceOrderParams) => {
-    dispatch(setUserLoading(true));
+    tokenId,
+    price,
+  }: {
+    metadata: any;
+    assetAmount: number;
+    tokenId: number;
+    price: number;
+  }) => {
+    startLoading();
     let ord: Order = {
       order: {
         asset,
-        assetId: Number(assetId),
+        assetId: tokenId,
         maker: account || "",
-        side: 0,
-        assetType: 1,
-        saleKind: 0,
+        side: OrderSide.SELL,
+        assetType: AssetType.ERC1155,
+        saleKind: SaleKind.BUYNOW,
         basePrice: price.toString(),
         assetAmount,
       },
       metadata: {
-        name,
-        attributes: [],
-        price: Number(price),
-        address: POOL_CARD_ADDRESS,
-        tokenId: Number(assetId),
+        ...metadata,
         collectionName: "crypto-runner",
         makerAddress: account || "",
       },
@@ -43,12 +46,14 @@ const useCreateOrder = (asset: string) => {
       if (!res) return;
     }
     let res = await create(ord);
-    console.log(res);
-    dispatch(setUserLoading(false));
-    window.location.reload();
+    console.log("create res " ,res);
+    console.log("load end");
+    stopLoading();
+    // window.location.reload();
+    return res;
   };
 
-  return { createFixPriceOrder, isApproved };
+  return { createERC1155Order, isApproved };
 };
 
 export default useCreateOrder;

@@ -36,6 +36,9 @@ const OrderHistory: React.FC<Props> = () => {
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
+        <Typography variant="h3" className="styleFont" style={{marginBottom:10,}} align="center">
+          <b>History</b>
+        </Typography>
         <Table>
           <TableHead>
             <TableRow>

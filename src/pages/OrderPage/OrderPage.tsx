@@ -1,18 +1,17 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Container, Grid, Theme } from "@mui/material";
+import { Container, Divider, Grid, Theme } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useOrder, useSellOrder, Order } from "@nftvillage/marketplace-sdk";
 import Content from "./components/Content";
 import OrderHistory from "./components/OrderHistory";
 import { POOL_CARD_ADDRESS } from "src/config/config";
 import { useWalletProvider } from "@react-dapp/wallet";
-import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
-import useCreateOrder from "src/hooks/useCreateOrder";
-// import { getRunner, RUNNERS } from "src/config/cards";
 import { useMetadata } from "src/hooks/useMetadata";
 import useLoading from "src/hooks/useLoading";
 import LoadingImg from "src/components/LoadingImg/LoadingImg";
+import CurrentListing from "./components/CurrentListing";
+import { useERC1155Balance } from "@react-dapp/utils";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,24 +24,13 @@ interface Props {}
 const OrderPage: React.FC<Props> = () => {
   const classes = useStyles();
   const { asset, assetId } = useParams<{ asset: string; assetId: string }>();
-  const { createFixPriceOrder, isApproved } = useCreateOrder(asset);
-  const [assetAmount,setAssetAmount] = React.useState(1);
+  const { balance } = useERC1155Balance(POOL_CARD_ADDRESS, [Number(assetId)]);
   const { order } = useOrder({
     asset,
     assetId: Number(assetId),
   });
-  const [price, setPrice] = React.useState(0);
   const { metadata, loading } = useMetadata(asset, assetId);
   useLoading(loading);
-
-  const createOrder = async () => {
-    createFixPriceOrder({
-      name: '',//getRunner(assetId)?.name || "Name",
-      assetId,
-      price,
-      assetAmount,
-    });
-  };
 
   return (
     <div className={classes.root}>
@@ -53,15 +41,21 @@ const OrderPage: React.FC<Props> = () => {
             {/* <img src={metadata?.animation_url || metadata?.image} alt="" width="100%" /> */}
           </Grid>
           <Grid item xs={12} md={8}>
-            <Content
-              metadata={metadata}
-              order={order}
-              createOrder={createOrder}
-              isApproved={isApproved}
-              price={price}
-              setPrice={setPrice}
-            />
+            <Content metadata={metadata} order={order} />
           </Grid>
+          <Grid item xs={12}>
+            <Divider />
+          </Grid>
+          {balance && balance[0].amount > 0 && (
+            <Grid item xs={12}>
+              <CurrentListing
+                metadata={metadata}
+                address={asset}
+                tokenId={Number(assetId)}
+                availableAmount={balance[0].amount || 0}
+              />
+            </Grid>
+          )}
         </Grid>
       </Container>
       <div style={{ marginTop: 20 }} />
