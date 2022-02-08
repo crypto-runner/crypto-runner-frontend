@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
 import { POOL_CARD_ADDRESS } from "src/config/config";
-import { useERC1155Transfer, useReload } from "@react-dapp/utils";
+import { useERC1155Transfer } from "@react-dapp/utils";
 import useLoading from "src/hooks/useLoading";
 import { useDispatch } from "react-redux";
 import { notify } from "reapop";
@@ -24,7 +24,6 @@ const TransferToken: React.FC<Props> = ({ data: { tokenId, max }, closeModal }) 
   const [state, setState] = React.useState({ recipient: "", amount: 1 });
   const { startLoading, stopLoading } = useLoading();
   const dispatch = useDispatch();
-  const {reload} = useReload()
 
   const handleTransfer: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();

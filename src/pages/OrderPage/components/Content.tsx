@@ -1,16 +1,13 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
-import {
-  Order,
-  useBuyFixPriceOrder,
-  useCancelOrder,
-} from "@nftvillage/marketplace-sdk";
+import { Order, useBuyFixPriceOrder, useCancelOrder } from "@nftvillage/marketplace-sdk";
 import { useDispatch } from "react-redux";
 import { setUserLoading } from "src/redux/user/userReducer";
 import { notify } from "reapop";
 import { useWalletProvider } from "@react-dapp/wallet";
 import { deleteOrder } from "src/api";
+import { v4 as uuid } from "uuid";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -35,20 +32,13 @@ interface Props {
   metadata?: any;
 }
 
-const Content: React.FC<Props> = ({
-  order,
-  metadata,
-}) => {
+const Content: React.FC<Props> = ({ order, metadata }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { account } = useWalletProvider();
   const { cancel } = useCancelOrder();
 
-  let buyHook = useBuyFixPriceOrder(
-    order?.order.asset || "",
-    order?.order.assetId || 0,
-    account || ""
-  );
+  let buyHook = useBuyFixPriceOrder(order?.order.asset || "", order?.order.assetId || 0, account || "");
 
   const handleApprove = async () => {
     await buyHook?.approve();
@@ -87,7 +77,6 @@ const Content: React.FC<Props> = ({
     dispatch(setUserLoading(false));
   };
 
-
   const cancelSell = async () => {
     dispatch(setUserLoading(true));
     if (order) await cancel(order);
@@ -108,19 +97,16 @@ const Content: React.FC<Props> = ({
       </Typography>
       <Grid container spacing={2} style={{ marginTop: 10 }}>
         {metadata?.attributes?.map((attr: any) => (
-          <>
+          <React.Fragment key={uuid()}>
             <Grid item xs={6}>
-              <Typography
-                color="textSecondary"
-                style={{ textTransform: "capitalize" }}
-              >
+              <Typography color="textSecondary" style={{ textTransform: "capitalize" }}>
                 {attr.trait_type}
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Typography color="textSecondary">{attr.value}</Typography>
             </Grid>
-          </>
+          </React.Fragment>
         ))}
       </Grid>
       {/* {order && buyHook?.isApproved && order.order.maker !== account && (

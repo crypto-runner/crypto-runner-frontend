@@ -38,15 +38,16 @@ export const useMetadata = (contractAddress: string | undefined, tokenId: string
           setMetadata(data);
         }
         console.log("metadata", data);
+        setLoading(false);
         return;
       } catch (error) {
         console.error(error);
+        setLoading(false);
         notify({
           type: "error",
           message: "Unable to fetch metadata!",
         });
       }
-      setLoading(false);
     };
 
     fetchMetadata();
@@ -81,7 +82,7 @@ export const useFetchMetadataForTokenIds = () => {
   const fetchAllMetadata = async (tokenIds: number[]) => {
     let allData = [];
     let promises: Promise<unknown>[] = [];
-    tokenIds.forEach((tokenId,i) => {
+    tokenIds.forEach((tokenId, i) => {
       let promise = fetch(tokenId);
       promises[i] = promise;
     });

@@ -6,7 +6,8 @@ const useLoading = (loading: boolean | undefined = undefined) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(setUserLoading(!!loading));
+    console.log("loading",loading);
+    dispatch(setUserLoading(loading));
   }, [loading]);
 
   const startLoading = () => {
