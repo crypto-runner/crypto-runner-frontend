@@ -41,7 +41,7 @@ interface Props { }
 const UnlockReward: React.FC<Props> = () => {
   const classes = useStyles();
   const { openModal } = useContext(ModalContext);
-  const { buyPack, txPending } = useBuyPack()
+  const { buyPack, soldOut, enabled, txPending } = useBuyPack()
 
   const _buyPack = async () => {
     const txResponse = await buyPack()
@@ -83,15 +83,15 @@ const UnlockReward: React.FC<Props> = () => {
             <b> Value:</b>
           </Typography>
           <Typography color="textSecondary">
-            <b>1 Bnb</b>
+            <b> 0.2 Bnb</b>
           </Typography>
         </div>
         <div className={classes.row}>
           <Typography color="textSecondary">
-            <b> Types:</b>
+            <b> Rarities:</b>
           </Typography>
           <Typography color="textSecondary">
-            <b>Rare 1-5</b>
+            <b> Rare 1 - 5</b>
           </Typography>
         </div>
         <WalletButtonBase
@@ -100,7 +100,7 @@ const UnlockReward: React.FC<Props> = () => {
           className={classes.claimBtn}
           onClick={() => _buyPack()}
         >
-          {txPending ? 'Pending...' : 'Buy Chest'}
+          {soldOut ? 'SOLD OUT' : !enabled ? 'CLOSED' : txPending ? 'PENDING...' : 'BUY CHEST'}
         </WalletButtonBase>
       </Container>
     </div>

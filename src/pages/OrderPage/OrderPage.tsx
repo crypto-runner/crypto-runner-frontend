@@ -9,7 +9,7 @@ import { POOL_CARD_ADDRESS } from "src/config/config";
 import { useWalletProvider } from "@react-dapp/wallet";
 import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
 import useCreateOrder from "src/hooks/useCreateOrder";
-import { getRunner, RUNNERS } from "src/config/cards";
+// import { getRunner, RUNNERS } from "src/config/cards";
 import { useMetadata } from "src/hooks/useMetadata";
 import useLoading from "src/hooks/useLoading";
 
@@ -36,7 +36,7 @@ const OrderPage: React.FC<Props> = () => {
 
   const createOrder = async () => {
     createFixPriceOrder({
-      name: getRunner(assetId)?.name || "Name",
+      name: '',//getRunner(assetId)?.name || "Name",
       assetId,
       price,
       assetAmount,
