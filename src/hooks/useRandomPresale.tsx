@@ -2,6 +2,7 @@ import { awaitTransaction, toBigNumber, useEthers, useReload } from "@react-dapp
 import { usePresale } from './useContract'
 import { ethers } from "ethers"
 import { useEffect, useState } from "react";
+import useNotify from "./useNotify";
 
 export const useBuyPack = () => {
     const presale = usePresale()
@@ -10,7 +11,7 @@ export const useBuyPack = () => {
     const [soldOut, setSoldOut] = useState(false);
     const [enabled, setEnabled] = useState(true);
     const { reload, reloadable } = useReload()
-
+    const { notifyError } = useNotify()
 
     useEffect(() => {
         const init = async () => {
@@ -28,18 +29,15 @@ export const useBuyPack = () => {
             console.log("Unable to find presale contract")
             return
         }
-        try {
-            setTxPending(true)
-            const txResponse = await awaitTransaction(presale.buyPack({
-                value: ethers.utils.parseEther("0.2")  // 1 Bnb
-            }))
-            reload()
-            setTxPending(false)
-            return txResponse
-        } catch (error) {
-            console.log(error)
-            setTxPending(false)
-        }
+        setTxPending(true)
+        const txResponse = await awaitTransaction(presale.buyPack({
+            value: ethers.utils.parseEther("0.2")  // 1 Bnb
+        }))
+        reload()
+        setTxPending(false)
+        console.log(txResponse.error);
+        if (!txResponse.status) notifyError(txResponse.error)
+        return txResponse
     }
     return { buyPack, soldOut, enabled, txPending }
 }
