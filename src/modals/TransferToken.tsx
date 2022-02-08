@@ -40,8 +40,8 @@ const TransferToken: React.FC<Props> = ({ data: { tokenId, max }, closeModal }) 
           status: "success",
         })
       );
-      reload();
       closeModal();
+      window.location.reload();
     } else {
       dispatch(
         notify({
