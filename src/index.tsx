@@ -22,8 +22,14 @@ setUpNotifications({
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router history={history}>
-      <WalletProvider>
+    <Router history={history}>      
+      <WalletProvider
+      // @ts-ignore 
+        config={{
+          supportedChainIds: [5],
+          chainId: 5,
+        }}
+      >
         <Provider store={store}>
           <NotificationsProvider>
             <NotificationsSystem />

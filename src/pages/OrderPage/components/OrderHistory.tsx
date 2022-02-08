@@ -36,6 +36,9 @@ const OrderHistory: React.FC<Props> = () => {
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
+        <Typography variant="h3" className="styleFont" style={{marginBottom:10,}} align="center">
+          <b>History</b>
+        </Typography>
         <Table>
           <TableHead>
             <TableRow>
@@ -62,7 +65,7 @@ const OrderHistory: React.FC<Props> = () => {
                 No Sale History
               </Typography>
             </TableRow>
-            {/* <TableRow>
+            <TableRow>
               <TableCell className={classes.td} align="center">
                 Listing
               </TableCell>
@@ -78,7 +81,7 @@ const OrderHistory: React.FC<Props> = () => {
               <TableCell className={classes.td} align="center">
                 20-20-20
               </TableCell>
-            </TableRow> */}
+            </TableRow>
           </TableBody>
         </Table>
       </Container>

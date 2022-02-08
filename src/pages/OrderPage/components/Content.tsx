@@ -32,19 +32,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {
   order?: Order;
-  createOrder?: any;
-  price?: any;
-  setPrice?: any;
   metadata?: any;
-  isApproved?: boolean;
 }
 
 const Content: React.FC<Props> = ({
   order,
-  createOrder,
-  price,
-  setPrice,
-  isApproved,
   metadata,
 }) => {
   const classes = useStyles();
@@ -95,9 +87,6 @@ const Content: React.FC<Props> = ({
     dispatch(setUserLoading(false));
   };
 
-  const putOnSale = () => {
-    createOrder();
-  };
 
   const cancelSell = async () => {
     dispatch(setUserLoading(true));
