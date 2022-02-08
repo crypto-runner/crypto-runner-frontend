@@ -105,6 +105,15 @@ const theme = createTheme({
             marginRight: 5,
           },
         },
+        colorSecondary:{
+          "& fieldset": {
+            border: "1px solid !important",
+          },
+          "& .MuiSvgIcon-root": {
+            marginRight: 5,
+          },
+
+        },
         sizeSmall: {
           height: 45,
         },
@@ -126,6 +135,7 @@ const theme = createTheme({
             color: "grey",
           }
         },
+        
       },
     },
     MuiAccordionDetails:{

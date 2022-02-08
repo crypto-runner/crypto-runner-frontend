@@ -14,11 +14,12 @@ interface Props {
 const HelloWorld: React.FC<Props> = (props) => {
   const classes = useStyles();
   console.log(props);
-  return <div className={classes.root}>Hellow Wordl
-  <Button onClick={props.closeModal}>
-      Close
-  </Button>
-  </div>;
+  return (
+    <div className={classes.root}>
+      Hellow Wordl
+      <Button onClick={props.closeModal}>Close</Button>
+    </div>
+  );
 };
 
 export default HelloWorld;

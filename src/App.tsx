@@ -14,6 +14,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import { ModalProvider } from "./Context/ModalContext";
 import HelloWorld from "./modals/HelloWorld";
 import RewardUnlock from "./modals/RewardUnlock";
+import TransferToken from "./modals/TransferToken";
 import { NftVillageSdkProvider } from "@nftvillage/marketplace-sdk";
 
 interface Props {
@@ -29,6 +30,10 @@ const allModals = [
   {
     name: "RewardUnlock",
     component: RewardUnlock,
+  },
+  {
+    name: "Transfer Token",
+    component: TransferToken,
   },
 ];
 

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, IconButton, Theme, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { POOL_CARD_ADDRESS } from "src/config/config";
-import LoadingImg from "src/components/LoadingImg/LoadingImg"
-import ReplyIcon from '@mui/icons-material/Reply';
+import LoadingImg from "src/components/LoadingImg/LoadingImg";
+import ReplyIcon from "@mui/icons-material/Reply";
+import ModalContext from "src/Context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -45,11 +46,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  replyIcon:{
+  replyIcon: {
     position: "absolute !important" as any,
-    bottom:0,
-    right:0,
-  }
+    // color: `red !important` as any,
+    bottom: 0,
+    right: 0,
+  },
 }));
 
 interface Props {
@@ -63,14 +65,22 @@ interface Props {
 const ItemCard: React.FC<Props> = ({ image, animation_url, name, amount, tokenId }) => {
   const classes = useStyles();
   const history = useHistory();
+  const { openModal } = useContext(ModalContext);
+
+  const handleTransfer = ()=>{
+    openModal(
+      "Transfer Token",
+      {tokenId,max:amount},
+    );
+  }
 
   return (
-    <div style={{ position: "relative" }} >
+    <div style={{ position: "relative" }}>
       <div className={classes.imgContainer}>
-          <LoadingImg  src={image || animation_url || ""} alt="" />
-        <IconButton className={classes.replyIcon}>
-    <ReplyIcon  style={{transform:"scaleX(-1)"}}  />
-          </IconButton>
+        <LoadingImg src={image || animation_url || ""} alt="" />
+        <IconButton className={classes.replyIcon} color="primary" onClick={handleTransfer}>
+          <ReplyIcon style={{ transform: "scaleX(-1)" }} />
+        </IconButton>
         <div className={classes.quantityContainer}>
           <div className={classes.quantityWrapper}>
             <Typography className={classes.quantityText}>
@@ -79,7 +89,13 @@ const ItemCard: React.FC<Props> = ({ image, animation_url, name, amount, tokenId
           </div>
         </div>
       </div>
-      <Button color="primary" fullWidth variant="outlined" style={{ marginTop: 30 }} onClick={() => history.push(`/order-item/${POOL_CARD_ADDRESS}/${tokenId}`)}>
+      <Button
+        color="primary"
+        fullWidth
+        variant="outlined"
+        style={{ marginTop: 30 }}
+        onClick={() => history.push(`/order-item/${POOL_CARD_ADDRESS}/${tokenId}`)}
+      >
         {name}
       </Button>
     </div>
