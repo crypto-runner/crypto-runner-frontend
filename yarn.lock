@@ -2114,6 +2114,15 @@
     "@web3-react/abstract-connector" "^6.0.7"
     react-modal "^3.14.3"
 
+"@react-dapp/wallet@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@react-dapp/wallet/-/wallet-1.0.4.tgz#89cbdefe70318fa707037f19c9e874a7ba42fff0"
+  integrity sha512-9TP5M9NxM7ZNpbLz8pxGE5yVM1/VmKXxhdVzc8/bvOgA6Qp1fn7kPuyFseIzjbvJLNThK0MPJ7GlQqJZhJzB7A==
+  dependencies:
+    "@types/react-modal" "^3.13.1"
+    "@web3-react/abstract-connector" "^6.0.7"
+    react-modal "^3.14.3"
+
 "@reduxjs/toolkit@^1.6.2":
   version "1.7.1"
   resolved "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.7.1.tgz"

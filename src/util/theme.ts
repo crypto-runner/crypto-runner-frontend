@@ -105,14 +105,13 @@ const theme = createTheme({
             marginRight: 5,
           },
         },
-        colorSecondary:{
+        colorSecondary: {
           "& fieldset": {
             border: "1px solid !important",
           },
           "& .MuiSvgIcon-root": {
             marginRight: 5,
           },
-
         },
         sizeSmall: {
           height: 45,
@@ -130,20 +129,18 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          "& label":{
-            
+          "& label": {
             color: "grey",
-          }
+          },
         },
-        
       },
     },
-    MuiAccordionDetails:{
-      styleOverrides:{
-        root:{
-          padding:0,
-        }
-      }
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+        },
+      },
     },
     MuiButton: {
       styleOverrides: {
@@ -217,13 +214,22 @@ const theme = createTheme({
         },
       },
     },
-    MuiTableHead:{
-      styleOverrides:{
-        root:{
-          background:"white"
-        }
-      }
-    }
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          background: "white",
+        },
+      },
+    },
+    MuiSkeleton: {
+      styleOverrides: {
+        wave: {
+          "&:after": {
+            background: `linear-gradient(90deg, transparent, ${primaryColor}, transparent)`,
+          },
+        },
+      },
+    },
   },
 });
 

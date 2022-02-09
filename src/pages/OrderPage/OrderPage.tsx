@@ -46,7 +46,7 @@ const OrderPage: React.FC<Props> = () => {
           <Grid item xs={12}>
             <Divider />
           </Grid>
-          {/* {balance && balance[0].amount > 0 && (
+          {balance && balance[0].amount > 0 && (
             <Grid item xs={12}>
               <CurrentListing
                 metadata={metadata}
@@ -55,11 +55,11 @@ const OrderPage: React.FC<Props> = () => {
                 availableAmount={balance[0].amount || 0}
               />
             </Grid>
-          )} */}
+          )}
         </Grid>
       </Container>
       <div style={{ marginTop: 20 }} />
-      {/* <OrderHistory /> */}
+      <OrderHistory />
     </div>
   );
 };
