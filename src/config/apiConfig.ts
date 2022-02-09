@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_RELAYER_URL } from "./config";
 
-const appApiUrl = "https://nft-comics-api.herokuapp.com/api";
+const appApiUrl = process.env.REACT_APP_BASE_API_URL;
 // const appApiUrl = "http://192.168.1.109:5000/api";
 
 export const apiCall = axios.create({

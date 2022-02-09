@@ -90,9 +90,10 @@ const Navbar: React.FC<Props> = ({ user }) => {
             <NavLink to="/my-runners" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               My runners
             </NavLink>
-            {/* <NavLink to="/explore" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
+            <NavLink to="/explore" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               Explore
             </NavLink>
+            {/* 
             <NavLink to="/presale" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               Presale
             </NavLink>  */}
@@ -113,7 +114,7 @@ const Navbar: React.FC<Props> = ({ user }) => {
               variant="contained"
               color="secondary"
               style={{ maxWidth: 300 }}
-            // onClick={() => history.push("/login")}
+              // onClick={() => history.push("/login")}
             >
               {/* Connect */}
             </WalletButtonBase>
@@ -150,6 +151,17 @@ const Navbar: React.FC<Props> = ({ user }) => {
                 onClick={drawerClose}
               >
                 My runners
+              </NavLink>
+            </ListItem>
+            <ListItem>
+              <NavLink
+                to="/explore"
+                style={{ color: "black" }}
+                className={clsx(classes.link, "styleFont")}
+                activeClassName={classes.activeLink}
+                onClick={drawerClose}
+              >
+                Explore
               </NavLink>
             </ListItem>
             <ListItem>

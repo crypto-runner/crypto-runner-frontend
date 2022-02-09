@@ -46,10 +46,8 @@ const useCreateOrder = (asset: string) => {
       if (!res) return;
     }
     let res = await create(ord);
-    console.log("create res " ,res);
-    console.log("load end");
     stopLoading();
-    // window.location.reload();
+    if (res?.status) window.location.reload();
     return res;
   };
 

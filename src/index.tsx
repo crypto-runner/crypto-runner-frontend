@@ -8,7 +8,7 @@ import { setUpNotifications, NotificationsProvider } from "reapop";
 import NotificationsSystem from "src/components/NotificationsSystem/NotificationsSystem";
 import { Provider } from "react-redux";
 import store from "./redux";
-import { WalletProvider } from "@react-dapp/wallet";
+import { WalletProvider, CHAIN_ID } from "@react-dapp/wallet";
 
 // run this function when your application starts before creating any notifications
 setUpNotifications({
@@ -26,8 +26,8 @@ ReactDOM.render(
       <WalletProvider
         // @ts-ignore 
         config={{
-          supportedChainIds: [56],
-          chainId: 56,
+          supportedChainIds: [CHAIN_ID.BSC],
+          chainId: CHAIN_ID.BSC,
         }}
       >
         <Provider store={store}>

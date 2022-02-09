@@ -29,6 +29,7 @@ const OrderPage: React.FC<Props> = () => {
     asset,
     assetId: Number(assetId),
   });
+  console.log("sell order",order)
   const { metadata, loading } = useMetadata(asset, assetId);
   useLoading(loading);
 
