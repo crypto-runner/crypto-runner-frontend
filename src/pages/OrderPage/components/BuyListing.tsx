@@ -1,8 +1,11 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Table, TableHead, Theme, TableRow, TableCell , TableBody, IconButton, Button} from "@mui/material";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import {Order} from "@nftvillage/marketplace-sdk"
+import { Table, TableHead, Theme, TableRow, TableCell, TableBody, IconButton, Button } from "@mui/material";
+import { Order, useBuyAnyOrder } from "@nftvillage/marketplace-sdk";
+import useLoading from "src/hooks/useLoading";
+import useNotify from "src/hooks/useNotify";
+import { useWalletProvider } from "@react-dapp/wallet";
+import { v4 as uuid } from "uuid";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -16,11 +19,30 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-    allOrders: Order[]
+  allOrders: Order[];
 }
 
-const BuyListing: React.FC<Props> = ({allOrders}) => {
+const BuyListing: React.FC<Props> = ({ allOrders }) => {
   const classes = useStyles();
+  const { startLoading, stopLoading } = useLoading();
+  const { notifySuccess, notifyError } = useNotify();
+  const { buyOrder } = useBuyAnyOrder();
+  const { account } = useWalletProvider();
+
+  const handleBuy = async (order: Order) => {
+    try {
+      startLoading();
+      let res = await buyOrder(order);
+
+      stopLoading();
+      if (res?.status) notifySuccess("Order bought successfully");
+      else notifyError("Error");
+    } catch (error) {
+      stopLoading();
+      console.log(error);
+      notifyError("Error");
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -45,29 +67,29 @@ const BuyListing: React.FC<Props> = ({allOrders}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {allOrders.map((order: Order) => (
-
-          <TableRow>
-            <TableCell className={classes.td} align="center">
-            {order.order.assetAmount}
-            </TableCell>
-            <TableCell className={classes.td} align="center">
-              {order.metadata.price}
-            </TableCell>
-            <TableCell className={classes.td} align="center">
-              {/* @ts-ignore */}
-              {order.createdAt}
-            </TableCell>
-            <TableCell className={classes.td} align="center">
-              {order.order.maker}
-            </TableCell>
-            <TableCell className={classes.td} align="center">
-              <Button variant="contained">
-                  Buy
-              </Button>
-            </TableCell>
-          </TableRow>
-          ))}
+          {allOrders
+            .filter((ord) => ord.order.maker === account)
+            .map((order: Order) => (
+              <TableRow key={uuid()}>
+                <TableCell className={classes.td} align="center">
+                  {order.order.assetAmount}
+                </TableCell>
+                <TableCell className={classes.td} align="center">
+                  {order.metadata.price}
+                </TableCell>
+                <TableCell className={classes.td} align="center">
+                  {order.createdAt}
+                </TableCell>
+                <TableCell className={classes.td} align="center">
+                  {order.order.maker}
+                </TableCell>
+                <TableCell className={classes.td} align="center">
+                  <Button variant="contained" onClick={() => handleBuy(order)}>
+                    Buy
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </div>

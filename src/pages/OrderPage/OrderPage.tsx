@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Container, Divider, Grid, Tab, Tabs, Theme } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useOrderERC1155, useSellOrder, Order } from "@nftvillage/marketplace-sdk";
 import Content from "./components/Content";
 import OrderHistory from "./components/OrderHistory";
@@ -24,6 +24,9 @@ interface Props {}
 
 const OrderPage: React.FC<Props> = () => {
   const classes = useStyles();
+  const { search } = useLocation();
+  let searchParams = new URLSearchParams(search);
+  console.log(searchParams.get("orderId"));
   const { asset, assetId } = useParams<{ asset: string; assetId: string }>();
   const { balance } = useERC1155Balance(POOL_CARD_ADDRESS, [Number(assetId)]);
   const [value, setValue] = React.useState(0);
@@ -31,14 +34,20 @@ const OrderPage: React.FC<Props> = () => {
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
     setValue(value);
   };
-  const { order:allOrders } = useOrderERC1155({
+  const { order: allOrders } = useOrderERC1155({
     asset,
     assetId: Number(assetId),
   });
   const { metadata, loading } = useMetadata(asset, assetId);
   useLoading(loading);
 
-  console.log("All",allOrders)
+  // React.useEffect(() => {
+  //   let totalBalance = (balance && balance[0].amount) || 0;
+  //   allOrders?.forEach((order) => {
+  //     totalBalance -= order?.order?.assetAmount || 0;
+  //   });
+  //   setAvailableAmount(totalBalance);
+  // }, [allOrders,balance]);
 
   return (
     <div className={classes.root}>
@@ -49,7 +58,10 @@ const OrderPage: React.FC<Props> = () => {
             {/* <img src={metadata?.animation_url || metadata?.image} alt="" width="100%" /> */}
           </Grid>
           <Grid item xs={12} md={8}>
-            <Content metadata={metadata} order={allOrders && allOrders[0]} />
+            <Content
+              metadata={metadata}
+              order={allOrders && allOrders.find((ord) => ord.order._id === searchParams.get("orderId"))}
+            />
           </Grid>
           <Grid item xs={12}>
             <Divider />
@@ -68,12 +80,13 @@ const OrderPage: React.FC<Props> = () => {
                 address={asset}
                 tokenId={Number(assetId)}
                 availableAmount={(balance && balance[0].amount) || 0}
+                allOrders={allOrders || []}
               />
             </Grid>
           )}
           {value === 0 && (
             <Grid item xs={12}>
-              <BuyListing allOrders={allOrders || []}/>
+              <BuyListing allOrders={allOrders || []} />
             </Grid>
           )}
         </Grid>
