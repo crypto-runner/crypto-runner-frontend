@@ -8,6 +8,7 @@ import { notify } from "reapop";
 import { useWalletProvider } from "@react-dapp/wallet";
 import { deleteOrder } from "src/api";
 import { v4 as uuid } from "uuid";
+import { fontWeight } from "@mui/system";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -25,6 +26,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: "white",
     borderRadius: 5,
   },
+  extraDetail: {
+    display: "flex",
+    gap: 20,
+    marginTop: 20,
+    alignItems: "center",
+    "& p": {
+      background: "white",
+      padding: "10px 20px",
+      fontWeight: 600,
+    },
+  },
 }));
 
 interface Props {
@@ -38,60 +50,56 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
   const { account } = useWalletProvider();
   const { cancel } = useCancelOrder();
 
-  let buyHook = useBuyFixPriceOrder(order?.order.asset || "", order?.order.assetId || 0, account || "");
+  // let buyHook = useBuyFixPriceOrder(orders?.order.asset || "", orders?.order.assetId || 0, account || "");
 
-  const handleApprove = async () => {
-    await buyHook?.approve();
-    dispatch(
-      notify({
-        status: "success",
-        title: "Token Approved",
-      })
-    );
-  };
+  // const handleApprove = async () => {
+  //   await buyHook?.approve();
+  //   dispatch(
+  //     notify({
+  //       status: "success",
+  //       title: "Token Approved",
+  //     })
+  //   );
+  // };
 
   const handleBuy = async () => {
     dispatch(setUserLoading(true));
-    let res = await buyHook?.buyFixOrder();
-    console.log(res);
-    if (res?.status) {
-      dispatch(
-        notify({
-          status: "success",
-          title: "Success",
-        })
-      );
-      // await deleteOrder(
-      //   order?.order.asset as string,
-      //   String(order?.order.assetId) as string
+    //TODO: buy fix price
+    // let res = await buyHook?.buyFixOrder();
+    // console.log(res);
+    // if (res?.status) {
+    //   dispatch(
+    //     notify({
+    //       status: "success",
+    //       title: "Success",
+    //     })
+    //   );
+    
+      // window.location.reload();
+    // } else {
+      // dispatch(
+        // notify({
+          // status: "error",
+          // title: "Error",
+        // })
       // );
-      window.location.reload();
-    } else {
-      dispatch(
-        notify({
-          status: "error",
-          title: "Error",
-        })
-      );
-    }
+    // }
     dispatch(setUserLoading(false));
   };
 
-  const cancelSell = async () => {
-    dispatch(setUserLoading(true));
-    if (order) await cancel(order);
-    dispatch(setUserLoading(false));
-    window.location.reload();
-  };
+  // const cancelSell = async () => {
+  //   dispatch(setUserLoading(true));
+  //   if (order) await cancel(order);
+  //   dispatch(setUserLoading(false));
+  //   window.location.reload();
+  // };
 
   return (
     <div className={classes.root}>
       <Typography color="textSecondary" variant="h3" className="styleFont">
         <b>{metadata?.name}</b>
       </Typography>
-      <Typography color="primary" variant="h5" className="styleFont">
-        <b>{order?.metadata.price} BNB</b>
-      </Typography>
+      
       <Typography color="textSecondary" variant="h5" style={{ marginTop: 20 }}>
         {metadata?.description}
       </Typography>
@@ -109,17 +117,22 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
           </React.Fragment>
         ))}
       </Grid>
-      {/* {order && buyHook?.isApproved && order.order.maker !== account && (
-        <Button
-          color="primary"
-          variant="outlined"
-          className={classes.buyBtn}
-          style={{ marginTop: 20 }}
-          onClick={handleBuy}
-        >
-          Buy
-        </Button>
-      )} */}
+      <div className={classes.extraDetail}>
+        {
+          <Button
+            color="primary"
+            variant="outlined"
+            className={classes.buyBtn}
+            // style={{ marginTop: 20 }}
+            // onClick={handleBuy}
+          >
+            Buy
+          </Button>
+        }
+
+        <Typography>Quantity: 5</Typography>
+        <Typography>Price: 5 BNB</Typography>
+      </div>
       {/* {order && buyHook?.isApproved && order.order.maker === account && (
         <Button
           color="primary"

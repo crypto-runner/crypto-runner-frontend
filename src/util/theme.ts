@@ -118,7 +118,30 @@ const theme = createTheme({
         },
       },
     },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {},
+      },
+    },
 
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          // color:"red",
+          // background:"yellow"
+          border: "1px solid black",
+          "&.Mui-selected": {
+            color:"black",
+            background:secondaryColor,
+          },
+        },
+
+        selected: {
+          // color:"yellow",
+          // background:"red"
+        },
+      },
+    },
     MuiCheckbox: {
       styleOverrides: {
         root: {
