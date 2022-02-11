@@ -44,27 +44,22 @@ const UnlockReward: React.FC<Props> = () => {
   const { buyPack, soldOut, enabled, txPending } = useBuyPack()
 
   const _buyPack = async () => {
-    for (let i = 0; i < 50; i++) {
-      buyPack().then(()=>{
-        console.log("bought")
-      })
+    
+    const txResponse = await buyPack()
+    if (txResponse?.status) {
+      const iface = new ethers.utils.Interface(RandomPresale_Abi);
+      const tokenId = iface.parseLog(txResponse.receipt.logs[1]).args['tokenId'].toString()
+
+      openModal(
+        "RewardUnlock",
+        tokenId,
+        {
+          hideTitle: true,
+        }
+      );
+    } else {
+      console.log("Error Occur")
     }
-    // const txResponse = await buyPack()
-
-    // if (txResponse?.status) {
-    //   const iface = new ethers.utils.Interface(RandomPresale_Abi);
-    //   const tokenId = iface.parseLog(txResponse.receipt.logs[1]).args['tokenId'].toString()
-
-    //   openModal(
-    //     "RewardUnlock",
-    //     tokenId,
-    //     {
-    //       hideTitle: true,
-    //     }
-    //   );
-    // } else {
-    //   console.log("Error Occur")
-    // }
   }
 
 
