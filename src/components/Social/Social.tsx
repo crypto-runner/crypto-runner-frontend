@@ -5,7 +5,7 @@ import TwitterPng from "src/assets/icons/twitter.png";
 import DiscordPng from "src/assets/icons/discord.png";
 import TelegramPng from "src/assets/icons/telegram.png";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({ 
   root: {
     display: "flex",
     justifyContent: "center",
