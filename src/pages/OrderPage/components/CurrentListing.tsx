@@ -89,6 +89,8 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
     window.location.reload();
   };
 
+  console.log('token amount', availableAmount)
+
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
@@ -103,9 +105,9 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
         </Typography>
         <Container maxWidth="sm">
           <Typography align="center" variant="h4" style={{ marginTop: 10 }} color="textSecondary">
-            Available Tokens: <b>{canBeListed}</b>
+            Available Tokens: <b>{canBeListed < 0 ? 0 : canBeListed}</b>
           </Typography>
-          {availableAmount > 0 && (
+          {canBeListed > 0 && (
             <Grid container spacing={3} style={{ marginTop: 20 }}>
               <Grid item xs={12} sm={6}>
                 <Typography color="textSecondary" variant="h6">

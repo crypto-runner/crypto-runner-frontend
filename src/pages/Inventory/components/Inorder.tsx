@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props { }
 
 const Inorder: React.FC<Props> = () => {
   const classes = useStyles();
@@ -69,13 +69,7 @@ const Inorder: React.FC<Props> = () => {
             }
           >
             <div className={classes.imgContainer}>
-              {/* <img
-                src={
-                  item.metadata?.image ??
-                  getRunner(item.metadata.tokenId)?.image
-                }
-                alt=""
-              /> */}
+              <img src={item.metadata?.image} />
               <div className={classes.quantityContainer}>
                 <div className={classes.quantityWrapper}>
                   <Typography className={classes.quantityText}>
