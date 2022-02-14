@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Container, Divider, Grid, Tab, Tabs, Theme } from "@mui/material";
 import { useLocation, useParams } from "react-router-dom";
-import { useOrderERC1155, useSellOrder, Order } from "@nftvillage/marketplace-sdk";
+import { useOrderERC1155, useSellOrder, Order, useOrderHistory } from "@nftvillage/marketplace-sdk";
 import Content from "./components/Content";
 import OrderHistory from "./components/OrderHistory";
 import { POOL_CARD_ADDRESS } from "src/config/config";
@@ -26,10 +26,10 @@ const OrderPage: React.FC<Props> = () => {
   const classes = useStyles();
   const { search } = useLocation();
   let searchParams = new URLSearchParams(search);
-  console.log(searchParams.get("orderId"));
   const { asset, assetId } = useParams<{ asset: string; assetId: string }>();
   const { balance } = useERC1155Balance(POOL_CARD_ADDRESS, [Number(assetId)]);
   const [value, setValue] = React.useState(0);
+  const { orders: orderHistory, loading: orderHistoryLoading } = useOrderHistory({ asset, assetId: Number(assetId) });
 
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
     setValue(value);
@@ -38,16 +38,8 @@ const OrderPage: React.FC<Props> = () => {
     asset,
     assetId: Number(assetId),
   });
-  const { metadata, loading } = useMetadata(asset, assetId);
-  useLoading(loading);
-
-  // React.useEffect(() => {
-  //   let totalBalance = (balance && balance[0].amount) || 0;
-  //   allOrders?.forEach((order) => {
-  //     totalBalance -= order?.order?.assetAmount || 0;
-  //   });
-  //   setAvailableAmount(totalBalance);
-  // }, [allOrders,balance]);
+  const { metadata, loading: metadataLoading } = useMetadata(asset, assetId);
+  useLoading(metadataLoading || orderHistoryLoading);
 
   return (
     <div className={classes.root}>
@@ -92,7 +84,7 @@ const OrderPage: React.FC<Props> = () => {
         </Grid>
       </Container>
       <div style={{ marginTop: 20 }} />
-      <OrderHistory />
+      <OrderHistory orderHistory={orderHistory} />
     </div>
   );
 };

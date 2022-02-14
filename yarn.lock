@@ -2052,10 +2052,10 @@
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@nftvillage/marketplace-sdk@^0.0.53":
-  version "0.0.53"
-  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.53.tgz#a7f8ace1818016dcb5f7427c87c20d265a448b49"
-  integrity sha512-+udFCNgYq6DCx71OVb5pQb1SuRxc1oYluZC9TS+WleJnKORG9+mmWwmHYsgIn5PQY9QsxC7gAQNFcg8PDh6sCw==
+"@nftvillage/marketplace-sdk@^0.0.54":
+  version "0.0.54"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.54.tgz#a036e077d7f3375d59086c3d0de7b8b08f2d62b1"
+  integrity sha512-bDHbFMGtOCFJ8/Y/YptcChx5Bm3uH4g9v6ja+OA0utp/Jt0NxTHpb6mopJmGfQoFgz18hwakr2Y2ZuK814DY6Q==
   dependencies:
     "@react-dapp/wallet" "^1.0.3"
 
@@ -8631,6 +8631,11 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "1.0.4"
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
+
+moment@^2.29.1:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

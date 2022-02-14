@@ -68,7 +68,7 @@ const BuyListing: React.FC<Props> = ({ allOrders }) => {
         </TableHead>
         <TableBody>
           {allOrders
-            .filter((ord) => ord.order.maker === account)
+            .filter((ord) => ord.order.maker !== account)
             .map((order: Order) => (
               <TableRow key={uuid()}>
                 <TableCell className={classes.td} align="center">

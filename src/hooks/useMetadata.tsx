@@ -15,7 +15,6 @@ import { fetchIpfs } from "src/util";
 export const useMetadata = (contractAddress: string | undefined, tokenId: string | undefined) => {
   const [loading, setLoading] = useState(false);
   const [metadata, setMetadata] = useState<any>();
-  console.log("contract", contractAddress, tokenId);
   let contract = useERC1155(contractAddress);
 
   useEffect(() => {
@@ -24,10 +23,8 @@ export const useMetadata = (contractAddress: string | undefined, tokenId: string
       setLoading(true);
       try {
         let uri: string = await contract.uri(tokenId);
-        console.log("raw uri", uri);
         uri = uri.replaceAll("{address}", contractAddress);
         uri = uri.replaceAll("{id}", tokenId);
-        console.log("uri", uri);
         let data;
         if (uri.includes("ipfs://")) {
           data = await fetchIpfs(uri);
@@ -37,7 +34,6 @@ export const useMetadata = (contractAddress: string | undefined, tokenId: string
           data = res.data;
           setMetadata(data);
         }
-        console.log("metadata", data);
         setLoading(false);
         return;
       } catch (error) {
