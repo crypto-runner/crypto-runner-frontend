@@ -55,6 +55,7 @@ const Marketplace: React.FC<Props> = () => {
   const fetchOrders = async () => {
     dispatch(setUserLoading(true));
     let res = await filterMarketPlace(filterState);
+    console.log("orders",res)
     setOrders(res?.data || []);
     dispatch(setUserLoading(false));
   };
@@ -63,7 +64,6 @@ const Marketplace: React.FC<Props> = () => {
     fetchOrders();
   }, [account]);
 
-  
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">

@@ -8,6 +8,7 @@ import { notify } from "reapop";
 import { useWalletProvider } from "@react-dapp/wallet";
 import { deleteOrder } from "src/api";
 import { v4 as uuid } from "uuid";
+import { fontWeight } from "@mui/system";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -24,6 +25,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "100%",
     background: "white",
     borderRadius: 5,
+  },
+  extraDetail: {
+    display: "flex",
+    gap: 20,
+    marginTop: 20,
+    alignItems: "center",
+    "& p": {
+      background: "white",
+      padding: "10px 20px",
+      fontWeight: 600,
+    },
   },
 }));
 
@@ -52,6 +64,7 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
 
   const handleBuy = async () => {
     dispatch(setUserLoading(true));
+    if (!buyHook?.isApproved) await handleApprove();
     let res = await buyHook?.buyFixOrder();
     console.log(res);
     if (res?.status) {
@@ -61,10 +74,7 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
           title: "Success",
         })
       );
-      // await deleteOrder(
-      //   order?.order.asset as string,
-      //   String(order?.order.assetId) as string
-      // );
+
       window.location.reload();
     } else {
       dispatch(
@@ -77,21 +87,19 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
     dispatch(setUserLoading(false));
   };
 
-  const cancelSell = async () => {
-    dispatch(setUserLoading(true));
-    if (order) await cancel(order);
-    dispatch(setUserLoading(false));
-    window.location.reload();
-  };
+  // const cancelSell = async () => {
+  //   dispatch(setUserLoading(true));
+  //   if (order) await cancel(order);
+  //   dispatch(setUserLoading(false));
+  //   window.location.reload();
+  // };
 
   return (
     <div className={classes.root}>
       <Typography color="textSecondary" variant="h3" className="styleFont">
         <b>{metadata?.name}</b>
       </Typography>
-      <Typography color="primary" variant="h5" className="styleFont">
-        <b>{order?.metadata.price} BNB</b>
-      </Typography>
+
       <Typography color="textSecondary" variant="h5" style={{ marginTop: 20 }}>
         {metadata?.description}
       </Typography>
@@ -109,17 +117,24 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
           </React.Fragment>
         ))}
       </Grid>
-      {/* {order && buyHook?.isApproved && order.order.maker !== account && (
-        <Button
-          color="primary"
-          variant="outlined"
-          className={classes.buyBtn}
-          style={{ marginTop: 20 }}
-          onClick={handleBuy}
-        >
-          Buy
-        </Button>
-      )} */}
+      {order && (
+        <div className={classes.extraDetail}>
+          {
+            <Button
+              color="primary"
+              variant="outlined"
+              className={classes.buyBtn}
+              // style={{ marginTop: 20 }}
+              onClick={handleBuy}
+            >
+              {buyHook?.isApproved ? "Buy" : "Buy (Approve)"}
+            </Button>
+          }
+
+          <Typography>Quantity: {order.order.assetAmount}</Typography>
+          <Typography>Price: {order.metadata.price} BNB</Typography>
+        </div>
+      )}
       {/* {order && buyHook?.isApproved && order.order.maker === account && (
         <Button
           color="primary"

@@ -1,16 +1,10 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import {
-  Container,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Container, Table, TableBody, TableCell, TableHead, TableRow, Theme, Typography } from "@mui/material";
 import Bg from "src/assets/images/orangebg.jpg";
+import { HistoryOfOrder } from "@nftvillage/marketplace-sdk";
+import MomentDate from "src/components/MomentDate/MomentDate";
+import AddressTypography from "src/components/AddressTypography/AddressTypography";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -28,25 +22,27 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props {
+  orderHistory?: HistoryOfOrder[];
+}
 
-const OrderHistory: React.FC<Props> = () => {
+const OrderHistory: React.FC<Props> = ({ orderHistory }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
-        <Typography variant="h3" className="styleFont" style={{marginBottom:10,}} align="center">
+        <Typography variant="h3" className="styleFont" style={{ marginBottom: 10 }} align="center">
           <b>History</b>
         </Typography>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell className={classes.thead} align="center">
-                EVENT
+                Amount
               </TableCell>
               <TableCell className={classes.thead} align="center">
-                UNIT PRICE
+                PRICE
               </TableCell>
               <TableCell className={classes.thead} align="center">
                 FROM
@@ -60,28 +56,33 @@ const OrderHistory: React.FC<Props> = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <Typography align="center" style={{marginTop:20,}}>
-                No Sale History
-              </Typography>
-            </TableRow>
-            <TableRow>
-              <TableCell className={classes.td} align="center">
-                Listing
-              </TableCell>
-              <TableCell className={classes.td} align="center">
-                200 BNB
-              </TableCell>
-              <TableCell className={classes.td} align="center">
-                0xceeeeee
-              </TableCell>
-              <TableCell className={classes.td} align="center">
-                -
-              </TableCell>
-              <TableCell className={classes.td} align="center">
-                20-20-20
-              </TableCell>
-            </TableRow>
+            {!orderHistory && (
+              <TableRow>
+                <Typography align="center" style={{ marginTop: 20 }}>
+                  No Sale History
+                </Typography>
+              </TableRow>
+            )}
+            {orderHistory &&
+              orderHistory.map((order, index) => (
+                <TableRow key={index}>
+                  <TableCell className={classes.td} align="center">
+                    {order.assetAmount}
+                  </TableCell>
+                  <TableCell className={classes.td} align="center">
+                    {order.price}
+                  </TableCell>
+                  <TableCell className={classes.td} align="center">
+                    <AddressTypography address={order.maker} />
+                  </TableCell>
+                  <TableCell className={classes.td} align="center">
+                    <AddressTypography address={order.taker} />
+                  </TableCell>
+                  <TableCell className={classes.td} align="center">
+                    <MomentDate date={order.purchaseDate} />
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </Container>

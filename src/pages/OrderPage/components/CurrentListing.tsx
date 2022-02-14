@@ -16,6 +16,11 @@ import {
 } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import useCreateOrder from "src/hooks/useCreateOrder";
+import { Order, useCancelOrder } from "@nftvillage/marketplace-sdk";
+import { useWalletProvider } from "@react-dapp/wallet";
+import { v4 as uuid } from "uuid";
+import useLoading from "src/hooks/useLoading";
+import MomentDate from "src/components/MomentDate/MomentDate";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -39,13 +44,26 @@ interface Props {
   address: string;
   tokenId: number;
   metadata: any;
+  allOrders: Order[];
 }
 
-const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, metadata }) => {
+const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, metadata, allOrders }) => {
   const classes = useStyles();
   const [price, setPrice] = React.useState<number>(1);
   const [assetAmount, setAssetAmount] = React.useState<number>(1);
   const { createERC1155Order, isApproved } = useCreateOrder(address);
+  const [canBeListed, setCanBeListed] = React.useState(0);
+  const { account } = useWalletProvider();
+  const { cancel } = useCancelOrder();
+  const { startLoading, stopLoading } = useLoading();
+
+  React.useEffect(() => {
+    let totalBalance = availableAmount || 0;
+    allOrders?.forEach((order) => {
+      totalBalance -= order?.order?.assetAmount || 0;
+    });
+    setCanBeListed(totalBalance);
+  }, [allOrders, availableAmount]);
 
   const handleAssetAmount: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> = (e) => {
     let v = Number(e.target.value);
@@ -55,12 +73,20 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
   };
 
   const createOrder = async () => {
-    createERC1155Order({
-      metadata,
-      tokenId,
-      assetAmount,
-      price,
-    });
+    if (canBeListed > 0)
+      createERC1155Order({
+        metadata,
+        tokenId,
+        assetAmount,
+        price,
+      });
+  };
+
+  const cancelSell = async (ord: Order) => {
+    startLoading();
+    if (ord) await cancel(ord);
+    stopLoading();
+    window.location.reload();
   };
 
   return (
@@ -77,7 +103,7 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
         </Typography>
         <Container maxWidth="sm">
           <Typography align="center" variant="h4" style={{ marginTop: 10 }} color="textSecondary">
-            Available Tokens: <b>{availableAmount}</b>
+            Available Tokens: <b>{canBeListed}</b>
           </Typography>
           {availableAmount > 0 && (
             <Grid container spacing={3} style={{ marginTop: 20 }}>
@@ -140,22 +166,26 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow>
-                <TableCell className={classes.td} align="center">
-                  5
-                </TableCell>
-                <TableCell className={classes.td} align="center">
-                  2
-                </TableCell>
-                <TableCell className={classes.td} align="center">
-                  27-FEB-2022
-                </TableCell>
-                <TableCell className={classes.td} align="center">
-                  <IconButton>
-                    <DeleteOutlineIcon color="error" />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
+              {allOrders
+                .filter((ord) => ord.order.maker === account)
+                .map((ord) => (
+                  <TableRow key={uuid()}>
+                    <TableCell className={classes.td} align="center">
+                      {ord.order.assetAmount}
+                    </TableCell>
+                    <TableCell className={classes.td} align="center">
+                      {ord.metadata.price}
+                    </TableCell>
+                    <TableCell className={classes.td} align="center">
+                      <MomentDate date={ord.createdAt} />
+                    </TableCell>
+                    <TableCell className={classes.td} align="center">
+                      <IconButton onClick={() => cancelSell(ord)}>
+                        <DeleteOutlineIcon color="error" />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </div>

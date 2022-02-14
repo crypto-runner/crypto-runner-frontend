@@ -4,7 +4,6 @@ import { Button, Theme, Typography } from "@mui/material";
 import clsx from "clsx";
 import { Order } from "@nftvillage/marketplace-sdk";
 import { useHistory } from "react-router-dom";
-import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -56,17 +55,17 @@ const NftCard: React.FC<Props> = ({ order }) => {
   const history = useHistory();
 
   const redirect = () => {
-    history.push(`/order-item/${order.order.asset}/${order.order.assetId}`);
+    history.push(`/order-item/${order.order.asset}/${order.order.assetId}?orderId=${order.order?._id}`);
   };
 
   return (
     <div className={classes.root} onClick={redirect}>
       <div className={classes.imgContainer}>
-        <img src={order.metadata.image ?? Img1} alt="" />
+        <img src={order.metadata.image} alt="" />
         <div className={classes.quantityContainer}>
           <div className={classes.quantityWrapper}>
             <Typography className={clsx(classes.quantityText, "styleFont")}>
-              {order.metadata.name}
+              {order.metadata.name} | {order.order.assetAmount}
             </Typography>
           </div>
         </div>

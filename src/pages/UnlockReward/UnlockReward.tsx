@@ -44,8 +44,8 @@ const UnlockReward: React.FC<Props> = () => {
   const { buyPack, soldOut, enabled, txPending } = useBuyPack()
 
   const _buyPack = async () => {
+    
     const txResponse = await buyPack()
-
     if (txResponse?.status) {
       const iface = new ethers.utils.Interface(RandomPresale_Abi);
       const tokenId = iface.parseLog(txResponse.receipt.logs[1]).args['tokenId'].toString()
