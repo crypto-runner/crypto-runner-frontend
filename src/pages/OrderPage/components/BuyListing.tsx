@@ -6,6 +6,8 @@ import useLoading from "src/hooks/useLoading";
 import useNotify from "src/hooks/useNotify";
 import { useWalletProvider } from "@react-dapp/wallet";
 import { v4 as uuid } from "uuid";
+import MomentDate from "src/components/MomentDate/MomentDate";
+import AddressTypography from "src/components/AddressTypography/AddressTypography";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -33,10 +35,11 @@ const BuyListing: React.FC<Props> = ({ allOrders }) => {
     try {
       startLoading();
       let res = await buyOrder(order);
-
       stopLoading();
-      if (res?.status) notifySuccess("Order bought successfully");
-      else notifyError("Error");
+      if (res?.status) {
+        notifySuccess("Order bought successfully");
+        window.location.reload();
+      } else notifyError("Error");
     } catch (error) {
       stopLoading();
       console.log(error);
@@ -78,10 +81,10 @@ const BuyListing: React.FC<Props> = ({ allOrders }) => {
                   {order.metadata.price}
                 </TableCell>
                 <TableCell className={classes.td} align="center">
-                  {order.createdAt}
+                  <MomentDate date={order.createdAt} />
                 </TableCell>
                 <TableCell className={classes.td} align="center">
-                  {order.order.maker}
+                  <AddressTypography address={order.order.maker} />
                 </TableCell>
                 <TableCell className={classes.td} align="center">
                   <Button variant="contained" onClick={() => handleBuy(order)}>

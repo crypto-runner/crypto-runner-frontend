@@ -3,7 +3,8 @@ import { makeStyles } from "@mui/styles";
 import { Container, Table, TableBody, TableCell, TableHead, TableRow, Theme, Typography } from "@mui/material";
 import Bg from "src/assets/images/orangebg.jpg";
 import { HistoryOfOrder } from "@nftvillage/marketplace-sdk";
-import MomentDate from "src/components/MomentDate/MomentDate"
+import MomentDate from "src/components/MomentDate/MomentDate";
+import AddressTypography from "src/components/AddressTypography/AddressTypography";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -72,10 +73,10 @@ const OrderHistory: React.FC<Props> = ({ orderHistory }) => {
                     {order.price}
                   </TableCell>
                   <TableCell className={classes.td} align="center">
-                    {order.maker}
+                    <AddressTypography address={order.maker} />
                   </TableCell>
                   <TableCell className={classes.td} align="center">
-                    {order.taker}
+                    <AddressTypography address={order.taker} />
                   </TableCell>
                   <TableCell className={classes.td} align="center">
                     <MomentDate date={order.purchaseDate} />

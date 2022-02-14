@@ -20,6 +20,7 @@ import { Order, useCancelOrder } from "@nftvillage/marketplace-sdk";
 import { useWalletProvider } from "@react-dapp/wallet";
 import { v4 as uuid } from "uuid";
 import useLoading from "src/hooks/useLoading";
+import MomentDate from "src/components/MomentDate/MomentDate";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -72,12 +73,13 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
   };
 
   const createOrder = async () => {
-    createERC1155Order({
-      metadata,
-      tokenId,
-      assetAmount,
-      price,
-    });
+    if (canBeListed > 0)
+      createERC1155Order({
+        metadata,
+        tokenId,
+        assetAmount,
+        price,
+      });
   };
 
   const cancelSell = async (ord: Order) => {
@@ -175,7 +177,7 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
                       {ord.metadata.price}
                     </TableCell>
                     <TableCell className={classes.td} align="center">
-                      {ord.createdAt}
+                      <MomentDate date={ord.createdAt} />
                     </TableCell>
                     <TableCell className={classes.td} align="center">
                       <IconButton onClick={() => cancelSell(ord)}>

@@ -30,6 +30,7 @@ const OrderPage: React.FC<Props> = () => {
   const { balance } = useERC1155Balance(POOL_CARD_ADDRESS, [Number(assetId)]);
   const [value, setValue] = React.useState(0);
   const { orders: orderHistory, loading: orderHistoryLoading } = useOrderHistory({ asset, assetId: Number(assetId) });
+  const { account } = useWalletProvider();
 
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
     setValue(value);
@@ -40,6 +41,8 @@ const OrderPage: React.FC<Props> = () => {
   });
   const { metadata, loading: metadataLoading } = useMetadata(asset, assetId);
   useLoading(metadataLoading || orderHistoryLoading);
+
+  console.log("History",orderHistory)
 
   return (
     <div className={classes.root}>
@@ -52,7 +55,10 @@ const OrderPage: React.FC<Props> = () => {
           <Grid item xs={12} md={8}>
             <Content
               metadata={metadata}
-              order={allOrders && allOrders.find((ord) => ord.order._id === searchParams.get("orderId"))}
+              order={
+                allOrders &&
+                allOrders.find((ord) => ord.order._id === searchParams.get("orderId") && ord.order.maker !== account)
+              }
             />
           </Grid>
           <Grid item xs={12}>
