@@ -42,7 +42,11 @@ const OrderPage: React.FC<Props> = () => {
   const { metadata, loading: metadataLoading } = useMetadata(asset, assetId);
   useLoading(metadataLoading || orderHistoryLoading);
 
-  console.log("History",orderHistory)
+  React.useEffect(() => {
+    if (balance && balance[0].amount > 0) {
+      setValue(1);
+    }
+  }, [balance]);
 
   return (
     <div className={classes.root}>
