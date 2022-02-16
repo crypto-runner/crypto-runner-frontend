@@ -78,7 +78,7 @@ const BuyListing: React.FC<Props> = ({ allOrders }) => {
                   {order.order.assetAmount}
                 </TableCell>
                 <TableCell className={classes.td} align="center">
-                  {order.metadata.price}
+                  {order.metadata.price} BNB
                 </TableCell>
                 <TableCell className={classes.td} align="center">
                   <MomentDate date={order.createdAt} />
