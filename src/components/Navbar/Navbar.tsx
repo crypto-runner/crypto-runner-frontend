@@ -87,11 +87,11 @@ const Navbar: React.FC<Props> = ({ user }) => {
         </Link>
         <Hidden mdDown>
           <div className={classes.linksContainer}>
+            <NavLink to="/marketplace" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
+              Marketplace
+            </NavLink>
             <NavLink to="/my-runners" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               My runners
-            </NavLink>
-            <NavLink to="/explore" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
-              Explore
             </NavLink>
             {/* 
             <NavLink to="/presale" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>

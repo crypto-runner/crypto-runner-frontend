@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props { }
 
 const Marketplace: React.FC<Props> = () => {
   const classes = useStyles();
@@ -55,7 +55,7 @@ const Marketplace: React.FC<Props> = () => {
   const fetchOrders = async () => {
     dispatch(setUserLoading(true));
     let res = await filterMarketPlace(filterState);
-    console.log("orders",res)
+    console.log("orders", res)
     setOrders(res?.data || []);
     dispatch(setUserLoading(false));
   };
