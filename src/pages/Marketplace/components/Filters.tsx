@@ -60,11 +60,7 @@ const priceMarks = [
   },
 ];
 
-const Filters: React.FC<Props> = ({
-  filterState,
-  setFilterState,
-  applyFilters,
-}) => {
+const Filters: React.FC<Props> = ({ filterState, setFilterState, applyFilters }) => {
   const classes = useStyles();
   const [filter1, setFilter1] = React.useState<string[]>([]);
   const [priceRange, setPriceRange] = React.useState<number[]>([20, 37]);
@@ -85,27 +81,17 @@ const Filters: React.FC<Props> = ({
     setFilter1(typeof value === "string" ? value.split(",") : value);
   };
 
-  const handleSort = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
+  const handleSort = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
     setFilterState({
       ...filterState,
-      sortBy: checked
-        ? (event.target.name as FilterMarketPlace["sortBy"])
-        : undefined,
+      sortBy: checked ? (event.target.name as FilterMarketPlace["sortBy"]) : undefined,
     });
   };
 
-  const handleCategory = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean
-  ) => {
+  const handleCategory = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
     setFilterState({
       ...filterState,
-      category: checked
-        ? (event.target.name as FilterMarketPlace["category"])
-        : undefined,
+      category: checked ? (event.target.name as FilterMarketPlace["category"]) : undefined,
     });
   };
 
@@ -182,10 +168,7 @@ const Filters: React.FC<Props> = ({
         <AccordionDetails>
           <div className={classes.filterContainer}>
             <Slider
-              value={[
-                Number(filterState.minPrice) || 0,
-                Number(filterState.maxPrice) || 10000,
-              ]}
+              value={[Number(filterState.minPrice) || 0, Number(filterState.maxPrice) || 10000]}
               min={0}
               max={10000}
               onChange={handlePriceChange}
@@ -194,15 +177,14 @@ const Filters: React.FC<Props> = ({
             />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Typography>Min: {Number(filterState.minPrice) || 0}</Typography>
-              <Typography>
-                Max: {Number(filterState.maxPrice) || 10000}
-              </Typography>
+              <Typography>Max: {Number(filterState.maxPrice) || 10000}</Typography>
             </div>
           </div>
         </AccordionDetails>
       </Accordion>
 
-      <Accordion disableGutters square style={{ marginTop: 20 }}>
+      {/* Categories */}
+      {/* <Accordion disableGutters square style={{ marginTop: 20 }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className="styleFont" color="primary" variant="h5">
             <b>Categories</b>
@@ -256,24 +238,13 @@ const Filters: React.FC<Props> = ({
             />
           </div>
         </AccordionDetails>
-      </Accordion>
+      </Accordion> */}
+
       {/* <div className={classes.filterContainer}> */}
-      <Button
-        fullWidth
-        variant="contained"
-        color="secondary"
-        style={{ marginTop: 20 }}
-        onClick={applyFilters}
-      >
+      <Button fullWidth variant="contained" color="secondary" style={{ marginTop: 20 }} onClick={applyFilters}>
         Apply
       </Button>
-      <Button
-        fullWidth
-        variant="contained"
-        color="primary"
-        style={{ marginTop: 20 }}
-        onClick={clearFilter}
-      >
+      <Button fullWidth variant="contained" color="primary" style={{ marginTop: 20 }} onClick={clearFilter}>
         Clear
       </Button>
       {/* </div> */}
