@@ -39,7 +39,7 @@ const BuyListing: React.FC<Props> = ({ allOrders }) => {
       if (res?.status) {
         notifySuccess("Order bought successfully");
         window.location.reload();
-      } else notifyError("Error");
+      } else notifyError(`Sorry ${res?.error ?? ''}`);
     } catch (error) {
       stopLoading();
       console.log(error);

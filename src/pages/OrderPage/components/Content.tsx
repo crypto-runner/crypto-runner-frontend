@@ -80,7 +80,7 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
       dispatch(
         notify({
           status: "error",
-          title: "Error",
+          title: `Sorry ${res?.error ?? ''}`,
         })
       );
     }
