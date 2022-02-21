@@ -5,6 +5,7 @@ import DiamondPng from "src/assets/icons/diamond.png";
 import JackPng from "src/assets/images/jackperson.jpg";
 import HatPng from "src/assets/images/hat.jpg";
 import { height } from "@mui/system";
+import { usePool } from "@nftvillage/farms-sdk";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -55,10 +56,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props {
+  poolId: number
+}
 
-const TokenCard: React.FC<Props> = () => {
+const TokenCard: React.FC<Props> = ({ poolId }) => {
+  // add error notification here
+  const handlerError = (message: string) => console.log(message)
+
   const classes = useStyles();
+  const pool = usePool(poolId, handlerError)
+
+  // show require card image
+  const nft = pool?.details?.requiredCards[0];
 
   return (
     <Paper variant="black" className={classes.root}>
