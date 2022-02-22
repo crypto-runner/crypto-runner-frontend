@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setUserLoading } from "src/redux/user/userReducer";
+import { setUserLoading } from "src/state/user/userReducer";
 
 const useLoading = (loading: boolean | undefined = undefined) => {
   const dispatch = useDispatch();

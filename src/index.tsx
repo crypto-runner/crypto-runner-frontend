@@ -7,7 +7,7 @@ import { Router } from "react-router-dom";
 import { setUpNotifications, NotificationsProvider } from "reapop";
 import NotificationsSystem from "src/components/NotificationsSystem/NotificationsSystem";
 import { Provider } from "react-redux";
-import store from "./redux";
+import store from "./state";
 import { WalletProvider, CHAIN_ID } from "@react-dapp/wallet";
 
 // run this function when your application starts before creating any notifications

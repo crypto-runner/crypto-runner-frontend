@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Grid, Theme, Typography } from "@mui/material";
-import { useWalletProvider } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import { useAllListedOrdersForAddress } from "@nftvillage/marketplace-sdk";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
@@ -47,12 +47,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {}
 
 const Inorder: React.FC<Props> = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
   const { orders } = useAllListedOrdersForAddress(account || "");
   console.log(orders);
 
@@ -62,11 +62,7 @@ const Inorder: React.FC<Props> = () => {
         <Grid key={uuid()} item xs={12} sm={6} md={4} lg={3}>
           <div
             style={{ position: "relative" }}
-            onClick={() =>
-              history.push(
-                `/order-item/${item.order.asset}/${item.order.assetId}`
-              )
-            }
+            onClick={() => history.push(`/order-item/${item.order.asset}/${item.order.assetId}`)}
           >
             <div className={classes.imgContainer}>
               <img src={item.metadata?.image} />
@@ -78,12 +74,7 @@ const Inorder: React.FC<Props> = () => {
                 </div>
               </div>
             </div>
-            <Button
-              color="primary"
-              fullWidth
-              variant="outlined"
-              style={{ marginTop: 30 }}
-            >
+            <Button color="primary" fullWidth variant="outlined" style={{ marginTop: 30 }}>
               {item.metadata.name}
             </Button>
           </div>

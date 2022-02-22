@@ -1,14 +1,12 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
+import { Button, Grid, Theme, Typography } from "@mui/material";
 import { Order, useBuyFixPriceOrder, useCancelOrder } from "@nftvillage/marketplace-sdk";
 import { useDispatch } from "react-redux";
-import { setUserLoading } from "src/redux/user/userReducer";
+import { setUserLoading } from "src/state/user/userReducer";
 import { notify } from "reapop";
-import { useWalletProvider } from "@react-dapp/wallet";
-import { deleteOrder } from "src/api";
+import { useWallet } from "@react-dapp/wallet";
 import { v4 as uuid } from "uuid";
-import { fontWeight } from "@mui/system";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -47,7 +45,7 @@ interface Props {
 const Content: React.FC<Props> = ({ order, metadata }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
   const { cancel } = useCancelOrder();
 
   let buyHook = useBuyFixPriceOrder(order?.order.asset || "", order?.order.assetId || 0, account || "");
@@ -80,7 +78,7 @@ const Content: React.FC<Props> = ({ order, metadata }) => {
       dispatch(
         notify({
           status: "error",
-          title: `Sorry ${res?.error ?? ''}`,
+          title: `Sorry ${res?.error ?? ""}`,
         })
       );
     }

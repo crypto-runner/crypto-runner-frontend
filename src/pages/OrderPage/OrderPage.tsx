@@ -6,7 +6,7 @@ import { useOrderERC1155, useSellOrder, Order, useOrderHistory } from "@nftvilla
 import Content from "./components/Content";
 import OrderHistory from "./components/OrderHistory";
 import { POOL_CARD_ADDRESS } from "src/config/config";
-import { useWalletProvider } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import { useMetadata } from "src/hooks/useMetadata";
 import useLoading from "src/hooks/useLoading";
 import LoadingImg from "src/components/LoadingImg/LoadingImg";
@@ -30,7 +30,7 @@ const OrderPage: React.FC<Props> = () => {
   const { balance } = useERC1155Balance(POOL_CARD_ADDRESS, [Number(assetId)]);
   const [value, setValue] = React.useState(0);
   const { orders: orderHistory, loading: orderHistoryLoading } = useOrderHistory({ asset, assetId: Number(assetId) });
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
 
   const handleChange = (event: React.SyntheticEvent<Element, Event>, value: any) => {
     setValue(value);

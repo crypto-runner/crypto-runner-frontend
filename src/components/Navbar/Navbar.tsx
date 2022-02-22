@@ -19,7 +19,7 @@ import clsx from "clsx";
 import history from "src/util/history";
 import { connect, useDispatch } from "react-redux";
 import { useGetUser } from "src/hooks/useUser";
-import { useWalletModal, useWalletProvider } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import { notify } from "reapop";
 import { useEthers } from "@react-dapp/utils";
 import WalletButtonBase from "../WalletButtonBase/WalletButtonBase";
@@ -59,7 +59,7 @@ const Navbar: React.FC<Props> = ({ user }) => {
   const classes = useStyles();
   const [open, setMenuOpen] = React.useState(false);
   const { logout } = useGetUser();
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
   const { displayAccount } = useEthers();
   const dispatch = useDispatch();
 
@@ -92,6 +92,9 @@ const Navbar: React.FC<Props> = ({ user }) => {
             </NavLink>
             <NavLink to="/my-runners" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               My runners
+            </NavLink>
+            <NavLink to="/farms" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
+              Farms
             </NavLink>
             {/* 
             <NavLink to="/presale" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
@@ -173,6 +176,17 @@ const Navbar: React.FC<Props> = ({ user }) => {
                 onClick={drawerClose}
               >
                 Treasure Chest
+              </NavLink>
+            </ListItem>
+            <ListItem>
+              <NavLink
+                to="/farms"
+                style={{ color: "black" }}
+                className={clsx(classes.link, "styleFont")}
+                activeClassName={classes.activeLink}
+                onClick={drawerClose}
+              >
+                Farms
               </NavLink>
             </ListItem>
           </List>

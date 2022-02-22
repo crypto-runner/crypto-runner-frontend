@@ -4,7 +4,7 @@ import { Table, TableHead, Theme, TableRow, TableCell, TableBody, IconButton, Bu
 import { Order, useBuyAnyOrder } from "@nftvillage/marketplace-sdk";
 import useLoading from "src/hooks/useLoading";
 import useNotify from "src/hooks/useNotify";
-import { useWalletProvider } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import { v4 as uuid } from "uuid";
 import MomentDate from "src/components/MomentDate/MomentDate";
 import AddressTypography from "src/components/AddressTypography/AddressTypography";
@@ -29,7 +29,7 @@ const BuyListing: React.FC<Props> = ({ allOrders }) => {
   const { startLoading, stopLoading } = useLoading();
   const { notifySuccess, notifyError } = useNotify();
   const { buyOrder } = useBuyAnyOrder();
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
 
   const handleBuy = async (order: Order) => {
     try {
@@ -39,7 +39,7 @@ const BuyListing: React.FC<Props> = ({ allOrders }) => {
       if (res?.status) {
         notifySuccess("Order bought successfully");
         window.location.reload();
-      } else notifyError(`Sorry ${res?.error ?? ''}`);
+      } else notifyError(`Sorry ${res?.error ?? ""}`);
     } catch (error) {
       stopLoading();
       console.log(error);

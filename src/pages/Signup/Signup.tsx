@@ -1,21 +1,11 @@
 import React, { ChangeEvent } from "react";
 import { makeStyles } from "@mui/styles";
-import {
-  Button,
-  Card,
-  Container,
-  Grid,
-  Link,
-  Paper,
-  TextField,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Button, Card, Container, Grid, Link, Paper, TextField, Theme, Typography } from "@mui/material";
 import { connect, useDispatch } from "react-redux";
 import history from "src/util/history";
 import { useLogin, useSignup } from "src/hooks/useUser";
 import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
-import { useWalletModal, useWalletProvider } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import { useWaleltSign } from "@react-dapp/utils";
 import { notify } from "reapop";
 
@@ -37,8 +27,7 @@ interface Props {
 const Signup: React.FC<Props> = ({ user }) => {
   const classes = useStyles();
   const { signing, signup } = useSignup();
-  const { setOpen: openWalletModal } = useWalletModal();
-  const { account } = useWalletProvider();
+  const { setOpen: openWalletModal, account } = useWallet();
   const { sign, signature, signState } = useWaleltSign();
 
   const [state, setState] = React.useState({
@@ -63,9 +52,7 @@ const Signup: React.FC<Props> = ({ user }) => {
     });
   }, [account]);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
@@ -96,11 +83,7 @@ const Signup: React.FC<Props> = ({ user }) => {
     <div className={classes.root}>
       <Paper style={{ maxWidth: 500, padding: 20 }}>
         <form onSubmit={submit}>
-          <Typography
-            variant="h4"
-            color="textPrimary"
-            className={classes.heading}
-          >
+          <Typography variant="h4" color="textPrimary" className={classes.heading}>
             Signup
           </Typography>
           <Grid container spacing={3}>
@@ -167,12 +150,7 @@ const Signup: React.FC<Props> = ({ user }) => {
               />
             </Grid>
             <Grid item xs={12}>
-              <WalletButtonBase
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="secondary"
-              >
+              <WalletButtonBase type="submit" fullWidth variant="contained" color="secondary">
                 Signup
               </WalletButtonBase>
             </Grid>
@@ -182,13 +160,7 @@ const Signup: React.FC<Props> = ({ user }) => {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Button
-                component={Link}
-                href="/login"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
+              <Button component={Link} href="/login" fullWidth variant="contained" color="primary">
                 Login
               </Button>
             </Grid>
