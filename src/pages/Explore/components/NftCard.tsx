@@ -1,19 +1,11 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Theme, Typography } from "@mui/material";
-import Img from "src/assets/images/pug.png";
 import clsx from "clsx";
 import { Packs, useBuyPack } from "@nftvillage/presale-sdk";
 import MySwal from "src/util/showAlert";
-import Img1 from "src/assets/gifs/presale/CzFinance_1.gif";
-import Img2 from "src/assets/gifs/presale/CzFinance_2.gif";
-import Img3 from "src/assets/gifs/presale/Elonmusk_3.gif";
-import Img4 from "src/assets/gifs/presale/Elonmusk_4.gif";
-import Img5 from "src/assets/gifs/presale/Jack_5.gif";
-import Img6 from "src/assets/gifs/presale/Jack_6.gif";
-import { useERC20Approval } from "@react-dapp/utils";
 
-let imgArr = [Img1, Img2, Img3, Img4, Img5, Img6];
+let imgArr = ["Img1", "Img2", "Img3", "Img4", "Img5", "Img6"];
 
 // select random from array
 // let randomImg = imgArr[Math.floor(Math.random() * imgArr.length)];
@@ -103,7 +95,7 @@ const NftCard: React.FC<Props> = ({ pack }) => {
     });
     let res = await buy(1);
     console.log(res);
-    if (res.status) {
+    if (res?.status) {
       MySwal.fire({
         title: <strong>Transaction Successfull</strong>,
         icon: "success",

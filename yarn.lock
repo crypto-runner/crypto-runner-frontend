@@ -2039,10 +2039,10 @@
   resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.57.tgz#852cb9b1c4b37b66e55c0f4e12896d4501abd14b"
   integrity sha512-Yk7f9kz9lRReS+fQdrXFfx7Xr81wNzjK3FrUXt87CSDhoRw9YQ+lfKyNn9N9lLAefFP3v6PnDxZD1oSYujuYTg==
 
-"@nftvillage/presale-sdk@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.npmjs.org/@nftvillage/presale-sdk/-/presale-sdk-0.1.9.tgz"
-  integrity sha512-73V5D2QH53+BK6hD+AzjhrYpZFaBmhF/0OymUAJo/o+L2rpN3uOf80nh2Z1H2e8Klz6ajiI4dkAV3TuPp2WOPA==
+"@nftvillage/presale-sdk@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@nftvillage/presale-sdk/-/presale-sdk-0.1.12.tgz#6da9909c1957c56d916062aa7913305361ce7843"
+  integrity sha512-OvRO2+Zog5GfmfE8t9+tOD4SZX71/I7D7xyuXYCfgqXHQ5nG1q54ribIANbGngkXLG3Ng0Sk7AI3a6oxBnzjlg==
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"

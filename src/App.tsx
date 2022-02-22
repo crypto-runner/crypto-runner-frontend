@@ -16,8 +16,9 @@ import HelloWorld from "./modals/HelloWorld";
 import RewardUnlock from "./modals/RewardUnlock";
 import TransferToken from "./modals/TransferToken";
 import { NftVillageSdkProvider } from "@nftvillage/marketplace-sdk";
-import DepositFarm from "src/modals/DepositFarm";
-import WithdrawFarm from "src/modals/WithdrawFarm";
+import { PresaleSdkProvider } from "@nftvillage/presale-sdk";
+import DepositFarm from "./modals/DepositFarm";
+import WithdrawFarm from "./modals/WithdrawFarm";
 
 interface Props {
   loading: boolean;
@@ -60,24 +61,27 @@ const App: React.FC<Props> = ({ loading, user }) => {
           },
         }}
       >
-        <ThemeProvider theme={theme}>
-          <ModalProvider allModals={allModals}>
-            <LoadingProvider>
-              <Backdrop open={loading} style={{ zIndex: 9999 }}>
-                <CircularProgress color="primary" />
-              </Backdrop>
-              <Container maxWidth="xl" disableGutters>
-                <div className="mainContainer">
-                  <Navbar />
-                  <div>
-                    <Routes />
+        <PresaleSdkProvider config={{ notify: (t, m) => console.log(m) }}>
+          <ThemeProvider theme={theme}>
+            <ModalProvider allModals={allModals}>
+              <LoadingProvider>
+                <Backdrop open={loading} style={{ zIndex: 9999 }}>
+                  <CircularProgress color="primary" />
+                </Backdrop>
+                <Container maxWidth="xl" disableGutters>
+                  <div className="mainContainer">
+                    <Navbar />
+                    <div>
+                      <Routes />
+                    </div>
+                    <Footer />
                   </div>
-                  <Footer />
-                </div>
-              </Container>
-            </LoadingProvider>
-          </ModalProvider>
-        </ThemeProvider>
+                </Container>
+              </LoadingProvider>
+            </ModalProvider>
+          </ThemeProvider>
+        </PresaleSdkProvider>
+
       </NftVillageSdkProvider>
     </UtilsProvider>
   );

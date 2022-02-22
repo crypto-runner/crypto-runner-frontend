@@ -4,7 +4,7 @@ import { Button, Container, Theme, Typography } from "@mui/material";
 import ChestPng from "src/assets/images/chest.png";
 import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
 import ModalContext from "src/Context/ModalContext";
-import { useBuyPack } from "../../hooks/useRandomPresale"
+import { useBuyPack } from "../../hooks/useNFTRandomSale"
 import RandomPresale_Abi from "../../assets/abi/random_Presale.json"
 import { ethers } from "ethers";
 
@@ -44,7 +44,7 @@ const UnlockReward: React.FC<Props> = () => {
   const { buyPack, soldOut, enabled, txPending } = useBuyPack()
 
   const _buyPack = async () => {
-    
+
     const txResponse = await buyPack()
     if (txResponse?.status) {
       const iface = new ethers.utils.Interface(RandomPresale_Abi);
