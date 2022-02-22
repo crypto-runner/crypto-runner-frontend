@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Container, Grid, Pagination, Theme, Typography } from "@mui/material";
 import Values from "./components/Values";
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props { }
 
 const Explore: React.FC<Props> = () => {
   const classes = useStyles();

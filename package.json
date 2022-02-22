@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@binance-chain/bsc-connector": "^1.0.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.4.1",
@@ -13,7 +12,7 @@
     "@mui/x-data-grid": "^5.5.0",
     "@nftvillage/farms-sdk": "0.0.25",
     "@nftvillage/marketplace-sdk": "^0.0.57",
-    "@nftvillage/presale-sdk": "^0.1.9",
+    "@nftvillage/presale-sdk": "^0.1.12",
     "@react-dapp/utils": "^0.0.58",
     "@react-dapp/wallet": "^1.1.0",
     "@reduxjs/toolkit": "^1.6.2",

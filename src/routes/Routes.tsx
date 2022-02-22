@@ -21,7 +21,7 @@ const Routes: React.FC = () => {
     <Switch>
       <Route path="/homepage" exact component={Home} />
       {/* <Route path="/packs" exact component={Nfts} /> */}
-      {/* <Route path="/presale" exact component={Explore} /> */}
+      <Route path="/mint-nft" exact component={Explore} />
       <Route path="/marketplace" exact component={Marketplace} />
       <Route path="/farms" exact component={Farm} />
       <Route path="/login" exact component={Login} />
