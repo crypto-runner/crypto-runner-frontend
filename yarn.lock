@@ -2034,12 +2034,10 @@
   dependencies:
     bignumber.js "^9.0.2"
 
-"@nftvillage/marketplace-sdk@^0.0.54":
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.54.tgz#a036e077d7f3375d59086c3d0de7b8b08f2d62b1"
-  integrity sha512-bDHbFMGtOCFJ8/Y/YptcChx5Bm3uH4g9v6ja+OA0utp/Jt0NxTHpb6mopJmGfQoFgz18hwakr2Y2ZuK814DY6Q==
-  dependencies:
-    "@react-dapp/wallet" "^1.0.3"
+"@nftvillage/marketplace-sdk@^0.0.57":
+  version "0.0.57"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.57.tgz#852cb9b1c4b37b66e55c0f4e12896d4501abd14b"
+  integrity sha512-Yk7f9kz9lRReS+fQdrXFfx7Xr81wNzjK3FrUXt87CSDhoRw9YQ+lfKyNn9N9lLAefFP3v6PnDxZD1oSYujuYTg==
 
 "@nftvillage/presale-sdk@^0.1.9":
   version "0.1.9"
@@ -2098,15 +2096,6 @@
   integrity sha512-uOSIWA8zuGEIWzK0irplAWLcQhzGY12aLXx1t6egoVel8e2EYAy2AyCp8zH9Tk/AiIrveY+E4VO0CQM7gXuwmQ==
   dependencies:
     "@binance-chain/bsc-connector" "^1.0.0"
-
-"@react-dapp/wallet@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@react-dapp/wallet/-/wallet-1.0.3.tgz#80e66645fdad2c9ab1af0770375ac759331a1bc4"
-  integrity sha512-FYq9Fw8Hq6M/j7SnzkEvJu8Kxd7A4J3ziAZLmbdoFolfuLsWrDxmVYtoFK8nWeLpzrV/udYmgTHguoPa8t+9Lg==
-  dependencies:
-    "@types/react-modal" "^3.13.1"
-    "@web3-react/abstract-connector" "^6.0.7"
-    react-modal "^3.14.3"
 
 "@react-dapp/wallet@^1.1.0":
   version "1.1.0"
@@ -2497,13 +2486,6 @@
   version "17.0.3"
   resolved "https://registry.npmjs.org/@types/react-is/-/react-is-17.0.3.tgz"
   integrity sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==
-  dependencies:
-    "@types/react" "*"
-
-"@types/react-modal@^3.13.1":
-  version "3.13.1"
-  resolved "https://registry.npmjs.org/@types/react-modal/-/react-modal-3.13.1.tgz"
-  integrity sha512-iY/gPvTDIy6Z+37l+ibmrY+GTV4KQTHcCyR5FIytm182RQS69G5ps4PH2FxtC7bAQ2QRHXMevsBgck7IQruHNg==
   dependencies:
     "@types/react" "*"
 
@@ -5643,11 +5625,6 @@ execa@^4.0.0:
     signal-exit "^3.0.2"
     strip-final-newline "^2.0.0"
 
-exenv@^1.2.0:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/exenv/-/exenv-1.2.2.tgz"
-  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
-
 exit@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/exit/-/exit-0.1.2.tgz"
@@ -7978,7 +7955,7 @@ loglevel@^1.6.8:
   resolved "https://registry.npmjs.org/loglevel/-/loglevel-1.7.1.tgz"
   integrity sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
+loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -10089,27 +10066,12 @@ react-is@^17.0.1, react-is@^17.0.2:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-lifecycles-compat@^3.0.0:
-  version "3.0.4"
-  resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
-  integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
 react-loadingg@^1.7.2:
   version "1.7.2"
   resolved "https://registry.npmjs.org/react-loadingg/-/react-loadingg-1.7.2.tgz"
   integrity sha512-sy2HI7ZacW1t/ChosR7CZa2FJS1uAInLNl7wgO7e9Pseak4FdPKqZYIjl1H3G+tBQ+S9pa/8CKXdGQxVrW2CBQ==
   dependencies:
     styled-components "^4.3.2"
-
-react-modal@^3.14.3:
-  version "3.14.4"
-  resolved "https://registry.npmjs.org/react-modal/-/react-modal-3.14.4.tgz"
-  integrity sha512-8surmulejafYCH9wfUmFyj4UfbSJwjcgbS9gf3oOItu4Hwd6ivJyVBETI0yHRhpJKCLZMUtnhzk76wXTsNL6Qg==
-  dependencies:
-    exenv "^1.2.0"
-    prop-types "^15.7.2"
-    react-lifecycles-compat "^3.0.0"
-    warning "^4.0.3"
 
 react-redux@^7.2.6:
   version "7.2.6"
@@ -12204,13 +12166,6 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
-
-warning@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.npmjs.org/warning/-/warning-4.0.3.tgz"
-  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
-  dependencies:
-    loose-envify "^1.0.0"
 
 watchpack-chokidar2@^2.0.1:
   version "2.0.1"

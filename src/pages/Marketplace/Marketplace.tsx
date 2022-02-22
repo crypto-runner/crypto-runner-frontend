@@ -10,7 +10,7 @@ import LoadingContext from "src/Context/LoadingContext";
 import { useDispatch } from "react-redux";
 import { setUserLoading } from "src/state/user/userReducer";
 import { v4 as uuid } from "uuid";
-import { useOrders, useFilterMarketPlace, FilterMarketPlace, Order } from "@nftvillage/marketplace-sdk";
+import { useOrders, useFilterMarketPlace, FilterMarketPlace, Order, AssetType } from "@nftvillage/marketplace-sdk";
 import { useWallet } from "@react-dapp/wallet";
 import ModalContext from "src/Context/ModalContext";
 
@@ -35,6 +35,7 @@ const Marketplace: React.FC<Props> = () => {
   const { filterMarketPlace } = useFilterMarketPlace();
   const [filterState, setFilterState] = React.useState<FilterMarketPlace>({
     minPrice: "0",
+    type: AssetType.ERC1155,
   });
   const { account } = useWallet();
   const [orders, setOrders] = React.useState<Order[]>([]);

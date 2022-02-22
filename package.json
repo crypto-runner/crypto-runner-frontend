@@ -12,7 +12,7 @@
     "@mui/styles": "^5.4.1",
     "@mui/x-data-grid": "^5.5.0",
     "@nftvillage/farms-sdk": "^0.0.23",
-    "@nftvillage/marketplace-sdk": "^0.0.54",
+    "@nftvillage/marketplace-sdk": "^0.0.57",
     "@nftvillage/presale-sdk": "^0.1.9",
     "@react-dapp/utils": "^0.0.58",
     "@react-dapp/wallet": "^1.1.0",
