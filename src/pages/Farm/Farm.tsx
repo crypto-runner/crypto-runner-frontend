@@ -4,7 +4,7 @@ import { Button, Container, Grid, Theme, Typography } from "@mui/material";
 import clsx from "clsx";
 import TokenCard from "./components/TokenCard";
 import Social from "src/components/Social/Social";
-import { usePools } from '@nftvillage/farms-sdk'
+import { usePools } from "@nftvillage/farms-sdk";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -20,11 +20,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {}
 
 const Farm: React.FC<Props> = () => {
   const classes = useStyles();
-  const { pools, loading } = usePools();
+  usePools();
+
 
   return (
     <div className={classes.root}>
@@ -44,15 +45,19 @@ const Farm: React.FC<Props> = () => {
           <Button className={classes.selectionBtn}>BUSD</Button> */}
         </div>
         <Grid container spacing={4} style={{ marginTop: 20 }}>
-          {
-            pools.map((e, i) => {
-              return (
-                <Grid item xs={12} md={6}>
-                  <TokenCard poolId={i} />
-                </Grid>
-              )
-            })
-          }
+          {/* {pools?.map((e, i) => {
+            return (
+              <Grid item xs={12} md={6}>
+                <TokenCard poolId={i} />
+              </Grid>
+            );
+          })} */}
+              <Grid item xs={12} md={6}>
+                <TokenCard  />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <TokenCard  />
+              </Grid>
         </Grid>
         <Social />
       </Container>

@@ -26,8 +26,8 @@ ReactDOM.render(
       <WalletProvider
         // @ts-ignore 
         config={{
-          supportedChainIds: [CHAIN_ID.BSC],
-          chainId: CHAIN_ID.BSC,
+          supportedChainIds: [CHAIN_ID.GOERLI],
+          chainId: CHAIN_ID.GOERLI,
         }}
       >
         <Provider store={store}>

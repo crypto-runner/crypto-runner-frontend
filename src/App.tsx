@@ -16,6 +16,8 @@ import HelloWorld from "./modals/HelloWorld";
 import RewardUnlock from "./modals/RewardUnlock";
 import TransferToken from "./modals/TransferToken";
 import { NftVillageSdkProvider } from "@nftvillage/marketplace-sdk";
+import DepositFarm from "src/modals/DepositFarm";
+import WithdrawFarm from "src/modals/WithdrawFarm";
 
 interface Props {
   loading: boolean;
@@ -34,6 +36,14 @@ const allModals = [
   {
     name: "Transfer Token",
     component: TransferToken,
+  },
+  {
+    name: "DepositFarm",
+    component: DepositFarm,
+  },
+  {
+    name: "WithdrawFarm",
+    component: WithdrawFarm,
   },
 ];
 

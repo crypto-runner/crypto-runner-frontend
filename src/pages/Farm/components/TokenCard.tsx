@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
 import { Button, Divider, Paper, Theme, Typography } from "@mui/material";
 import DiamondPng from "src/assets/icons/diamond.png";
@@ -6,6 +6,7 @@ import JackPng from "src/assets/images/jackperson.jpg";
 import HatPng from "src/assets/images/hat.jpg";
 import { height } from "@mui/system";
 import { usePool } from "@nftvillage/farms-sdk";
+import ModalContext from "src/Context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -57,18 +58,31 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  poolId: number
+  poolId?: number;
 }
 
-const TokenCard: React.FC<Props> = ({ poolId }) => {
+const TokenCard: React.FC<Props> = ({ poolId = 0 }) => {
   // add error notification here
-  const handlerError = (message: string) => console.log(message)
+  const handlerError = (message: string) => console.log(message);
+  const { openModal } = useContext(ModalContext);
 
   const classes = useStyles();
-  const pool = usePool(poolId, handlerError)
+  // const pool = usePool(poolId, handlerError)
 
   // show require card image
-  const nft = pool?.details?.requiredCards[0];
+  // const nft = pool?.details?.requiredCards[0];
+
+  const depositClick = () => {
+    openModal(
+      "DepositFarm",
+      {
+        // pool,
+      },
+      {
+        hideTitle: true,
+      }
+    );
+  };
 
   return (
     <Paper variant="black" className={classes.root}>
@@ -79,13 +93,7 @@ const TokenCard: React.FC<Props> = ({ poolId }) => {
             <b>MEL</b>
           </Typography>
         </div>
-        <img
-          src={JackPng}
-          alt=""
-          width="100px"
-          height="100px"
-          style={{ objectFit: "contain" }}
-        />
+        <img src={JackPng} alt="" width="100px" height="100px" style={{ objectFit: "contain" }} />
       </div>
       <div className={classes.headerContainer} style={{ marginTop: 20 }}>
         <Typography variant="h5" color="primary">
@@ -117,20 +125,10 @@ const TokenCard: React.FC<Props> = ({ poolId }) => {
         </Typography>
       </div>
       <div className={classes.btnsGrid}>
-        <Button
-          variant="outlined"
-          color="primary"
-          fullWidth
-          className={classes.btn}
-        >
+        <Button variant="outlined" color="primary" fullWidth className={classes.btn} onClick={depositClick}>
           Deposit
         </Button>
-        <Button
-          variant="outlined"
-          color="primary"
-          fullWidth
-          className={classes.btn}
-        >
+        <Button variant="outlined" color="primary" fullWidth className={classes.btn}>
           Widthdraw
         </Button>
       </div>
