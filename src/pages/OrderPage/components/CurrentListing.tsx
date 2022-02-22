@@ -17,7 +17,7 @@ import {
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import useCreateOrder from "src/hooks/useCreateOrder";
 import { Order, useCancelOrder } from "@nftvillage/marketplace-sdk";
-import { useWalletProvider } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import { v4 as uuid } from "uuid";
 import useLoading from "src/hooks/useLoading";
 import MomentDate from "src/components/MomentDate/MomentDate";
@@ -53,7 +53,7 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
   const [assetAmount, setAssetAmount] = React.useState<number>(1);
   const { createERC1155Order, isApproved } = useCreateOrder(address);
   const [canBeListed, setCanBeListed] = React.useState(0);
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
   const { cancel } = useCancelOrder();
   const { startLoading, stopLoading } = useLoading();
 
@@ -89,7 +89,7 @@ const CurrentListing: React.FC<Props> = ({ availableAmount, tokenId, address, me
     window.location.reload();
   };
 
-  console.log('token amount', availableAmount)
+  console.log("token amount", availableAmount);
 
   return (
     <div className={classes.root}>

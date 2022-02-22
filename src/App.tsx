@@ -7,7 +7,7 @@ import theme from "src/util/theme";
 import Navbar from "src/components/Navbar/Navbar";
 import Footer from "src/components/Footer/Footer";
 import { connect } from "react-redux";
-import { useEagerConnect, useWalletProvider } from "@react-dapp/wallet";
+import { useEagerConnect, useWallet } from "@react-dapp/wallet";
 import { UtilsProvider } from "@react-dapp/utils";
 import { LoadingProvider } from "./Context/LoadingContext";
 import "sweetalert2/src/sweetalert2.scss";
@@ -39,7 +39,7 @@ const allModals = [
 
 const App: React.FC<Props> = ({ loading, user }) => {
   useEagerConnect(Boolean(localStorage.getItem("Allow-Wallet-Reconnect")));
-  const { library } = useWalletProvider();
+  const { library } = useWallet();
 
   return (
     <UtilsProvider config={{ provider: library }}>

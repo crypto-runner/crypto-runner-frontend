@@ -1,5 +1,5 @@
 import React from "react";
-import { useWalletModal, useWalletProvider } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import clsx from "clsx";
 import { makeStyles } from "@mui/styles";
 import { Button, Theme } from "@mui/material";
@@ -14,15 +14,9 @@ interface Props {
   [key: string]: any;
 }
 
-const WalletButtonBase: React.FC<Props> = ({
-  children,
-  onClick,
-  className,
-  ...props
-}) => {
+const WalletButtonBase: React.FC<Props> = ({ children, onClick, className, ...props }) => {
   const classes = useStyles();
-  const { setOpen: openWalletModal } = useWalletModal();
-  const { account } = useWalletProvider();
+  const { setOpen: openWalletModal, account } = useWallet();
 
   const handleClick = (e: any) => {
     e.preventDefault();
@@ -36,11 +30,7 @@ const WalletButtonBase: React.FC<Props> = ({
   }, [account]);
 
   return (
-    <Button
-      {...props}
-      className={clsx(classes.root, className)}
-      onClick={account ? onClick : handleClick}
-    >
+    <Button {...props} className={clsx(classes.root, className)} onClick={account ? onClick : handleClick}>
       {account ? children : "Connect Wallet"}
     </Button>
   );

@@ -1,14 +1,6 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
-import {
-  Button,
-  Container,
-  Grid,
-  Hidden,
-  Pagination,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Button, Container, Grid, Hidden, Pagination, Theme, Typography } from "@mui/material";
 import clsx from "clsx";
 import Filters from "./components/Filters";
 import NftCard from "./components/NftCard";
@@ -16,15 +8,10 @@ import Social from "src/components/Social/Social";
 import { useAllPacks } from "@nftvillage/presale-sdk";
 import LoadingContext from "src/Context/LoadingContext";
 import { useDispatch } from "react-redux";
-import { setUserLoading } from "src/redux/user/userReducer";
+import { setUserLoading } from "src/state/user/userReducer";
 import { v4 as uuid } from "uuid";
-import {
-  useOrders,
-  useFilterMarketPlace,
-  FilterMarketPlace,
-  Order,
-} from "@nftvillage/marketplace-sdk";
-import { useWalletProvider } from "@react-dapp/wallet";
+import { useOrders, useFilterMarketPlace, FilterMarketPlace, Order, AssetType } from "@nftvillage/marketplace-sdk";
+import { useWallet } from "@react-dapp/wallet";
 import ModalContext from "src/Context/ModalContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -38,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {}
 
 const Marketplace: React.FC<Props> = () => {
   const classes = useStyles();
@@ -48,14 +35,15 @@ const Marketplace: React.FC<Props> = () => {
   const { filterMarketPlace } = useFilterMarketPlace();
   const [filterState, setFilterState] = React.useState<FilterMarketPlace>({
     minPrice: "0",
+    type: AssetType.ERC1155,
   });
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
   const [orders, setOrders] = React.useState<Order[]>([]);
 
   const fetchOrders = async () => {
     dispatch(setUserLoading(true));
     let res = await filterMarketPlace(filterState);
-    console.log("orders", res)
+    console.log("orders", res);
     setOrders(res?.data || []);
     dispatch(setUserLoading(false));
   };
@@ -75,11 +63,7 @@ const Marketplace: React.FC<Props> = () => {
         </Typography>
         <Grid container spacing={2} style={{ marginTop: 30 }}>
           <Grid item xs={12} md={3}>
-            <Filters
-              filterState={filterState}
-              setFilterState={setFilterState}
-              applyFilters={() => fetchOrders()}
-            />
+            <Filters filterState={filterState} setFilterState={setFilterState} applyFilters={() => fetchOrders()} />
           </Grid>
 
           <Grid item xs={12} md={9}>

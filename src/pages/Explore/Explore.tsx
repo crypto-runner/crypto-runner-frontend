@@ -1,22 +1,13 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@mui/styles";
-import {
-  Container,
-  Grid,
-  Hidden,
-  Pagination,
-  Theme,
-  Typography,
-} from "@mui/material";
-import clsx from "clsx";
+import { Container, Grid, Pagination, Theme, Typography } from "@mui/material";
 import Values from "./components/Values";
 import Filters from "./components/Filters";
 import NftCard from "./components/NftCard";
 import Social from "src/components/Social/Social";
 import { useAllPacks } from "@nftvillage/presale-sdk";
-import LoadingContext from "src/Context/LoadingContext";
 import { useDispatch } from "react-redux";
-import { setUserLoading } from "src/redux/user/userReducer";
+import { setUserLoading } from "src/state/user/userReducer";
 import { v4 as uuid } from "uuid";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -30,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {}
 
 const Explore: React.FC<Props> = () => {
   const classes = useStyles();

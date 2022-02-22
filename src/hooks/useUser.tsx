@@ -1,4 +1,4 @@
-import { useWalletProvider, useWalletModal } from "@react-dapp/wallet";
+import { useWallet } from "@react-dapp/wallet";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
@@ -14,7 +14,7 @@ import {
   updateUserProfile,
   verifyOtpCall,
 } from "src/api";
-import { setUser, setUserLoading } from "src/redux/user/userReducer";
+import { setUser, setUserLoading } from "src/state/user/userReducer";
 import {
   LoginParams,
   SendEmailVerificationParams,
@@ -27,8 +27,7 @@ import {
 export const useGetUser = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { error, } = useWalletModal();
-  const {deactivate} = useWalletProvider()
+  const { deactivate, error } = useWallet();
 
   React.useEffect(() => {
     if (error)
@@ -65,7 +64,7 @@ export const useGetUser = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("Allow-Wallet-Reconnect")
+    localStorage.removeItem("Allow-Wallet-Reconnect");
     deactivate();
     dispatch(setUser({}));
     history.push("/");
@@ -126,13 +125,7 @@ export const useSignup = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const signup = async ({
-    email,
-    password,
-    name,
-    address,
-    signature,
-  }: SignupParams) => {
+  const signup = async ({ email, password, name, address, signature }: SignupParams) => {
     setSigning(true);
     try {
       dispatch(
@@ -346,11 +339,7 @@ export const usePasswordReset = () => {
     }
   };
 
-  const updatePassword = async ({
-    email,
-    password,
-    otp,
-  }: UpdatePasswordInterface) => {
+  const updatePassword = async ({ email, password, otp }: UpdatePasswordInterface) => {
     try {
       dispatch(
         notify({

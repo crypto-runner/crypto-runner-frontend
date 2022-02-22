@@ -1,15 +1,10 @@
 import { AssetType, Order, OrderSide, SaleKind, useSellOrder } from "@nftvillage/marketplace-sdk";
-import { useWalletProvider } from "@react-dapp/wallet";
-import { useDispatch } from "react-redux";
-import { POOL_CARD_ADDRESS } from "src/config/config";
-import { setUserLoading } from "src/redux/user/userReducer";
-import { CreateFixPriceOrderParams } from "src/types/userTypes";
+import { useWallet } from "@react-dapp/wallet";
 import useLoading from "./useLoading";
 
 const useCreateOrder = (asset: string) => {
-  const { account } = useWalletProvider();
+  const { account } = useWallet();
   const { create, isApproved, approve } = useSellOrder(asset);
-  const dispatch = useDispatch();
   const { startLoading, stopLoading } = useLoading();
 
   const createERC1155Order = async ({
