@@ -144,10 +144,13 @@ const TokenCard: React.FC<Props> = ({ poolId }) => {
         <Typography variant="h6" color="textSecondary">
           Rarity:
         </Typography>
-        <div>
-          <img src={HatPng} alt="" className={classes.itemImage} />
-          {/* <img src={HatPng} alt="" className={classes.itemImage} /> */}
-        </div>
+        <Typography variant="h6" color="textSecondary">
+          {poolId}
+        </Typography>
+        {/* <div> */}
+        {/* <img src={HatPng} alt="" className={classes.itemImage} /> */}
+        {/* <img src={HatPng} alt="" className={classes.itemImage} /> */}
+        {/* </div> */}
       </div>
       <Divider />
       <div className={classes.valueContainer}>
