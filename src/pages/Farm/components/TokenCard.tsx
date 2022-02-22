@@ -5,8 +5,9 @@ import DiamondPng from "src/assets/icons/diamond.png";
 import JackPng from "src/assets/images/jackperson.jpg";
 import HatPng from "src/assets/images/hat.jpg";
 import { height } from "@mui/system";
-import { usePool } from "@nftvillage/farms-sdk";
+import { Pool, usePool } from "@nftvillage/farms-sdk";
 import ModalContext from "src/Context/ModalContext";
+import { useFarm } from "src/hooks/useFarms";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -58,13 +59,31 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  poolId?: number;
+  poolId: number;
 }
 
-const TokenCard: React.FC<Props> = ({ poolId = 0 }) => {
+const getRarity = (poolId: number) => {
+  switch (poolId) {
+    case 0:
+      return "Common";
+    case 1:
+      return "Rare";
+    case 2:
+      return "Super Rare";
+    case 3:
+      return "Epic";
+    case 4:
+      return "Legendary";
+    default:
+      return "Common";
+  }
+};
+
+const TokenCard: React.FC<Props> = ({ poolId }) => {
   // add error notification here
   const handlerError = (message: string) => console.log(message);
   const { openModal } = useContext(ModalContext);
+  const pool = useFarm(poolId);
 
   const classes = useStyles();
   // const pool = usePool(poolId, handlerError)
@@ -76,7 +95,19 @@ const TokenCard: React.FC<Props> = ({ poolId = 0 }) => {
     openModal(
       "DepositFarm",
       {
-        // pool,
+        pool,
+      },
+      {
+        hideTitle: true,
+      }
+    );
+  };
+
+  const withdrawClick = () => {
+    openModal(
+      "WithdrawFarm",
+      {
+        pool,
       },
       {
         hideTitle: true,
@@ -90,32 +121,32 @@ const TokenCard: React.FC<Props> = ({ poolId = 0 }) => {
         <div className={classes.titleContainer}>
           <img src={DiamondPng} alt="" width="70px" height="70px" />
           <Typography color="textSecondary" variant="h5" className="styleFont">
-            <b>MEL</b>
+            <b>{getRarity(poolId)}</b>
           </Typography>
         </div>
         <img src={JackPng} alt="" width="100px" height="100px" style={{ objectFit: "contain" }} />
       </div>
       <div className={classes.headerContainer} style={{ marginTop: 20 }}>
         <Typography variant="h5" color="primary">
-          320 BNB Earned
+          {pool?.rewards[0]?.rewards} BNB Earned
         </Typography>
-        <Button className={classes.harvestBtn} variant="contained">
+        <Button className={classes.harvestBtn} variant="contained" onClick={pool?.harvestInfo.harvest}>
           Harvest
         </Button>
       </div>
-      <div className={classes.valueContainer}>
+      {/* <div className={classes.valueContainer}>
         <Typography variant="h6" color="textSecondary">
           APR:
         </Typography>
-      </div>
-      <Divider />
+      </div> */}
+      {/* <Divider /> */}
       <div className={classes.valueContainer}>
         <Typography variant="h6" color="textSecondary">
-          Items:
+          Rarity:
         </Typography>
         <div>
           <img src={HatPng} alt="" className={classes.itemImage} />
-          <img src={HatPng} alt="" className={classes.itemImage} />
+          {/* <img src={HatPng} alt="" className={classes.itemImage} /> */}
         </div>
       </div>
       <Divider />
@@ -123,15 +154,32 @@ const TokenCard: React.FC<Props> = ({ poolId = 0 }) => {
         <Typography variant="h6" color="textSecondary">
           Stacked Amount:
         </Typography>
+        <Typography variant="h6" color="textSecondary">
+          {pool?.stakedAmount} {pool?.stakedTokenSymbol}
+        </Typography>
       </div>
-      <div className={classes.btnsGrid}>
-        <Button variant="outlined" color="primary" fullWidth className={classes.btn} onClick={depositClick}>
-          Deposit
-        </Button>
-        <Button variant="outlined" color="primary" fullWidth className={classes.btn}>
-          Widthdraw
-        </Button>
-      </div>
+      {pool?.stakeTokenApproved && (
+        <div className={classes.btnsGrid}>
+          <Button variant="outlined" color="primary" fullWidth className={classes.btn} onClick={depositClick}>
+            {pool?.depositInfo.pending ? "PENDING..." : "DEPOSIT"}
+          </Button>
+          <Button variant="outlined" color="primary" fullWidth className={classes.btn} onClick={withdrawClick}>
+            {pool?.withdrawInfo.pending ? "PENDING..." : "WITHDRAW"}
+          </Button>
+        </div>
+      )}
+      {!pool?.stakeTokenApproved && (
+        <div className="center">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginTop: 30 }}
+            onClick={() => pool?.approval.approve()}
+          >
+            {pool?.approval.approvePending ? "PENDING..." : "ENABLE"}
+          </Button>
+        </div>
+      )}
     </Paper>
   );
 };
