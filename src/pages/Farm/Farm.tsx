@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Button, Container, Grid, Theme, Typography } from "@mui/material";
+import { Button, Container, Grid, Skeleton, Theme, Typography } from "@mui/material";
 import clsx from "clsx";
 import TokenCard from "./components/TokenCard";
 import Social from "src/components/Social/Social";
@@ -55,6 +55,16 @@ const Farm: React.FC<Props> = () => {
             );
           })}
         </Grid>
+        {poolsLoading && (
+          <Grid container spacing={4} style={{ marginTop: 20 }}>
+            <Grid item xs={12} md={6}>
+              <Skeleton variant="rectangular" animation="wave" height={350} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Skeleton variant="rectangular" animation="wave" height={350} />
+            </Grid>
+          </Grid>
+        )}
         <Social />
       </Container>
     </div>
