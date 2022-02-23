@@ -4,6 +4,8 @@ import { Button, Theme, Typography } from "@mui/material";
 import clsx from "clsx";
 import { Packs, useBuyPack } from "@nftvillage/presale-sdk";
 import MySwal from "src/util/showAlert";
+import { useMetadata } from "@react-dapp/utils";
+import LoadingImg from "src/components/LoadingImg/LoadingImg";
 
 let imgArr = ["Img1", "Img2", "Img3", "Img4", "Img5", "Img6"];
 
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     // left: "calc(50% - 100px)",
     display: "flex",
     justifyContent: "center",
-    width:"100%"
+    width: "100%",
   },
   quantityText: {
     textAlign: "center",
@@ -52,18 +54,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  pack: Packs ;
+  pack: Packs;
 }
 
 const NftCard: React.FC<Props> = ({ pack }) => {
   const classes = useStyles();
 
   // console.log(pack);
-  const { buy, isApproved, approve } = useBuyPack(
-    pack.packId,
-    pack.paymentToken,
-    pack.price
-  );
+  const { buy, isApproved, approve } = useBuyPack(pack.packId, pack.paymentToken, pack.price);
+  const { metadata } = useMetadata(pack.nft, pack.tokens[0].tokenId.toString());
+  console.log("pack", pack, metadata);
 
   const handleApprove = async () => {
     MySwal.fire({
@@ -111,11 +111,11 @@ const NftCard: React.FC<Props> = ({ pack }) => {
   return (
     <div className={classes.root}>
       <div className={classes.imgContainer}>
-        <img src={imgArr[Math.floor(Math.random() * imgArr.length)]} alt="" />
+        <LoadingImg src={metadata?.image} />
         <div className={classes.quantityContainer}>
           <div className={classes.quantityWrapper}>
             <Typography className={clsx(classes.quantityText, "styleFont")}>
-            {pack.tokens[0].balance} LEFT <span></span>
+              {pack.tokens[0].balance} LEFT <span></span>
             </Typography>
             <Typography className={clsx(classes.quantityText, "styleFont")}>
               <span>{pack.displayPrice} POINTS</span>
