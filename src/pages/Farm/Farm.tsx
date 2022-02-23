@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {}
 
 const Farm: React.FC<Props> = () => {
   const classes = useStyles();
-  const { pools } = usePools();
+  const { pools, loading: poolsLoading } = usePools();
 
   return (
     <div className={classes.root}>
