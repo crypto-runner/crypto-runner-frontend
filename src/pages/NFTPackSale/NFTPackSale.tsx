@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props { }
 
-const Explore: React.FC<Props> = () => {
+const NFTPackSale: React.FC<Props> = () => {
   const classes = useStyles();
   const { packs, loading } = useAllPacks();
   const dispatch = useDispatch();
@@ -75,4 +75,4 @@ const Explore: React.FC<Props> = () => {
   );
 };
 
-export default Explore;
+export default NFTPackSale;

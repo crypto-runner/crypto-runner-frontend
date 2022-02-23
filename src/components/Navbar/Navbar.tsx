@@ -96,6 +96,9 @@ const Navbar: React.FC<Props> = ({ user }) => {
             <NavLink to="/farms" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               Farms
             </NavLink>
+            <NavLink to="/mint-runner" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
+              Mint Runner
+            </NavLink>
             {/* 
             <NavLink to="/presale" className={clsx(classes.link, "styleFont")} activeClassName={classes.activeLink}>
               Presale

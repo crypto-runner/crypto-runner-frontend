@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props { }
 
-const UnlockReward: React.FC<Props> = () => {
+const Chest: React.FC<Props> = () => {
   const classes = useStyles();
   const { openModal } = useContext(ModalContext);
   const { buyPack, soldOut, enabled, txPending } = useBuyPack()
@@ -107,4 +107,4 @@ const UnlockReward: React.FC<Props> = () => {
   );
 };
 
-export default UnlockReward;
+export default Chest;

@@ -78,18 +78,16 @@ const getRarity = (poolId: number) => {
   }
 };
 
-const TokenCard: React.FC<Props> = ({ poolId }) => {
+const FarmCard: React.FC<Props> = ({ poolId }) => {
   // add error notification here
   const handlerError = (message: string) => console.log(message);
   const { openModal } = useContext(ModalContext);
-  const pool = usePool(poolId);
 
   const classes = useStyles();
-  // const pool = usePool(poolId, handlerError)
+  const pool = usePool(poolId, handlerError)
 
-  // show require card image
-  // const nft = pool?.details?.requiredCards[0];
-
+  console.log(pool)
+  
   const depositClick = () => {
     openModal(
       "DepositFarm",
@@ -186,4 +184,4 @@ const TokenCard: React.FC<Props> = ({ poolId }) => {
   );
 };
 
-export default TokenCard;
+export default FarmCard;
