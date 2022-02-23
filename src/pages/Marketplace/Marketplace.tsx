@@ -13,6 +13,7 @@ import { v4 as uuid } from "uuid";
 import { useOrders, useFilterMarketPlace, FilterMarketPlace, Order, AssetType } from "@nftvillage/marketplace-sdk";
 import { useWallet } from "@react-dapp/wallet";
 import ModalContext from "src/Context/ModalContext";
+import { POOL_CARD_ADDRESS } from "src/config/config";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -36,6 +37,7 @@ const Marketplace: React.FC<Props> = () => {
   const [filterState, setFilterState] = React.useState<FilterMarketPlace>({
     minPrice: "0",
     type: AssetType.ERC1155,
+    address: POOL_CARD_ADDRESS
   });
   const { account } = useWallet();
   const [orders, setOrders] = React.useState<Order[]>([]);
