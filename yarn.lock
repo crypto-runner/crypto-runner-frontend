@@ -2034,10 +2034,10 @@
   dependencies:
     bignumber.js "^9.0.2"
 
-"@nftvillage/marketplace-sdk@^0.0.57":
-  version "0.0.57"
-  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.57.tgz#852cb9b1c4b37b66e55c0f4e12896d4501abd14b"
-  integrity sha512-Yk7f9kz9lRReS+fQdrXFfx7Xr81wNzjK3FrUXt87CSDhoRw9YQ+lfKyNn9N9lLAefFP3v6PnDxZD1oSYujuYTg==
+"@nftvillage/marketplace-sdk@^0.0.59":
+  version "0.0.59"
+  resolved "https://registry.yarnpkg.com/@nftvillage/marketplace-sdk/-/marketplace-sdk-0.0.59.tgz#f216bff0f9116f4f35194aec5fdb67f76405f3b6"
+  integrity sha512-/elpNLakLCuhNeqjliE6Y3fzl9Z+pt3pXZJ2VavSa3Bp8ZnSkmiH8ttQfE2muBa9UMdcQ85SP+urDh+6bKOdqg==
 
 "@nftvillage/presale-sdk@^0.1.12":
   version "0.1.12"
