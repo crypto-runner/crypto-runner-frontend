@@ -7,7 +7,6 @@ import HatPng from "src/assets/images/hat.jpg";
 import { height } from "@mui/system";
 import { Pool, usePool } from "@nftvillage/farms-sdk";
 import ModalContext from "src/Context/ModalContext";
-import { useFarm } from "src/hooks/useFarms";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -83,7 +82,7 @@ const TokenCard: React.FC<Props> = ({ poolId }) => {
   // add error notification here
   const handlerError = (message: string) => console.log(message);
   const { openModal } = useContext(ModalContext);
-  const pool = useFarm(poolId);
+  const pool = usePool(poolId);
 
   const classes = useStyles();
   // const pool = usePool(poolId, handlerError)
@@ -161,7 +160,7 @@ const TokenCard: React.FC<Props> = ({ poolId }) => {
           {pool?.stakedAmount} {pool?.stakedTokenSymbol}
         </Typography>
       </div>
-      {pool?.stakeTokenApproved && (
+      {pool?.stakedTokenApproval?.isApproved && (
         <div className={classes.btnsGrid}>
           <Button variant="outlined" color="primary" fullWidth className={classes.btn} onClick={depositClick}>
             {pool?.depositInfo.pending ? "PENDING..." : "DEPOSIT"}
@@ -171,15 +170,15 @@ const TokenCard: React.FC<Props> = ({ poolId }) => {
           </Button>
         </div>
       )}
-      {!pool?.stakeTokenApproved && (
+      {!pool?.stakedTokenApproval?.isApproved && (
         <div className="center">
           <Button
             variant="contained"
             color="primary"
             style={{ marginTop: 30 }}
-            onClick={() => pool?.approval.approve()}
+            onClick={() => pool?.stakedTokenApproval.approve()}
           >
-            {pool?.approval.approvePending ? "PENDING..." : "ENABLE"}
+            {pool?.stakedTokenApproval.approvePending ? "PENDING..." : "ENABLE"}
           </Button>
         </div>
       )}
