@@ -2027,10 +2027,10 @@
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@nftvillage/farms-sdk@0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.25.tgz#5ab74ee293e930ba17897c6b6378a79627724682"
-  integrity sha512-KB7cAdK4MPJqpgAWenIc52q3px8PfB3AQVSzxUo1UrlC5mnw3PjxI/91CNAAlpS5JEJzEFgY+RhK6uY4rNwZhQ==
+"@nftvillage/farms-sdk@^0.0.27":
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.27.tgz#bceac3ede0fdd1081140fd2711a89df613a9d4ff"
+  integrity sha512-Z7ijJEWqqE0/CJxd3XAs8zQcZBF/s/S6K96st07XpDFddSSpV6VHVOzU18DqObIxiDFOi87Ajdc2DNwTs2fMmA==
   dependencies:
     bignumber.js "^9.0.2"
 

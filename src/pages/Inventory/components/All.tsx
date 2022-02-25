@@ -16,7 +16,6 @@ interface Props {}
 const All: React.FC<Props> = () => {
   const classes = useStyles();
   const { loading, results } = useInventoryERC1155(POOL_CARD_ADDRESS, 205);
-
   useLoading(loading);
 
   return (
