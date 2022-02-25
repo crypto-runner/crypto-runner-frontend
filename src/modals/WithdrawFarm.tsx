@@ -4,6 +4,8 @@ import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
 import useLoading from "src/hooks/useLoading";
 import { useDispatch } from "react-redux";
 import { notify } from "reapop";
+import { usePool } from "@nftvillage/farms-sdk";
+import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -16,9 +18,11 @@ interface Props {
   closeModal: () => {};
 }
 
-const WithdrawFarm: React.FC<Props> = ({ data: { pool }, closeModal }) => {
+const WithdrawFarm: React.FC<Props> = ({ data: { poolId }, closeModal }) => {
   const classes = useStyles();
   const { startLoading, stopLoading } = useLoading();
+  const handlerError = (message: string) => console.log(message);
+  const pool = usePool(poolId, handlerError);
 
   // const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
   //   e.preventDefault();
@@ -48,9 +52,9 @@ const WithdrawFarm: React.FC<Props> = ({ data: { pool }, closeModal }) => {
   //   stopLoading();
   // };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!pool?.withdrawInfo.pending) {
-      pool?.withdrawInfo.withdraw();
+      await pool?.withdrawInfo.withdraw();
     }
   };
 
@@ -92,16 +96,17 @@ const WithdrawFarm: React.FC<Props> = ({ data: { pool }, closeModal }) => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Button
+          <WalletButtonBase
             type="submit"
             fullWidth
             variant="contained"
             color="secondary"
+            loading={pool?.withdrawInfo.pending}
             style={{ marginTop: 20 }}
             onClick={handleSubmit}
           >
-            {pool?.withdrawInfo.pending ? "PENDING..." : "WITHDRAW"}
-          </Button>
+            WITHDRAW
+          </WalletButtonBase>
         </Grid>
       </Grid>
     </div>

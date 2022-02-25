@@ -6,6 +6,7 @@ import { useERC1155Transfer } from "@react-dapp/utils";
 import useLoading from "src/hooks/useLoading";
 import { useDispatch } from "react-redux";
 import { notify } from "reapop";
+import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -100,9 +101,9 @@ const TransferToken: React.FC<Props> = ({ data: { tokenId, max }, closeModal }) 
           </Grid>
 
           <Grid item xs={12}>
-            <Button type="submit" fullWidth variant="contained" color="secondary" style={{ marginTop: 20 }}>
+            <WalletButtonBase type="submit" fullWidth variant="contained" color="secondary" style={{ marginTop: 20 }}>
               Transfer
-            </Button>
+            </WalletButtonBase>
           </Grid>
         </Grid>
       </form>

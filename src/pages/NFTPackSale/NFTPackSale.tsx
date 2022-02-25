@@ -9,6 +9,8 @@ import { useAllPacks } from "@nftvillage/presale-sdk";
 import { useDispatch } from "react-redux";
 import { setUserLoading } from "src/state/user/userReducer";
 import { v4 as uuid } from "uuid";
+import { CRYPTORUNNER_POINTS_TOKEN } from "src/config/config";
+import { useERC20Balance } from "@react-dapp/utils";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -21,13 +23,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props { }
+interface Props {}
 
 const NFTPackSale: React.FC<Props> = () => {
   const classes = useStyles();
   const { packs, loading } = useAllPacks();
   const dispatch = useDispatch();
-
+  const { displayBalance } = useERC20Balance(CRYPTORUNNER_POINTS_TOKEN);
+  console.log("b",  displayBalance);
+  console.log("packs",packs)
+  // CRYPTORUNNER_POINTS_TOKEN
   React.useEffect(() => {
     if (loading) {
       dispatch(setUserLoading(true));
@@ -45,13 +50,13 @@ const NFTPackSale: React.FC<Props> = () => {
         <Typography color="textSecondary" style={{ marginTop: 20 }}>
           Discover the amazing CryptoRunner NFTS
         </Typography>
-        <Values />
+        <Values displayBalance={displayBalance} />
         <Grid container spacing={2} style={{ marginTop: 30 }}>
-          <Grid item xs={12} md={3}>
+          {/* <Grid item xs={12} md={3}>
             <Filters />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={9}>
+          <Grid item xs={12} >
             <Grid container spacing={3}>
               {/* {packs && (
                 <Grid key={uuid()} item xs={12} sm={6} md={4}>

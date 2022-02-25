@@ -4,7 +4,9 @@ import { Button, Container, Grid, Skeleton, Theme, Typography } from "@mui/mater
 import clsx from "clsx";
 import FarmCard from "./components/FarmCard";
 import Social from "src/components/Social/Social";
-import { usePools } from "@nftvillage/farms-sdk";
+import { Pool, usePools } from "@nftvillage/farms-sdk";
+import { useInventoryERC1155 } from "@nftvillage/marketplace-sdk";
+import { POOL_CARD_ADDRESS } from "src/config/config";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -22,9 +24,37 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface Props {}
 
+interface ModifiedPool extends Pool {
+  enabled?: boolean;
+  requiredCard?: string | number;
+}
+
 const Farm: React.FC<Props> = () => {
   const classes = useStyles();
   const { pools, loading: poolsLoading } = usePools();
+  const { loading, results } = useInventoryERC1155(POOL_CARD_ADDRESS, 205);
+  const [modifiedPools, setModifiedPools] = React.useState<ModifiedPool[]>([]);
+
+  const filterPools = () => {
+    let modifiedPools: ModifiedPool[] = pools.map((pool: Pool, index) => {
+      let p: ModifiedPool = { ...pool, enabled: false };
+      let ele = results.find((item: any) => item.rarity === index + 1);
+      if (ele) {
+        p.enabled = true;
+        p.requiredCard = ele?.tokenId;
+      } else {
+        p.enabled = false;
+        p.requiredCard = ele?.tokenId;
+      }
+      return p;
+    });
+
+    setModifiedPools(modifiedPools);
+  };
+
+  React.useEffect(() => {
+    filterPools();
+  }, [results, pools]);
 
   return (
     <div className={classes.root}>
@@ -44,15 +74,15 @@ const Farm: React.FC<Props> = () => {
           <Button className={classes.selectionBtn}>BUSD</Button> */}
         </div>
         <Grid container spacing={4} style={{ marginTop: 20 }}>
-          {pools?.map((e, i) => {
+          {modifiedPools?.map((e, i) => {
             return (
               <Grid key={i} item xs={12} md={6}>
-                <FarmCard poolId={e.poolId} />
+                <FarmCard poolId={e.poolId} enabled={e?.enabled} requiredCard={e.requiredCard} />
               </Grid>
             );
           })}
         </Grid>
-        {poolsLoading && (
+        {poolsLoading && modifiedPools.length <= 0 && (
           <Grid container spacing={4} style={{ marginTop: 20 }}>
             <Grid item xs={12} md={6}>
               <Skeleton variant="rectangular" animation="wave" height={350} />

@@ -63,7 +63,6 @@ const NftCard: React.FC<Props> = ({ pack }) => {
   // console.log(pack);
   const { buy, isApproved, approve } = useBuyPack(pack.packId, pack.paymentToken, pack.price);
   const { metadata } = useMetadata(pack.nft, pack.tokens[0].tokenId.toString());
-  console.log("pack", pack, metadata);
 
   const handleApprove = async () => {
     MySwal.fire({

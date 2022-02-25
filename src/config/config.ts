@@ -12,3 +12,4 @@ export const NFT_CLAIM_ADDRESS = process.env.REACT_APP_NFT_CLAIM_ADDRESS as stri
 export const NFT_GIFT_CLAIM_ADDRESS = process.env.REACT_APP_NFT_NEW_GIFT_ADDRESS as string;
 export const MYSTERY_BOX_ADDRESS = process.env.REACT_APP_MYSTERY_BOX as string;
 export const FARM_ADDRESS = process.env.REACT_APP_FARM_ADDRESS as string;
+export const CRYPTORUNNER_POINTS_TOKEN = process.env.REACT_APP_CRYPTORUNNER_POINTS_TOKEN as string;

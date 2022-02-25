@@ -4,6 +4,8 @@ import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
 import useLoading from "src/hooks/useLoading";
 import { useDispatch } from "react-redux";
 import { notify } from "reapop";
+import { usePool } from "@nftvillage/farms-sdk";
+import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -16,9 +18,11 @@ interface Props {
   closeModal: () => {};
 }
 
-const DepositFarm: React.FC<Props> = ({ data: { pool }, closeModal }) => {
+const DepositFarm: React.FC<Props> = ({ data: { poolId, requiredCard }, closeModal }) => {
   const classes = useStyles();
   const { startLoading, stopLoading } = useLoading();
+  const handlerError = (message: string) => console.log(message);
+  const pool = usePool(poolId, handlerError);
 
   // const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
   //   e.preventDefault();
@@ -50,7 +54,7 @@ const DepositFarm: React.FC<Props> = ({ data: { pool }, closeModal }) => {
 
   const handleSubmit = () => {
     if (!pool?.depositInfo.pending) {
-      pool?.depositInfo.deposit();
+      pool?.depositInfo.deposit(undefined, undefined, undefined, undefined, requiredCard, undefined);
     }
   };
 
@@ -92,16 +96,17 @@ const DepositFarm: React.FC<Props> = ({ data: { pool }, closeModal }) => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Button
+          <WalletButtonBase
             type="submit"
             fullWidth
             variant="contained"
             color="secondary"
             style={{ marginTop: 20 }}
             onClick={handleSubmit}
+            loading={pool?.depositInfo.pending}
           >
-            {pool?.depositInfo.pending ? "PENDING..." : "DEPOSIT"}
-          </Button>
+            DEPOSIT
+          </WalletButtonBase>
         </Grid>
       </Grid>
     </div>
