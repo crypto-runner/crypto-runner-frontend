@@ -6,7 +6,7 @@ import clsx from "clsx";
 const useStyles = makeStyles((theme: Theme) => ({
   valuesDiv: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr 1.5fr",
+    gridTemplateColumns: "1fr 1fr 1fr 1.5fr",
     gap: 10,
     marginTop: 20,
     [theme.breakpoints.down("md")]: {
@@ -25,50 +25,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props {
+  displayBalance?: any;
+}
 
-const Values: React.FC<Props> = () => {
+const Values: React.FC<Props> = ({ displayBalance }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.valuesDiv}>
       <div className={classes.valueWrapper}>
-        <Typography
-          variant="h6"
-          color="textSecondary"
-          className={clsx(classes.valueText, "styleFont")}
-        >
-          <span>Stacked</span> 0 HERO
-        </Typography>
-      </div>
-      <div className={classes.valueWrapper}>
-        <Typography
-          variant="h6"
-          color="textSecondary"
-          className={clsx(classes.valueText, "styleFont")}
-        >
-          <span>Earned</span> 0 Points
-        </Typography>
-      </div>
-      <div className={classes.valueWrapper}>
-        <Typography
-          variant="h6"
-          color="textSecondary"
-          className={clsx(classes.valueText, "styleFont")}
-        >
-          <span>Balance</span> 0 Points
-        </Typography>
-      </div>
-      <Hidden mdDown>
-        <div />
-      </Hidden>
-      <div className={classes.valueWrapper}>
-        <Typography
-          variant="h6"
-          color="textSecondary"
-          className={clsx(classes.valueText, "styleFont")}
-        >
-          <span>Total Stacked</span> 0 Points
+        <Typography variant="h6" color="textSecondary" className={clsx(classes.valueText, "styleFont")}>
+          <span>Balance</span> {displayBalance} Points
         </Typography>
       </div>
     </div>
