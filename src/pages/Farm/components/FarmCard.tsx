@@ -78,6 +78,8 @@ const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
   const classes = useStyles();
   const pool = usePool(poolId, handlerError);
 
+  console.log("poo", pool);
+
   const depositClick = () => {
     openModal(
       "DepositFarm",
@@ -104,7 +106,10 @@ const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
   };
 
   return (
-    <Paper variant="black" className={clsx(classes.root, !enabled && classes.disabled)}>
+    <Paper
+      variant="black"
+      className={clsx(classes.root, !(enabled || Number(pool?.stakedAmount) > 0) && classes.disabled)}
+    >
       <div className={classes.headerContainer}>
         <div className={classes.titleContainer}>
           <img src={DiamondPng} alt="" width="70px" height="70px" />
