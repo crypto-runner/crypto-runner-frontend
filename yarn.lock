@@ -2027,7 +2027,7 @@
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@nftvillage/farms-sdk@^0.0.27":
+"@nftvillage/farms-sdk@0.0.27":
   version "0.0.27"
   resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.27.tgz#bceac3ede0fdd1081140fd2711a89df613a9d4ff"
   integrity sha512-Z7ijJEWqqE0/CJxd3XAs8zQcZBF/s/S6K96st07XpDFddSSpV6VHVOzU18DqObIxiDFOi87Ajdc2DNwTs2fMmA==
@@ -2090,10 +2090,10 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
-"@react-dapp/utils@^0.0.59":
-  version "0.0.59"
-  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.59.tgz#262275c90c11ce90b22796c7c695caff3cbf3966"
-  integrity sha512-vpbx8nJAe3JbLVRzABjIvdRr/PIK3Y2kjPkQVjzK1oseQh47aAZz/hUZoFsKuraJEupTg1qEm3+/jiEv3TA8cg==
+"@react-dapp/utils@^0.0.63":
+  version "0.0.63"
+  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.63.tgz#28967b4d12c5a9113b2f57914f452612a7905a28"
+  integrity sha512-BbMj0tcoEzLC0pmhD2ITCAvSzzOrlpNoHWzki5rdBMJLznDgGE4DxHeiYQ/07HB+jwHoP1ZFBhWykBQYKRGwKQ==
   dependencies:
     "@binance-chain/bsc-connector" "^1.0.0"
 

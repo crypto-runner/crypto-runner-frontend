@@ -149,7 +149,7 @@ const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
           {pool?.stakedAmount} {pool?.stakedTokenSymbol}
         </Typography>
       </div>
-      {pool?.stakedTokenApproval?.isApproved && enabled && (
+      {pool?.stakedTokenApproval?.isApproved && pool?.poolCardsApproval.isApproved && enabled && (
         <div className={classes.btnsGrid}>
           <WalletButtonBase
             loading={pool?.depositInfo.pending}
@@ -182,7 +182,20 @@ const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
             loading={pool?.stakedTokenApproval.approvePending}
             onClick={() => pool?.stakedTokenApproval.approve()}
           >
-            ENABLE
+            APPROVE STAKETOKEN
+          </WalletButtonBase>
+        </div>
+      )}
+      {!pool?.poolCardsApproval.isApproved && enabled && (
+        <div className="center">
+          <WalletButtonBase
+            variant="contained"
+            color="primary"
+            style={{ marginTop: 30 }}
+            loading={pool?.poolCardsApproval.approvePending}
+            onClick={() => pool?.poolCardsApproval.approve()}
+          >
+            APPROVE POOL
           </WalletButtonBase>
         </div>
       )}

@@ -39,12 +39,12 @@ const WalletButtonBase: React.FC<Props> = ({
   }, [account]);
 
   return (
-    <Button {...props} className={clsx(classes.root, className)} onClick={account ? onClick : handleClick}>
+    <Button {...props} className={clsx(classes.root, className)} onClick={account && !loading ? onClick : handleClick}>
       {!account && "Connect Wallet"}
       {account && !loading && children}
       {account && loading && (
         <>
-          <CircularProgress size={25} thickness={4} style={{ marginRight: 5, color: "white" }} />
+          <CircularProgress size={25} thickness={4} style={{ marginRight: 5, color: "black" }} />
           {loadingText}
         </>
       )}
