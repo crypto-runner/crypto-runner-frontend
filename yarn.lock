@@ -2027,10 +2027,10 @@
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@nftvillage/farms-sdk@0.0.27":
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.27.tgz#bceac3ede0fdd1081140fd2711a89df613a9d4ff"
-  integrity sha512-Z7ijJEWqqE0/CJxd3XAs8zQcZBF/s/S6K96st07XpDFddSSpV6VHVOzU18DqObIxiDFOi87Ajdc2DNwTs2fMmA==
+"@nftvillage/farms-sdk@^0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@nftvillage/farms-sdk/-/farms-sdk-0.0.28.tgz#58f11b125349192a07d5751e52c209e0bbafd020"
+  integrity sha512-QEAv+iZsbq8L/+D/Y2XljZogZSY9TaBi+ShuuPF+xZ9AZE/vNCfXWskyblTFnmon1geESJZ6jc86AMcvLbvhWA==
   dependencies:
     bignumber.js "^9.0.2"
 
@@ -2090,10 +2090,10 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
-"@react-dapp/utils@^0.0.63":
-  version "0.0.63"
-  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.63.tgz#28967b4d12c5a9113b2f57914f452612a7905a28"
-  integrity sha512-BbMj0tcoEzLC0pmhD2ITCAvSzzOrlpNoHWzki5rdBMJLznDgGE4DxHeiYQ/07HB+jwHoP1ZFBhWykBQYKRGwKQ==
+"@react-dapp/utils@^0.0.67":
+  version "0.0.67"
+  resolved "https://registry.yarnpkg.com/@react-dapp/utils/-/utils-0.0.67.tgz#ac023b679e8a9f169800aad024d59fb918ed31ed"
+  integrity sha512-w6gdORpCMGz76hPKSTx3H02Pcg3yhMOvK8Va4Qm9ZtKITstHNxlCGsO/02N2Ix2kU60iD2RvA6HEK6d/05Mb4w==
   dependencies:
     "@binance-chain/bsc-connector" "^1.0.0"
 
@@ -4174,7 +4174,7 @@ commander@^2.20.0:
   resolved "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-commander@^4.1.1:
+commander@^4.0.0, commander@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
@@ -5161,6 +5161,14 @@ entities@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/entities/-/entities-2.2.0.tgz"
   integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
+
+env-cmd@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/env-cmd/-/env-cmd-10.1.0.tgz#c7f5d3b550c9519f137fdac4dd8fb6866a8c8c4b"
+  integrity sha512-mMdWTT9XKN7yNth/6N6g2GuKuJTsKMDHlQFUDacb/heQRRWOTIZ42t1rMHnQu4jYxU1ajdTeJM+9eEETlqToMA==
+  dependencies:
+    commander "^4.0.0"
+    cross-spawn "^7.0.0"
 
 errno@^0.1.3, errno@~0.1.7:
   version "0.1.8"

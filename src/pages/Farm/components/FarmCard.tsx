@@ -8,6 +8,8 @@ import ModalContext from "src/Context/ModalContext";
 import clsx from "clsx";
 import { getPoolRarity } from "src/util";
 import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
+import { toBigNumber } from "@react-dapp/utils";
+import BigNumber from "bignumber.js";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -68,17 +70,16 @@ interface Props {
   poolId: number;
   enabled?: boolean;
   requiredCard?: string | number;
+  image?: string
 }
 
-const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
+const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard, image }) => {
   // add error notification here
   const handlerError = (message: string) => console.log(message);
   const { openModal } = useContext(ModalContext);
 
   const classes = useStyles();
   const pool = usePool(poolId, handlerError);
-
-  console.log("poo", pool);
 
   const depositClick = () => {
     openModal(
@@ -105,10 +106,12 @@ const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
     );
   };
 
+  const isEnabled = enabled || pool?.details.userInfo?.amount.gt(0)
+
   return (
     <Paper
       variant="black"
-      className={clsx(classes.root, !(enabled || Number(pool?.stakedAmount) > 0) && classes.disabled)}
+      className={clsx(classes.root, !isEnabled && classes.disabled)}
     >
       <div className={classes.headerContainer}>
         <div className={classes.titleContainer}>
@@ -117,7 +120,7 @@ const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
             <b>{getPoolRarity(poolId).rarity}</b>
           </Typography>
         </div>
-        <img src={JackPng} alt="" width="100px" height="100px" style={{ objectFit: "contain" }} />
+        <img src={image} alt="" width="100px" height="100px" style={{ objectFit: "contain" }} />
       </div>
       <div className={classes.headerContainer} style={{ marginTop: 20 }}>
         <Typography variant="h5" color="primary">
@@ -154,57 +157,63 @@ const FarmCard: React.FC<Props> = ({ poolId, enabled, requiredCard }) => {
           {pool?.stakedAmount} {pool?.stakedTokenSymbol}
         </Typography>
       </div>
-      {pool?.stakedTokenApproval?.isApproved && pool?.poolCardsApproval.isApproved && enabled && (
-        <div className={classes.btnsGrid}>
-          <WalletButtonBase
-            loading={pool?.depositInfo.pending}
-            variant="outlined"
-            color="primary"
-            fullWidth
-            className={classes.btn}
-            onClick={depositClick}
-          >
-            DEPOSIT
-          </WalletButtonBase>
-          <WalletButtonBase
-            loading={pool?.withdrawInfo.pending}
-            variant="outlined"
-            color="primary"
-            fullWidth
-            className={classes.btn}
-            onClick={withdrawClick}
-          >
-            WITHDRAW
-          </WalletButtonBase>
-        </div>
-      )}
-      {!pool?.stakedTokenApproval?.isApproved && enabled && (
-        <div className="center">
-          <WalletButtonBase
-            variant="contained"
-            color="primary"
-            style={{ marginTop: 30 }}
-            loading={pool?.stakedTokenApproval.approvePending}
-            onClick={() => pool?.stakedTokenApproval.approve()}
-          >
-            APPROVE STAKETOKEN
-          </WalletButtonBase>
-        </div>
-      )}
-      {!pool?.poolCardsApproval.isApproved && enabled && (
-        <div className="center">
-          <WalletButtonBase
-            variant="contained"
-            color="primary"
-            style={{ marginTop: 30 }}
-            loading={pool?.poolCardsApproval.approvePending}
-            onClick={() => pool?.poolCardsApproval.approve()}
-          >
-            APPROVE POOL
-          </WalletButtonBase>
-        </div>
-      )}
-      {!enabled && (
+      {pool?.stakedTokenApproval?.isApproved && pool?.poolCardsApproval.isApproved
+        && isEnabled
+        && (
+          <div className={classes.btnsGrid}>
+            <WalletButtonBase
+              loading={pool?.depositInfo.pending}
+              variant="outlined"
+              color="primary"
+              fullWidth
+              className={classes.btn}
+              onClick={depositClick}
+            >
+              DEPOSIT
+            </WalletButtonBase>
+            <WalletButtonBase
+              loading={pool?.withdrawInfo.pending}
+              variant="outlined"
+              color="primary"
+              fullWidth
+              className={classes.btn}
+              onClick={withdrawClick}
+            >
+              WITHDRAW
+            </WalletButtonBase>
+          </div>
+        )}
+      {!pool?.stakedTokenApproval?.isApproved
+        && isEnabled
+        && (
+          <div className="center">
+            <WalletButtonBase
+              variant="contained"
+              color="primary"
+              style={{ marginTop: 30 }}
+              loading={pool?.stakedTokenApproval.approvePending}
+              onClick={() => pool?.stakedTokenApproval.approve()}
+            >
+              APPROVE STAKETOKEN
+            </WalletButtonBase>
+          </div>
+        )}
+      {!pool?.poolCardsApproval.isApproved
+        && isEnabled
+        && (
+          <div className="center">
+            <WalletButtonBase
+              variant="contained"
+              color="primary"
+              style={{ marginTop: 30 }}
+              loading={pool?.poolCardsApproval.approvePending}
+              onClick={() => pool?.poolCardsApproval.approve()}
+            >
+              APPROVE POOL
+            </WalletButtonBase>
+          </div>
+        )}
+      {!isEnabled && (
         <Typography align="center" variant="h6" color="textSecondary">
           Disabled
         </Typography>

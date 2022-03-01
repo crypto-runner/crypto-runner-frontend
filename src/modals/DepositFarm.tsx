@@ -4,8 +4,9 @@ import { Button, Grid, TextField, Theme, Typography } from "@mui/material";
 import useLoading from "src/hooks/useLoading";
 import { useDispatch } from "react-redux";
 import { notify } from "reapop";
-import { usePool } from "@nftvillage/farms-sdk";
+import { useDeposit, usePool } from "@nftvillage/farms-sdk";
 import WalletButtonBase from "src/components/WalletButtonBase/WalletButtonBase";
+import { ZERO_ADDRESS } from "@react-dapp/utils";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -52,9 +53,10 @@ const DepositFarm: React.FC<Props> = ({ data: { poolId, requiredCard }, closeMod
   //   stopLoading();
   // };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!pool?.depositInfo.pending) {
-      pool?.depositInfo.deposit(undefined, undefined, undefined, undefined, requiredCard, undefined);
+      const response = await pool?.depositInfo.deposit(undefined, undefined, undefined, undefined, requiredCard, undefined);
+      console.log(response)
     }
   };
 

@@ -22,11 +22,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-interface Props {}
+interface Props { }
 
 interface ModifiedPool extends Pool {
   enabled?: boolean;
   requiredCard?: string | number;
+  image?: string
 }
 
 const Farm: React.FC<Props> = () => {
@@ -39,9 +40,11 @@ const Farm: React.FC<Props> = () => {
     let modifiedPools: ModifiedPool[] = pools.map((pool: Pool, index) => {
       let p: ModifiedPool = { ...pool, enabled: false };
       let ele = results.find((item: any) => item.rarity === index + 1);
+      console.log(ele)
       if (ele) {
         p.enabled = true;
         p.requiredCard = ele?.tokenId;
+        p.image = ele.image
       } else {
         p.enabled = false;
         p.requiredCard = ele?.tokenId;
@@ -60,7 +63,7 @@ const Farm: React.FC<Props> = () => {
     <div className={classes.root}>
       <Container maxWidth="lg">
         <Typography color="textSecondary" variant="h4" className="styleFont">
-          <b>CryptoRunner NFTS</b>
+          <b>NFT Staking</b>
         </Typography>
         <Typography color="textSecondary" style={{ marginTop: 20 }}>
           Discover the amazing CryptoRunner NFTS
@@ -77,7 +80,7 @@ const Farm: React.FC<Props> = () => {
           {modifiedPools?.map((e, i) => {
             return (
               <Grid key={i} item xs={12} md={6}>
-                <FarmCard poolId={e.poolId} enabled={e?.enabled} requiredCard={e.requiredCard} />
+                <FarmCard poolId={e.poolId} enabled={e?.enabled} requiredCard={e.requiredCard} image={e.image} />
               </Grid>
             );
           })}

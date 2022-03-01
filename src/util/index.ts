@@ -55,3 +55,20 @@ export const getPoolRarity = (poolId: number) => {
       };
   }
 };
+
+export const getPoolImage = (poolId: number) => {
+  switch (poolId) {
+    case 0:
+      return CommonPng;
+    case 1:
+      return RarePng;
+    case 2:
+      return SuperRarePng;
+    case 3:
+      return EpicPng;
+    case 4:
+      return LegendaryPng;
+    default:
+      return CommonPng;
+  }
+};
