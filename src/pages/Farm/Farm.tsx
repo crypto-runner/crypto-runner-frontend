@@ -37,7 +37,7 @@ const Farm: React.FC<Props> = () => {
   const [modifiedPools, setModifiedPools] = React.useState<ModifiedPool[]>([]);
 
   const filterPools = () => {
-    let modifiedPools: ModifiedPool[] = pools.map((pool: Pool, index) => {
+    let modifiedPools: ModifiedPool[] = pools?.map((pool: Pool, index) => {
       let p: ModifiedPool = { ...pool, enabled: false };
       let ele = results.find((item: any) => item.rarity === index + 1);
       console.log(ele)
